@@ -39,6 +39,7 @@ public class MapsActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_map);
 		device = (Device) getIntent().getSerializableExtra("device");
 		bUpdateLocation = (Button) findViewById(R.id.bGetCurrentLocation);
+		initilizeMap();
 		bUpdateLocation.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -108,19 +109,19 @@ public class MapsActivity extends ActionBarActivity {
 	private void initilizeMap() {
 		if (googleMap == null) {
 			googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-			// double latitude = Double.parseDouble(data.get(0));
-			// double longitude = Double.parseDouble(data.get(1));
-			double latitude = 1.358364;
-			double longitude = 103.833461;
+		}
+		// double latitude = Double.parseDouble(data.get(0));
+		// double longitude = Double.parseDouble(data.get(1));
+		double latitude = 1.358364;
+		double longitude = 103.833461;
 
-			LatLng deviceLocation = new LatLng(latitude, longitude);
-			googleMap.setMyLocationEnabled(true);
-			MarkerOptions marker = new MarkerOptions().position(deviceLocation).title(device.getDescription());
-			googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(deviceLocation, 17));
-			googleMap.addMarker(marker);
-			if (googleMap == null) {
-				Log.e("MapsActivity", "Error loading map");
-			}
+		LatLng deviceLocation = new LatLng(latitude, longitude);
+		googleMap.setMyLocationEnabled(true);
+		MarkerOptions marker = new MarkerOptions().position(deviceLocation).title(device.getDescription());
+		googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(deviceLocation, 17));
+		googleMap.addMarker(marker);
+		if (googleMap == null) {
+			Log.e("MapsActivity", "Error loading map");
 		}
 	}
 

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.manuelpeinado.refreshactionitem.ProgressIndicatorType;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem;
+import com.manuelpeinado.refreshactionitem.RefreshActionItem.RefreshActionListener;
 import com.netlynxtech.advancedmonitor.adapters.DevicesAdapter;
 import com.netlynxtech.advancedmonitor.classes.Device;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
@@ -53,6 +55,19 @@ public class DeviceListActivity extends ActionBarActivity {
 							.putExtra("deviceDescription", tvDescription.getText().toString().trim()).putExtra("device", d));
 				} else {
 					Toast.makeText(DeviceListActivity.this, "Unable to get device. Make sure internet connection is turned on and refresh", Toast.LENGTH_LONG).show();
+				}
+			}
+		});
+		box.setClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				try {
+					task = null;
+					task = new getDevice();
+					task.execute();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		});
@@ -94,6 +109,26 @@ public class DeviceListActivity extends ActionBarActivity {
 		mRefreshActionItem = (RefreshActionItem) MenuItemCompat.getActionView(item);
 		mRefreshActionItem.setMenuItem(item);
 		mRefreshActionItem.setProgressIndicatorType(ProgressIndicatorType.INDETERMINATE);
+		mRefreshActionItem.setRefreshActionListener(new RefreshActionListener() {
+
+			@Override
+			public void onRefreshButtonClick(RefreshActionItem sender) {
+				try {
+					task = null;
+					task = new getDevice();
+					task.execute();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		try {
+			task = null;
+			task = new getDevice();
+			task.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 
@@ -135,6 +170,7 @@ public class DeviceListActivity extends ActionBarActivity {
 			Log.e("getDevice", "loading..");
 			isProcessing = true;
 			box.showLoadingLayout();
+			mRefreshActionItem.showProgress(true);
 		}
 
 		@Override
@@ -150,6 +186,7 @@ public class DeviceListActivity extends ActionBarActivity {
 
 				@Override
 				public void run() {
+					mRefreshActionItem.showProgress(false);
 					if (!isCancelled()) {
 						if (devices.size() > 0) {
 							adapter = new DevicesAdapter(DeviceListActivity.this, devices);
@@ -161,7 +198,7 @@ public class DeviceListActivity extends ActionBarActivity {
 							box.hideAll();
 							lvDevices.setSelectionFromTop(index, top);
 						} else {
-							box.setOtherExceptionMessage("Size :" + devices.size());
+							box.setOtherExceptionMessage("No devices found");
 							box.showExceptionLayout();
 						}
 					} else {
@@ -182,16 +219,7 @@ public class DeviceListActivity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		try {
-			if (task != null) {
-				task.execute();
-			} else {
-				task = new getDevice();
-				task.execute();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}
 
 	@Override

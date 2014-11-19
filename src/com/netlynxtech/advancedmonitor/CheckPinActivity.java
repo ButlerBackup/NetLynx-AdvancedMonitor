@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,7 +39,9 @@ public class CheckPinActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.check_pin_activity);
-		// getSupportActionBar().setTitle(CheckPinActivity.this.getResources().getString(R.string.check_pin_name));
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setTitle(CheckPinActivity.this.getResources().getString(R.string.check_pin_name));
 		tvError = (TextView) findViewById(R.id.tvError);
 		tvGCMID = (TextView) findViewById(R.id.tvGCMID);
 		etPinNo = (EditText) findViewById(R.id.etPinNo);
@@ -178,6 +181,18 @@ public class CheckPinActivity extends ActionBarActivity {
 		if (mTask != null && mTask.getStatus() == Status.RUNNING) {
 			mTask.cancel(true);
 		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			finish();
+			break;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 }

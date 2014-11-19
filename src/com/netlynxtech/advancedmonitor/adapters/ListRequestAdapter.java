@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -78,8 +80,16 @@ public class ListRequestAdapter extends BaseAdapter {
 		holder.tvDeviceId.setText(d.getDeviceId());
 		holder.tvDeviceName.setText(d.getDeviceName());
 		holder.tvRequestorName.setText(d.getRequestorName());
-		holder.tvRequestorTimestamp.setText(new Utils(context).parseDatetime(d.getTimestamp()));
+		holder.tvRequestorTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(d.getTimestamp()) + "</b></i>"));
+		holder.tvRequestorTimestamp.setTextColor(Color.parseColor("#A4A4A4"));
 		holder.tvRole.setText(rolesValueArray.get(d.getRole()));
+		if (d.getRole().equals("9")) {
+			holder.tvRole.setTextColor(Color.RED);
+		} else if (d.getRole().equals("2")) {
+			holder.tvRole.setTextColor(Color.YELLOW);
+		} else if (d.getRole().equals("1")) {
+			holder.tvRole.setTextColor(Color.GREEN);
+		}
 		holder.bRequestAccept.setOnClickListener(new OnClickListener() {
 
 			@Override

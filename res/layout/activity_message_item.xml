@@ -3,7 +3,7 @@
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card"
+    android:background="@drawable/test1"
     android:orientation="vertical" >
 
     <TextView
@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvTimestamp"
@@ -32,7 +34,8 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tvTimestamp"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF" />
 
     <info.hoang8f.widget.FButton
         android:id="@+id/bAck"
@@ -42,6 +45,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tvMessage"
         android:text="Acknowledge"
+        android:textColor="#FFFFFF"
         fbutton:cornerRadius="0dp"
         fbutton:shadowColor="@color/fbutton_default_shadow_color"
         fbutton:shadowEnabled="true"

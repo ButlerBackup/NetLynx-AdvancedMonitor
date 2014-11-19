@@ -52,7 +52,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	DynamicBox box;
 	TextView tvDeviceId, tvDeviceDescription, tvDeviceTemperature, tvDeviceHumidity, tvDeviceVoltage, tvDeviceTimestamp, tvInputOneDescription, tvInputTwoDescription, tvOutputOneDescription,
 			tvOutputTwoDescription;
-	ImageView ivInputOne, ivInputTwo;
+	ImageView ivInputOne, ivInputTwo, ivTemperature, ivHumidity;
 	Switch sOutputOne, sOutputTwo;
 	boolean isProcessing = false, loadedBefore = false;
 	deleteDevice mDeleteDevice;
@@ -89,10 +89,105 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 
 		ivInputOne = (ImageView) findViewById(R.id.ivInputOne);
 		ivInputTwo = (ImageView) findViewById(R.id.ivInputTwo);
+		ivTemperature = (ImageView) findViewById(R.id.imageView1);
+		ivHumidity = (ImageView) findViewById(R.id.imageView2);
 		sOutputOne = (Switch) findViewById(R.id.sOutputOne);
 		sOutputTwo = (Switch) findViewById(R.id.sOutputTwo);
 		setData();
 		tvDeviceTemperature.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				final Dialog dialog = new Dialog(IndividualDeviceActivity.this);
+				dialog.setCancelable(false);
+				dialog.setCanceledOnTouchOutside(false);
+				dialog.setContentView(R.layout.dialog_temperature_threshold);
+				dialog.setTitle("Set Threshold (Temperature)");
+				final EditText etMinTempThreshold = (EditText) dialog.findViewById(R.id.etMinTempThreshold);
+				etMinTempThreshold.setText(device.getTemperatureLo());
+				final EditText etMaxTempThreshold = (EditText) dialog.findViewById(R.id.etMaxTempThreshold);
+				etMaxTempThreshold.setText(device.getTemperatureHi());
+				TextView tvIndicatorMin = (TextView) dialog.findViewById(R.id.tvIndicatorMin);
+				tvIndicatorMin.setText((char) 0x00B0 + "c");
+				TextView tvIndicatorMax = (TextView) dialog.findViewById(R.id.tvIndicatorMax);
+				tvIndicatorMax.setText((char) 0x00B0 + "c");
+				Button bCancel = (Button) dialog.findViewById(R.id.bCancel);
+				bCancel.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+				Button bUpdate = (Button) dialog.findViewById(R.id.bUpdate);
+				bUpdate.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						if (etMaxTempThreshold.getText().toString().length() > 0 && etMinTempThreshold.getText().toString().length() > 0) {
+							if (Long.valueOf(etMaxTempThreshold.getText().toString()) > Long.valueOf(etMinTempThreshold.getText().toString())) {
+
+								final String maxTemp = etMaxTempThreshold.getText().toString();
+								String minTemp = etMinTempThreshold.getText().toString();
+								new AsyncTask<String, Void, Void>() {
+									String res = "", maxTemp, minTemp;
+									ProgressDialog pd;
+
+									@Override
+									protected void onPreExecute() {
+										super.onPreExecute();
+										pd = new ProgressDialog(IndividualDeviceActivity.this);
+										pd.setCancelable(false);
+										pd.setCanceledOnTouchOutside(false);
+										pd.setMessage("Updating threshold..");
+										pd.setIndeterminate(true);
+										pd.show();
+									}
+
+									@Override
+									protected Void doInBackground(String... params) {
+										maxTemp = params[0];
+										minTemp = params[1];
+										res = new WebRequestAPI(IndividualDeviceActivity.this).UpdateTemperatureThreshold(deviceId, maxTemp, minTemp);
+										return null;
+									}
+
+									@Override
+									protected void onPostExecute(Void result) {
+										super.onPostExecute(result);
+										if (pd != null && pd.isShowing()) {
+											pd.dismiss();
+										}
+										IndividualDeviceActivity.this.runOnUiThread(new Runnable() {
+
+											@Override
+											public void run() {
+												if (res.equals("success")) {
+													device.setTemperatureHi(maxTemp);
+													device.setTemperatureLo(minTemp);
+													Toast.makeText(IndividualDeviceActivity.this, "Successfully updated threshold", Toast.LENGTH_SHORT).show();
+													task = null;
+													task = new loadData();
+													task.execute();
+													dialog.dismiss();
+												} else {
+													Toast.makeText(IndividualDeviceActivity.this, "Failed to update threshold", Toast.LENGTH_SHORT).show();
+												}
+											}
+										});
+									}
+
+								}.execute(maxTemp, minTemp);
+							} else {
+								Toast.makeText(IndividualDeviceActivity.this, "Minimum must be higher than the maximum", Toast.LENGTH_SHORT).show();
+							}
+						}
+					}
+				});
+				dialog.show();
+			}
+		});
+		ivTemperature.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -278,20 +373,149 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				dialog.show();
 			}
 		});
+		ivHumidity.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				final Dialog dialog = new Dialog(IndividualDeviceActivity.this);
+				dialog.setCancelable(false);
+				dialog.setCanceledOnTouchOutside(false);
+				dialog.setContentView(R.layout.dialog_temperature_threshold);
+				dialog.setTitle("Set Threshold (Humidity)");
+				final EditText etMinTempThreshold = (EditText) dialog.findViewById(R.id.etMinTempThreshold);
+				etMinTempThreshold.setText(device.getHumidityLo());
+				final EditText etMaxTempThreshold = (EditText) dialog.findViewById(R.id.etMaxTempThreshold);
+				etMaxTempThreshold.setText(device.getHumidityHi());
+				TextView tvIndicatorMin = (TextView) dialog.findViewById(R.id.tvIndicatorMin);
+				tvIndicatorMin.setText("%");
+				TextView tvIndicatorMax = (TextView) dialog.findViewById(R.id.tvIndicatorMax);
+				tvIndicatorMax.setText("%");
+				Button bCancel = (Button) dialog.findViewById(R.id.bCancel);
+				bCancel.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+				Button bUpdate = (Button) dialog.findViewById(R.id.bUpdate);
+				bUpdate.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						if (etMaxTempThreshold.getText().toString().length() > 0 && etMinTempThreshold.getText().toString().length() > 0) {
+							if (Long.valueOf(etMaxTempThreshold.getText().toString()) > Long.valueOf(etMinTempThreshold.getText().toString())) {
+								final String maxTemp = etMaxTempThreshold.getText().toString();
+								String minTemp = etMinTempThreshold.getText().toString();
+								new AsyncTask<String, Void, Void>() {
+									String res = "", maxTemp, minTemp;
+									ProgressDialog pd;
+
+									@Override
+									protected void onPreExecute() {
+										super.onPreExecute();
+										pd = new ProgressDialog(IndividualDeviceActivity.this);
+										pd.setCancelable(false);
+										pd.setCanceledOnTouchOutside(false);
+										pd.setMessage("Updating threshold..");
+										pd.setIndeterminate(true);
+										pd.show();
+									}
+
+									@Override
+									protected Void doInBackground(String... params) {
+										maxTemp = params[0];
+										minTemp = params[1];
+										res = new WebRequestAPI(IndividualDeviceActivity.this).UpdateHumidityThreshold(deviceId, maxTemp, minTemp);
+										return null;
+									}
+
+									@Override
+									protected void onPostExecute(Void result) {
+										super.onPostExecute(result);
+										if (pd != null && pd.isShowing()) {
+											pd.dismiss();
+										}
+										IndividualDeviceActivity.this.runOnUiThread(new Runnable() {
+
+											@Override
+											public void run() {
+												if (res.equals("success")) {
+													device.setHumidityHi(maxTemp);
+													device.setHumidityLo(minTemp);
+													Toast.makeText(IndividualDeviceActivity.this, "Successfully updated threshold", Toast.LENGTH_SHORT).show();
+													task = null;
+													task = new loadData();
+													task.execute();
+													dialog.dismiss();
+												} else {
+													Toast.makeText(IndividualDeviceActivity.this, "Failed to update threshold", Toast.LENGTH_SHORT).show();
+												}
+											}
+										});
+									}
+
+								}.execute(maxTemp, minTemp);
+							} else {
+								Toast.makeText(IndividualDeviceActivity.this, "Minimum must be higher than the maximum", Toast.LENGTH_SHORT).show();
+							}
+						}
+					}
+				});
+				dialog.show();
+			}
+		});
+		box.setClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				try {
+					task = null;
+					task = new loadData();
+					task.execute();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		new loadGraphData().execute();
 		processData();
 	}
 
 	private void setData() {
 		isProcessing = true;
-		tvDeviceTimestamp.setText(Utils.parseTime(device.getTimestamp()));
+		tvDeviceTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(device.getTimestamp()) + "</b></i>"));
+		tvDeviceTimestamp.setTextColor(Color.parseColor("#A4A4A4"));
 		tvDeviceId.setText(device.getDeviceID());
 		tvDeviceDescription.setText(device.getDescription());
 		tvInputOneDescription.setText(device.getDescriptionInput1());
 		tvInputTwoDescription.setText(device.getDescriptionInput2());
-		tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + device.getTemperature() + (char) 0x00B0 + "c"));
-		tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + device.getHumidity() + "%"));
-		tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + device.getVoltage() + "V"));
+		tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><i><font color='#00FF00'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></i></font>"));
+		tvDeviceTemperature.setTextColor(Color.WHITE);
+		float temperatureCurrent = Float.parseFloat(device.getTemperature());
+		float temperatureHi = Float.parseFloat(device.getTemperatureHi());
+		float temperatureLo = Float.parseFloat(device.getTemperatureLo());
+		if (temperatureCurrent > temperatureHi) {
+			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><i><font color='#FF0000'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></i></font>"));
+		}
+		if (temperatureCurrent < temperatureLo) {
+			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><i><font color='#FFFF00'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></i></font>"));
+		}
+
+		tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><i><font color='#00FF00'>" + device.getHumidity() + " %" + "</b></i></font>"));
+		tvDeviceHumidity.setTextColor(Color.WHITE);
+		float humidityCurrent = Float.parseFloat(device.getHumidity());
+		float humidityHi = Float.parseFloat(device.getHumidityHi());
+		float humidityLo = Float.parseFloat(device.getHumidityLo());
+		if (humidityCurrent > humidityHi) {
+			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><i><font color='#FF0000'>" + device.getHumidity() + " %" + "</b></i></font>"));
+		}
+		if (humidityCurrent < humidityLo) {
+			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><i><font color='#FFFF00'>" + device.getHumidity() + " %" + "</b></i></font>"));
+		}
+
+		tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><i><font color='#00FF00'>" + device.getVoltage() + " V" + "</b></i></font>"));
+		tvDeviceVoltage.setTextColor(Color.WHITE);
 		if (device.getEnableInput1().equals("1")) {
 			if (device.getInput1().equals("1")) {
 				ivInputOne.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
@@ -681,6 +905,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			pd.setCanceledOnTouchOutside(false);
 			pd.setMessage("Deleting device..");
 			pd.show();
+			mRefreshActionItem.showProgress(true);
 
 		}
 
@@ -691,6 +916,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 
 				@Override
 				public void run() {
+					mRefreshActionItem.showProgress(false);
 					if (pd != null && pd.isShowing()) {
 						pd.cancel();
 					}

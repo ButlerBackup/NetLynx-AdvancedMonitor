@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,19 +83,26 @@ public class MembersAdapter extends BaseAdapter {
 		holder.tvName.setText(d.getName());
 		if (d.getRequestStatus().equals("0")) {
 			holder.tvRequestStatus.setText("Pending");
+			holder.tvRequestStatus.setTextColor(Color.YELLOW);
 		} else if (d.getRequestStatus().equals("1")) {
 			holder.tvRequestStatus.setText("Accepted");
+			holder.tvRequestStatus.setTextColor(Color.GREEN);
 		} else {
 			holder.tvRequestStatus.setText("Unknown");
+			holder.tvRequestStatus.setTextColor(Color.RED);
 		}
 
-		holder.tvTimestamp.setText(Utils.parseTime(d.getUpdateTimestamp()));
+		holder.tvTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(d.getUpdateTimestamp()) + "</b></i>"));
+		holder.tvTimestamp.setTextColor(Color.parseColor("#A4A4A4"));
 		if (d.getRole().equals("9")) {
 			holder.tvRole.setText("Administrator");
+			holder.tvRole.setTextColor(Color.RED);
 		} else if (d.getRole().equals("2")) {
 			holder.tvRole.setText("Controller");
+			holder.tvRole.setTextColor(Color.YELLOW);
 		} else if (d.getRole().equals("1")) {
 			holder.tvRole.setText("Viewer");
+			holder.tvRole.setTextColor(Color.GREEN);
 		} else {
 			holder.tvRole.setText("No Access");
 		}

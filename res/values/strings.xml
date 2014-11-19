@@ -12,6 +12,7 @@
     <string name="wifi_to_connect_to_password">WiFi\'s Password</string>
     <string name="tutorial_two_setup">Setup!</string>
     <string name="activity_choose_device_button_connect">Connect</string>
+    <string name="activity_choose_device_button_rescan">Rescan Network</string>
     <string name="activity_update_io_description">Update Descriptions</string>
     <string name="menu_users">Users</string>
     <string name="menu_edit_device">Edit Device Details</string>
@@ -89,6 +90,11 @@
     <string name="pref_remote_reset_title">Remote Reset</string>
     <string name="pref_remote_reset_summary">Set your secret phrase so that you can reset this application if your phone gets stolen.</string>
     <string name="menu_graph">Show History Graph</string>
+    <string name="tutorial_thankyou">Thank you for using SensorLynx!</string>
+    <string name="tutorial_welcome">This tutorial will guide you through the configuration of the SensorLynx</string>
+    <string name="tutorial_content1">Firstly, the device will boardcast its SSID. Connect it using a WIFI Adapter</string>
+    <string name="tutorial_content2">Next, open the SensorLynx application and configure the device</string>
+    <string name="tutorial_content3"></string>
 
     <string-array name="roles_array_text_string">
         <item>Administrator</item>

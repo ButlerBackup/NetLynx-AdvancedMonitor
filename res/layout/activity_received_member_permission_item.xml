@@ -3,7 +3,7 @@
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card" >
+    android:background="@drawable/test1" >
 
     <TextView
         android:id="@+id/tvDeviceName"
@@ -13,7 +13,9 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvDeviceId"
@@ -51,7 +53,9 @@
         android:layout_below="@+id/tvRole"
         android:layout_toRightOf="@+id/textView1"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -64,8 +68,8 @@
             android:id="@+id/bRequestAccept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginRight="8dp"
+            android:layout_weight="1"
             android:text="Accept"
             fbutton:cornerRadius="0dp"
             fbutton:shadowColor="@color/fbutton_default_shadow_color"
@@ -92,7 +96,8 @@
         android:layout_alignBottom="@+id/tvRequestorName"
         android:layout_alignParentLeft="true"
         android:text="By : "
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#A4A4A4" />
 
     <TextView
         android:id="@+id/textView2"
@@ -102,6 +107,7 @@
         android:layout_alignBottom="@+id/tvRole"
         android:layout_alignParentLeft="true"
         android:text="Role : "
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#A4A4A4" />
 
 </RelativeLayout>

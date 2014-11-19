@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-
         </LinearLayout>
     </ScrollView>
 
@@ -31,7 +30,7 @@
             android:id="@+id/rl_device_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card" >
+            android:background="@drawable/download2" >
 
             <TextView
                 android:id="@+id/tvDeviceDescription"
@@ -41,7 +40,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvDeviceId"
@@ -71,7 +72,9 @@
                 android:layout_below="@+id/tvDeviceTimestamp"
                 android:gravity="center_vertical"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="italic" />
 
             <ImageView
                 android:id="@+id/ivInputOne"
@@ -88,7 +91,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/tvDeviceTimestamp"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvInputTwoDescription"
@@ -98,7 +103,9 @@
                 android:layout_below="@+id/ivInputOne"
                 android:gravity="center_vertical"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvOutputTwoDescription"
@@ -108,7 +115,9 @@
                 android:layout_alignBottom="@+id/tvInputTwoDescription"
                 android:layout_alignParentRight="true"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="italic" />
 
             <de.ankri.views.Switch
                 android:id="@+id/sOutputOne"
@@ -175,6 +184,40 @@
                     android:gravity="center"
                     android:text="Voltage"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/ivInputTwo"
+                android:layout_below="@+id/linearLayout1"
+                android:padding="5dp"
+                android:weightSum="3" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="12dp"
+                    android:src="@drawable/termometer" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="18dp"
+                    android:src="@drawable/humidity" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:src="@drawable/lightning" />
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>

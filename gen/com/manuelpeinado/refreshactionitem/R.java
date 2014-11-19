@@ -23,18 +23,18 @@ public final class R {
 		public static final int rai__action_bar_icon_vertical_padding = 0x7f07001a;
 	}
 	public static final class drawable {
-		public static final int ic_navigation_refresh_dark = 0x7f020079;
-		public static final int ic_navigation_refresh_light = 0x7f02007a;
+		public static final int ic_navigation_refresh_dark = 0x7f02007e;
+		public static final int ic_navigation_refresh_light = 0x7f02007f;
 	}
 	public static final class id {
 		public static final int bottomLeft = 0x7f0a001f;
 		public static final int bottomRight = 0x7f0a0020;
 		public static final int center = 0x7f0a0021;
-		public static final int determinate_progress_indicator = 0x7f0a00a6;
+		public static final int determinate_progress_indicator = 0x7f0a00aa;
 		public static final int indeterminate = 0x7f0a001c;
-		public static final int indeterminate_progress_indicator = 0x7f0a00a5;
+		public static final int indeterminate_progress_indicator = 0x7f0a00a9;
 		public static final int pie = 0x7f0a001b;
-		public static final int refresh_button = 0x7f0a00a4;
+		public static final int refresh_button = 0x7f0a00a8;
 		public static final int topLeft = 0x7f0a001d;
 		public static final int topRight = 0x7f0a001e;
 		public static final int wheel = 0x7f0a001a;

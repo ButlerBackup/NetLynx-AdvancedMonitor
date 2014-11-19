@@ -46,7 +46,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/etPinNo"
         android:text="@string/gcm_id_retrieved_waiting"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+         />
 
     <EditText
         android:id="@+id/etPinNo"
