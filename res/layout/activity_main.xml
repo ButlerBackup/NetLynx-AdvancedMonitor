@@ -23,14 +23,6 @@
         fbutton:shadowEnabled="true"
         fbutton:shadowHeight="5dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sWifi"
-        android:text="@string/wifi_to_connect_to_ssid"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <Spinner
         android:id="@+id/sWifi"
         android:layout_width="wrap_content"
@@ -81,5 +73,35 @@
         fbutton:shadowColor="@color/fbutton_default_shadow_color"
         fbutton:shadowEnabled="true"
         fbutton:shadowHeight="5dp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Make sure your phone is connected to the device&apos;s WiFi"
+        android:paddingBottom="8dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sWifi"
+        android:layout_alignRight="@+id/sWifi"
+        android:layout_below="@+id/textView1"
+        android:paddingTop="8dp"
+        android:text="@string/wifi_to_connect_to_ssid"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/textView1"
+        android:background="#00EAFF" />
 
 </RelativeLayout>
