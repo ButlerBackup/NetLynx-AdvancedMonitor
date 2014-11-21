@@ -10,11 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 
 import com.netlynxtech.advancedmonitor.fragments.TutorialOneFragment;
+import com.netlynxtech.advancedmonitor.fragments.TutorialThreeFragment;
 import com.netlynxtech.advancedmonitor.fragments.TutorialTwoFragment;
 import com.securepreferences.SecurePreferences;
 
 public class TutorialActivity extends ActionBarActivity {
-	private static final int NUM_PAGES = 2;
+	private static final int NUM_PAGES = 3;
 	private ViewPager mPager;
 	private PagerAdapter mPagerAdapter;
 
@@ -57,6 +58,9 @@ public class TutorialActivity extends ActionBarActivity {
 				break;
 			case 1:
 				f = new TutorialTwoFragment();
+				break;
+			case 2:
+				f = new TutorialThreeFragment();
 				break;
 			}
 			return f;

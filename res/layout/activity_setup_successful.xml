@@ -6,25 +6,27 @@
     android:orientation="vertical"
     android:padding="8dp" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Setup done. TO register yourself on the server, click the button when you&apos;ve a stable internet connection."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <info.hoang8f.widget.FButton
         android:id="@+id/bFinalSetup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
         android:text="@string/activity_choose_device_button_connect"
-        fbutton:buttonColor="@color/fbutton_color_turquoise"
+        fbutton:buttonColor="@color/fbutton_default_color"
         fbutton:cornerRadius="0dp"
-        fbutton:shadowColor="@color/fbutton_color_turquoise"
+        fbutton:shadowColor="@color/fbutton_default_shadow_color"
         fbutton:shadowEnabled="true"
         fbutton:shadowHeight="5dp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="Setup completed for the device. To register yourself on the server, click the button when you&apos;ve a stable internet connection."
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

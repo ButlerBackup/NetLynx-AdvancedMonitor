@@ -1,5 +1,6 @@
 package com.netlynxtech.advancedmonitor;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +42,17 @@ public class SetupSuccessfulActivity extends ActionBarActivity {
 
 	private class finalSetup extends AsyncTask<Void, Void, Void> {
 		String data = "";
+		ProgressDialog pd;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pd = new ProgressDialog(SetupSuccessfulActivity.this);
+			pd.setCancelable(false);
+			pd.setCanceledOnTouchOutside(false);
+			pd.setMessage("Finalizing registration.. Contacting server..");
+			pd.show();
+		}
 
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -52,6 +64,9 @@ public class SetupSuccessfulActivity extends ActionBarActivity {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			if (pd != null && pd.isShowing()) {
+				pd.dismiss();
+			}
 			SetupSuccessfulActivity.this.runOnUiThread(new Runnable() {
 
 				@Override
@@ -59,7 +74,7 @@ public class SetupSuccessfulActivity extends ActionBarActivity {
 					if (data.equals("success")) {
 						SecurePreferences sp = new SecurePreferences(SetupSuccessfulActivity.this);
 						sp.edit().putString("initial", "1").commit();
-						startActivity(new Intent(SetupSuccessfulActivity.this, DeviceListActivity.class));
+						startActivity(new Intent(SetupSuccessfulActivity.this, SetupSuccessfulFinalActivity.class));
 						finish();
 					} else {
 						Toast.makeText(SetupSuccessfulActivity.this, data, Toast.LENGTH_SHORT).show();

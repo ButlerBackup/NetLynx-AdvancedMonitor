@@ -34,9 +34,9 @@ public final class R {
 		public static final int exception_title = 0x7f0a00a5;
 	}
 	public static final class layout {
-		public static final int exception_failure = 0x7f030029;
-		public static final int exception_loading_content = 0x7f03002a;
-		public static final int exception_no_internet = 0x7f03002b;
+		public static final int exception_failure = 0x7f03002a;
+		public static final int exception_loading_content = 0x7f03002b;
+		public static final int exception_no_internet = 0x7f03002c;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f08000f;
