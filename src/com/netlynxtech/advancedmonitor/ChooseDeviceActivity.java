@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.netlynxtech.advancedmonitor.classes.Consts;
 import com.netlynxtech.advancedmonitor.classes.TCPClass;
+import com.netlynxtech.advancedmonitor.classes.Utils;
 
 public class ChooseDeviceActivity extends ActionBarActivity {
 	Spinner sWifi;
@@ -168,7 +169,10 @@ public class ChooseDeviceActivity extends ActionBarActivity {
 
 				TCPClass.sendDataWithString("^B~");
 				SystemClock.sleep(3000);
-				TCPClass.sendDataWithString("^X|1|81396537|ZZ~");
+				String deviceId = new Utils(ChooseDeviceActivity.this).getDeviceUniqueId().replace("-", "");
+				deviceId = deviceId.length() > 20 ? deviceId.substring(deviceId.length() - 20) : deviceId;
+				Log.e("DeviceID", deviceId);
+				TCPClass.sendDataWithString("^X|1|" + deviceId + "|ZZ~");
 				SystemClock.sleep(3000);
 				TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, params[0], params[1], "192.168.10.8", "5090", "192.168.10.8", "5090", "ZZ"));
 				// TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, "YEN", params[1], "192.168.10.8", "5090", "192.168.10.8", "5090", "ZZ"));
