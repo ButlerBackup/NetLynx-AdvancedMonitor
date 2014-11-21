@@ -57,6 +57,13 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/tutorial_two" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tutorial_fling_left" />
+
         </LinearLayout>
     </ScrollView>
 

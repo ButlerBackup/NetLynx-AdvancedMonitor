@@ -35,6 +35,7 @@
         android:layout_below="@+id/tvDeviceDescription"
         android:gravity="right"
         android:text="Small Text"
+        android:textColor="#FFFFFF"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView

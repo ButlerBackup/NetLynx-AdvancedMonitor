@@ -81,7 +81,6 @@ public class ListRequestAdapter extends BaseAdapter {
 		holder.tvDeviceName.setText(d.getDeviceName());
 		holder.tvRequestorName.setText(d.getRequestorName());
 		holder.tvRequestorTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(d.getTimestamp()) + "</b></i>"));
-		holder.tvRequestorTimestamp.setTextColor(Color.parseColor("#A4A4A4"));
 		holder.tvRole.setText(rolesValueArray.get(d.getRole()));
 		if (d.getRole().equals("9")) {
 			holder.tvRole.setTextColor(Color.RED);

@@ -832,6 +832,9 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				}
 			}
 		});
+		task = null;
+		task = new loadData();
+		task.execute();
 		return true;
 	}
 

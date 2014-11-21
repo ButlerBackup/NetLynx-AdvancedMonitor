@@ -94,7 +94,6 @@ public class DevicesAdapter extends BaseAdapter {
 		}
 		final Device item = data.get(position);
 		holder.tvDeviceTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(item.getTimestamp()) + "</b></i>"));
-		holder.tvDeviceTimestamp.setTextColor(Color.parseColor("#A4A4A4"));
 		holder.tvDeviceId.setText(item.getDeviceID());
 		holder.tvDeviceDescription.setText(item.getDescription());
 		holder.tvInputOneDescription.setText(item.getDescriptionInput1());

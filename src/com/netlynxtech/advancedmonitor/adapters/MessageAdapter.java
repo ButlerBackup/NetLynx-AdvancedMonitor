@@ -81,7 +81,6 @@ public class MessageAdapter extends BaseAdapter {
 		// String udid = d.getUdid();
 		holder.tvTitle.setText(d.getTitle());
 		holder.tvTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(d.getTimestamp()) + "</b></i>"));
-		holder.tvTimestamp.setTextColor(Color.parseColor("#A4A4A4"));
 		holder.tvMessage.setText(d.getMessage());
 		if (d.getAckRequired().equals("1") && d.getAckDone().equals("0")) {
 			holder.bAck.setVisibility(View.VISIBLE);
