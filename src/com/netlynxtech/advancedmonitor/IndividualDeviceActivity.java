@@ -485,7 +485,6 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	private void setData() {
 		isProcessing = true;
 		tvDeviceTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(device.getTimestamp()) + "</b></i>"));
-		tvDeviceTimestamp.setTextColor(Color.parseColor("#A4A4A4"));
 		tvDeviceId.setText(device.getDeviceID());
 		tvDeviceDescription.setText(device.getDescription());
 		tvInputOneDescription.setText(device.getDescriptionInput1());
@@ -665,6 +664,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		if (!device.getRole().equals("9")) {
 			tvDeviceTemperature.setEnabled(false);
 			tvDeviceHumidity.setEnabled(false);
+			ivTemperature.setEnabled(false);
+			ivHumidity.setEnabled(false);
 		}
 		isProcessing = false;
 		loadedBefore = true;
@@ -842,31 +843,44 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_individual_map:
-			startActivity(new Intent(IndividualDeviceActivity.this, MapsActivity.class).putExtra("device", device));
+			if (device.getRole().equals("9")) {
+				startActivity(new Intent(IndividualDeviceActivity.this, MapsActivity.class).putExtra("device", device));
+			} else {
+				Toast.makeText(IndividualDeviceActivity.this, "You are not an Admin", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		case R.id.menu_individual_users:
-			startActivity(new Intent(IndividualDeviceActivity.this, UsersActivity.class).putExtra("deviceId", device.getDeviceID()));
+			if (device.getRole().equals("9")) {
+				startActivity(new Intent(IndividualDeviceActivity.this, UsersActivity.class).putExtra("deviceId", device.getDeviceID()));
+			} else {
+				Toast.makeText(IndividualDeviceActivity.this, "You are not an Admin", Toast.LENGTH_SHORT).show();
+			}
 			break;
 		case android.R.id.home:
 			finish();
 			break;
 		case R.id.menu_edit_device:
-			Intent i = new Intent(IndividualDeviceActivity.this, IndividualDeviceEditDetailsActivity.class);
-			i.putExtra("deviceId", deviceId);
-			i.putExtra("deviceDescription", device.getDescription());
-			if (device.getEnableInput1().equals("1")) {
-				i.putExtra("input1", device.getDescriptionInput1());
+			if (device.getRole().equals("9")) {
+
+				Intent i = new Intent(IndividualDeviceActivity.this, IndividualDeviceEditDetailsActivity.class);
+				i.putExtra("deviceId", deviceId);
+				i.putExtra("deviceDescription", device.getDescription());
+				if (device.getEnableInput1().equals("1")) {
+					i.putExtra("input1", device.getDescriptionInput1());
+				}
+				if (device.getEnableInput2().equals("1")) {
+					i.putExtra("input2", device.getDescriptionInput2());
+				}
+				if (device.getEnableOutput1().equals("1")) {
+					i.putExtra("output1", device.getDescriptionOutput1());
+				}
+				if (device.getEnableOutput2().equals("1")) {
+					i.putExtra("output2", device.getDescriptionOutput2());
+				}
+				startActivity(i);
+			} else {
+				Toast.makeText(IndividualDeviceActivity.this, "You are not an Admin", Toast.LENGTH_SHORT).show();
 			}
-			if (device.getEnableInput2().equals("1")) {
-				i.putExtra("input2", device.getDescriptionInput2());
-			}
-			if (device.getEnableOutput1().equals("1")) {
-				i.putExtra("output1", device.getDescriptionOutput1());
-			}
-			if (device.getEnableOutput2().equals("1")) {
-				i.putExtra("output2", device.getDescriptionOutput2());
-			}
-			startActivity(i);
 			break;
 		case R.id.menu_delete_device:
 			showDeleteDialog();

@@ -34,10 +34,11 @@ public class MapsActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		device = (Device) getIntent().getSerializableExtra("device");
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setTitle(device.getDescription());
 		setContentView(R.layout.activity_map);
-		device = (Device) getIntent().getSerializableExtra("device");
 		bUpdateLocation = (Button) findViewById(R.id.bGetCurrentLocation);
 		initilizeMap();
 		bUpdateLocation.setOnClickListener(new View.OnClickListener() {
