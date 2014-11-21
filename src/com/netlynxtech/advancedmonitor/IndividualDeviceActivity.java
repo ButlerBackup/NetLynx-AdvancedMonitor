@@ -804,6 +804,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 						box.hideAll();
 						loadedBefore = true;
 					}
+					getSupportActionBar().setTitle(device.getDescription());
 					mRefreshActionItem.showProgress(false);
 					isProcessing = false;
 					if (device != null && device.getDescription() != null && device.getDescription().length() > 0) {

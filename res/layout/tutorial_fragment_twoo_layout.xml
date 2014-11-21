@@ -22,8 +22,8 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Turn on your mobile phone WiFi"
                 android:padding="10dp"
+                android:text="Turn on your mobile phone WiFi"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <ImageView
@@ -36,10 +36,10 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Look for the device's WiFi (starting with 'netlynx...')"
+                android:padding="10dp"
+                android:text="Look for the device&apos;s WiFi (starting with &apos;netlynx...&apos;)"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <ImageView
@@ -50,8 +50,21 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/tutorial_five" />
-        </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fling right to continue with tutorial"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/tutorial_fling_left" />
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

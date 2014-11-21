@@ -175,6 +175,8 @@ public class DeviceListActivity extends ActionBarActivity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
+			//devices.clear();
+			//devices = new ArrayList<Device>();
 			devices = new WebRequestAPI(DeviceListActivity.this).GetDevices();
 			return null;
 		}
