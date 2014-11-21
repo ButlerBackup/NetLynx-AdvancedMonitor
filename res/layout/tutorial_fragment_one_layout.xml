@@ -22,6 +22,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="To register a device :"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -29,6 +30,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="Press the red button for 10 seconds"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -44,6 +46,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="Check the display for the asterisk &apos;*&apos; symbol"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 

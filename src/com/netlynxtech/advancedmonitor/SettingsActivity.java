@@ -75,6 +75,37 @@ public class SettingsActivity extends PreferenceActivity {
 				return true;
 			}
 		});
+
+		Preference pref_reset = (Preference) findPreference("pref_reset");
+		pref_reset.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+				builder.setMessage(SettingsActivity.this.getResources().getString(R.string.pref_reset_summary)).setPositiveButton("Yes", new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+						sp.edit().clear().commit();
+						SecurePreferences scp = new SecurePreferences(SettingsActivity.this);
+						scp.edit().clear().commit();
+						Intent i = SettingsActivity.this.getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+						i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(i);
+						finish();
+					}
+				}).setNegativeButton("No", new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+					}
+				}).show();
+
+				return true;
+			}
+		});
 	}
 
 	@Override

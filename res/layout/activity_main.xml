@@ -51,15 +51,6 @@
         android:hint="@string/wifi_to_connect_to_password"
         android:text="24AC3A4A5C" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bRescan"
-        android:layout_below="@+id/bRescan"
-        android:text="Note : User ID is currently hardcoded to my phone number."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <info.hoang8f.widget.FButton
         android:id="@+id/bRescan"
         android:layout_width="wrap_content"
