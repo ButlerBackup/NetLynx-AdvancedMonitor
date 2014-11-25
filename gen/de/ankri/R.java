@@ -8,24 +8,24 @@ package de.ankri;
 
 public final class R {
 	public static final class attr {
-		public static final int fontFamily = 0x7f010017;
-		public static final int switchMinWidth = 0x7f010010;
-		public static final int switchPadding = 0x7f010011;
-		public static final int switchStyle = 0x7f010009;
-		public static final int switchTextAppearance = 0x7f01000f;
-		public static final int textAppearance = 0x7f010012;
-		public static final int textColor = 0x7f010013;
-		public static final int textColorHighlight = 0x7f010018;
-		public static final int textColorHint = 0x7f010019;
-		public static final int textColorLink = 0x7f01001a;
-		public static final int textOff = 0x7f01000d;
-		public static final int textOn = 0x7f01000c;
-		public static final int textSize = 0x7f010014;
-		public static final int textStyle = 0x7f010015;
-		public static final int thumb = 0x7f01000a;
-		public static final int thumbTextPadding = 0x7f01000e;
-		public static final int track = 0x7f01000b;
-		public static final int typeface = 0x7f010016;
+		public static final int fontFamily = 0x7f010036;
+		public static final int switchMinWidth = 0x7f01002f;
+		public static final int switchPadding = 0x7f010030;
+		public static final int switchStyle = 0x7f010028;
+		public static final int switchTextAppearance = 0x7f01002e;
+		public static final int textAppearance = 0x7f010031;
+		public static final int textColor = 0x7f010032;
+		public static final int textColorHighlight = 0x7f010037;
+		public static final int textColorHint = 0x7f010038;
+		public static final int textColorLink = 0x7f010039;
+		public static final int textOff = 0x7f01002c;
+		public static final int textOn = 0x7f01002b;
+		public static final int textSize = 0x7f010033;
+		public static final int textStyle = 0x7f010034;
+		public static final int thumb = 0x7f010029;
+		public static final int thumbTextPadding = 0x7f01002d;
+		public static final int track = 0x7f01002a;
+		public static final int typeface = 0x7f010035;
 	}
 	public static final class drawable {
 		public static final int switch_bg_disabled_holo_dark = 0x7f020090;
@@ -48,18 +48,18 @@ public final class R {
 		public static final int switch_track_holo_light = 0x7f0200a1;
 	}
 	public static final class string {
-		public static final int textOff = 0x7f080001;
-		public static final int textOn = 0x7f080000;
+		public static final int textOff = 0x7f0c0001;
+		public static final int textOn = 0x7f0c0000;
 	}
 	public static final class style {
-		public static final int AppThemeDark = 0x7f090003;
-		public static final int AppThemeLight = 0x7f090004;
-		public static final int TextAppearance = 0x7f090002;
-		public static final int switch_dark = 0x7f090000;
-		public static final int switch_light = 0x7f090001;
+		public static final int AppThemeDark = 0x7f0b0008;
+		public static final int AppThemeLight = 0x7f0b0009;
+		public static final int TextAppearance = 0x7f0b0007;
+		public static final int switch_dark = 0x7f0b0005;
+		public static final int switch_light = 0x7f0b0006;
 	}
 	public static final class styleable {
-		public static final int[] Switch = { 0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f, 0x7f010010, 0x7f010011 };
+		public static final int[] Switch = { 0x7f010029, 0x7f01002a, 0x7f01002b, 0x7f01002c, 0x7f01002d, 0x7f01002e, 0x7f01002f, 0x7f010030 };
 		public static final int Switch_switchMinWidth = 6;
 		public static final int Switch_switchPadding = 7;
 		public static final int Switch_switchTextAppearance = 5;
@@ -68,7 +68,7 @@ public final class R {
 		public static final int Switch_thumb = 0;
 		public static final int Switch_thumbTextPadding = 4;
 		public static final int Switch_track = 1;
-		public static final int[] TextAppearanceSwitch = { 0x7f010013, 0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017, 0x7f010018, 0x7f010019, 0x7f01001a };
+		public static final int[] TextAppearanceSwitch = { 0x7f010032, 0x7f010033, 0x7f010034, 0x7f010035, 0x7f010036, 0x7f010037, 0x7f010038, 0x7f010039 };
 		public static final int TextAppearanceSwitch_fontFamily = 4;
 		public static final int TextAppearanceSwitch_textColor = 0;
 		public static final int TextAppearanceSwitch_textColorHighlight = 5;

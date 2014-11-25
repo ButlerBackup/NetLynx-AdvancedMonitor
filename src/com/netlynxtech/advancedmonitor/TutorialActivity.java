@@ -1,23 +1,27 @@
 package com.netlynxtech.advancedmonitor;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 
+import com.netlynxtech.advancedmonitor.fragments.TutorialFragmentAdapter;
 import com.netlynxtech.advancedmonitor.fragments.TutorialOneFragment;
 import com.netlynxtech.advancedmonitor.fragments.TutorialThreeFragment;
 import com.netlynxtech.advancedmonitor.fragments.TutorialTwoFragment;
 import com.securepreferences.SecurePreferences;
+import com.viewpagerindicator.CirclePageIndicator;
+import com.viewpagerindicator.PageIndicator;
 
-public class TutorialActivity extends ActionBarActivity {
-	private static final int NUM_PAGES = 3;
-	private ViewPager mPager;
-	private PagerAdapter mPagerAdapter;
+public class TutorialActivity extends FragmentActivity {
+
+	TutorialFragmentAdapter mAdapter;
+	ViewPager mPager;
+	PageIndicator mIndicator;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +33,23 @@ public class TutorialActivity extends ActionBarActivity {
 			finish();
 		}
 		setContentView(R.layout.tutorial_activity);
+		mAdapter = new TutorialFragmentAdapter(getSupportFragmentManager());
+
 		mPager = (ViewPager) findViewById(R.id.pager);
-		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-		mPager.setAdapter(mPagerAdapter);
-		getSupportActionBar().setTitle(R.string.activity_tutorial);
+		mPager.setAdapter(mAdapter);
+
+		CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.indicator);
+		mIndicator = indicator;
+		indicator.setViewPager(mPager);
+
+		final float density = getResources().getDisplayMetrics().density;
+		indicator.setBackgroundColor(0xFFCCCCCC);
+		indicator.setRadius(5 * density);
+		indicator.setPageColor(Color.TRANSPARENT);
+		indicator.setFillColor(Color.GRAY);
+		indicator.setStrokeColor(Color.BLACK);
+		indicator.setStrokeWidth(density);
+		indicator.setSnap(true);
 	}
 
 	@Override
@@ -41,34 +58,6 @@ public class TutorialActivity extends ActionBarActivity {
 			super.onBackPressed();
 		} else {
 			mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-		}
-	}
-
-	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-		public ScreenSlidePagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			Fragment f = new Fragment();
-			switch (position) {
-			case 0:
-				f = new TutorialOneFragment();
-				break;
-			case 1:
-				f = new TutorialTwoFragment();
-				break;
-			case 2:
-				f = new TutorialThreeFragment();
-				break;
-			}
-			return f;
-		}
-
-		@Override
-		public int getCount() {
-			return NUM_PAGES;
 		}
 	}
 }

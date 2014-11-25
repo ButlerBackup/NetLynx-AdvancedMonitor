@@ -11,7 +11,7 @@
     <string name="wifi_to_connect_to_ssid">Select your WiFi network</string>
     <string name="wifi_to_connect_to_password">WiFi\'s Password</string>
     <string name="tutorial_two_setup">Setup!</string>
-    <string name="activity_choose_device_button_connect">Update to Device</string>
+    <string name="activity_choose_device_button_connect">Update</string>
     <string name="activity_choose_device_button_rescan">Rescan Network</string>
     <string name="activity_update_io_description">Update Descriptions</string>
     <string name="menu_users">Users</string>
