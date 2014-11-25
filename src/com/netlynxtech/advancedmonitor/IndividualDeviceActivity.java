@@ -125,7 +125,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 					@Override
 					public void onClick(View v) {
 						if (etMaxTempThreshold.getText().toString().length() > 0 && etMinTempThreshold.getText().toString().length() > 0) {
-							if (Long.valueOf(etMaxTempThreshold.getText().toString()) > Long.valueOf(etMinTempThreshold.getText().toString())) {
+							if (Double.valueOf(etMaxTempThreshold.getText().toString()) > Double.valueOf(etMinTempThreshold.getText().toString())) {
 
 								final String maxTemp = etMaxTempThreshold.getText().toString();
 								String minTemp = etMinTempThreshold.getText().toString();
@@ -218,7 +218,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 					@Override
 					public void onClick(View v) {
 						if (etMaxTempThreshold.getText().toString().length() > 0 && etMinTempThreshold.getText().toString().length() > 0) {
-							if (Long.valueOf(etMaxTempThreshold.getText().toString()) > Long.valueOf(etMinTempThreshold.getText().toString())) {
+							if (Double.valueOf(etMaxTempThreshold.getText().toString()) > Double.valueOf(etMinTempThreshold.getText().toString())) {
 
 								final String maxTemp = etMaxTempThreshold.getText().toString();
 								String minTemp = etMinTempThreshold.getText().toString();
@@ -312,7 +312,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 					@Override
 					public void onClick(View v) {
 						if (etMaxTempThreshold.getText().toString().length() > 0 && etMinTempThreshold.getText().toString().length() > 0) {
-							if (Long.valueOf(etMaxTempThreshold.getText().toString()) > Long.valueOf(etMinTempThreshold.getText().toString())) {
+							if (Double.valueOf(etMaxTempThreshold.getText().toString()) > Double.valueOf(etMinTempThreshold.getText().toString())) {
 								final String maxTemp = etMaxTempThreshold.getText().toString();
 								String minTemp = etMinTempThreshold.getText().toString();
 								new AsyncTask<String, Void, Void>() {
@@ -404,7 +404,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 					@Override
 					public void onClick(View v) {
 						if (etMaxTempThreshold.getText().toString().length() > 0 && etMinTempThreshold.getText().toString().length() > 0) {
-							if (Long.valueOf(etMaxTempThreshold.getText().toString()) > Long.valueOf(etMinTempThreshold.getText().toString())) {
+							if (Double.valueOf(etMaxTempThreshold.getText().toString()) > Double.valueOf(etMinTempThreshold.getText().toString())) {
 								final String maxTemp = etMaxTempThreshold.getText().toString();
 								String minTemp = etMinTempThreshold.getText().toString();
 								new AsyncTask<String, Void, Void>() {
