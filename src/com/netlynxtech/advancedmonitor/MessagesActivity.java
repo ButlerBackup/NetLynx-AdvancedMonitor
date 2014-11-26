@@ -1,6 +1,7 @@
 package com.netlynxtech.advancedmonitor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import mehdi.sakout.dynamicbox.DynamicBox;
 import android.content.Intent;
@@ -24,7 +25,7 @@ import com.netlynxtech.advancedmonitor.classes.Message;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
 
 public class MessagesActivity extends ActionBarActivity {
-	ArrayList<Message> data;
+	ArrayList<HashMap<String, String>> data;
 	DynamicBox box;
 	ListView lvMessage;
 	getMessages mTask;
@@ -42,8 +43,10 @@ public class MessagesActivity extends ActionBarActivity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Message m = data.get(position);
-				startActivity(new Intent(MessagesActivity.this, SubMessagesActivity.class).putExtra("message", m));
+				HashMap<String, String> map = data.get(position);
+				String eventId = map.get("eventId");
+				// Message m = data.get(position);
+				startActivity(new Intent(MessagesActivity.this, SubMessagesActivity.class).putExtra("eventId", eventId));
 			}
 		});
 		box = new DynamicBox(MessagesActivity.this, lvMessage);
@@ -66,7 +69,6 @@ public class MessagesActivity extends ActionBarActivity {
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
 			super.onPreExecute();
 			box.showLoadingLayout();
 			mRefreshActionItem.showProgress(true);
@@ -85,7 +87,7 @@ public class MessagesActivity extends ActionBarActivity {
 						lvMessage.setAdapter(adapter);
 						box.hideAll();
 					} else {
-						box.setOtherExceptionMessage("No messages");
+						box.setOtherExceptionTitle("No messages");
 						box.showExceptionLayout();
 					}
 				}

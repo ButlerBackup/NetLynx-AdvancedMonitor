@@ -17,6 +17,7 @@ public class SQLFunctions {
 
 	private static final String DATABASE_NAME = "sensorlynx";
 	private static final String TABLE_MESSAGES = "messages";
+	private static final String TABLE_MESSAGES_READ = "messagesRead";
 
 	private static final int DATABASE_VERSION = 1;
 
@@ -35,7 +36,7 @@ public class SQLFunctions {
 			db.execSQL("CREATE TABLE " + TABLE_MESSAGES + " (" + GLOBAL_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + Consts.MESSAGES_MESSAGE_ID + " TEXT NOT NULL, "
 					+ Consts.MESSAGES_MESSAGE_EVENTID + " TEXT NOT NULL, " + Consts.MESSAGES_MESSAGE_TITLE + " TEXT NOT NULL, " + Consts.MESSAGES_MESSAGE_TIMESTAMP + " TEXT NOT NULL, "
 					+ Consts.MESSAGES_MESSAGE_DEVICEID + " TEXT NOT NULL, " + Consts.MESSAGES_MESSAGE_MESSAGETYPE + " TEXT NOT NULL, " + Consts.MESSAGES_MESSAGE_MESSAGE + " TEXT NOT NULL, "
-					+ Consts.MESSAGES_MESSAGE_ACKREQUIRED + " TEXT NOT NULL, " + Consts.MESSAGES_MESSAGE_ACKDONE + " TEXT NOT NULL);");
+					+ Consts.MESSAGES_MESSAGE_ACKREQUIRED + " TEXT NOT NULL, " + Consts.MESSAGES_MESSAGE_ACKDONE + " TEXT NOT NULL, " + TABLE_MESSAGES_READ + " TEXT NOT NULL);");
 		}
 
 		@Override
@@ -168,6 +169,43 @@ public class SQLFunctions {
 		return map;
 	}
 
+	public int getUnreadMessage(String eventId) {
+		int count = 0;
+		try {
+			Cursor mCount = ourDatabase.rawQuery("SELECT COUNT(*) FROM " + TABLE_MESSAGES + " WHERE " + Consts.MESSAGES_MESSAGE_EVENTID + " = '" + eventId + "'", null);
+			mCount.moveToFirst();
+			count = mCount.getInt(0);
+			mCount.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	public ArrayList<HashMap<String, String>> loadEventMessage() {
+		ArrayList<HashMap<String, String>> map = new ArrayList<HashMap<String, String>>();
+		Cursor cursor = ourDatabase.rawQuery("SELECT * FROM " + TABLE_MESSAGES + " GROUP BY " + Consts.MESSAGES_MESSAGE_EVENTID, null);
+		if (cursor != null) {
+			if (cursor.moveToFirst()) {
+				while (cursor.isAfterLast() == false) {
+					try {
+						HashMap<String, String> h = new HashMap<String, String>();
+						h.put("title", cursor.getString(cursor.getColumnIndex(Consts.MESSAGES_MESSAGE_TITLE)));
+						h.put("message", cursor.getString(cursor.getColumnIndex(Consts.MESSAGES_MESSAGE_MESSAGE)));
+						h.put("count", String.valueOf(getUnreadMessage(cursor.getString(cursor.getColumnIndex(Consts.MESSAGES_MESSAGE_EVENTID)))));
+						h.put("eventId", cursor.getString(cursor.getColumnIndex(Consts.MESSAGES_MESSAGE_EVENTID)));
+						map.add(h);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					cursor.moveToNext();
+				}
+			}
+		}
+		cursor.close();
+		return map;
+	}
+
 	/*
 	 * public HashMap<String, ArrayList<Message>> loadMessages() { HashMap<String, ArrayList<Message>> map = new HashMap<String, ArrayList<Message>>(); Cursor cursor =
 	 * ourDatabase.rawQuery("SELECT * FROM " + TABLE_MESSAGES + " ORDER BY " + GLOBAL_ROWID + " DESC LIMIT " + new Utils(ourContext).getHousekeep(), null); if (cursor != null) { if
@@ -199,6 +237,7 @@ public class SQLFunctions {
 			cv.put(Consts.MESSAGES_MESSAGE_MESSAGE, m.getMessage());
 			cv.put(Consts.MESSAGES_MESSAGE_ACKREQUIRED, m.getAckRequired());
 			cv.put(Consts.MESSAGES_MESSAGE_ACKDONE, "0");
+			cv.put(TABLE_MESSAGES_READ, "0");
 
 			try {
 				ourDatabase.insert(TABLE_MESSAGES, null, cv);

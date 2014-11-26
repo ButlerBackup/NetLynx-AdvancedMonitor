@@ -9,12 +9,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.netlynxtech.advancedmonitor.adapters.MessageAdapter;
+import com.netlynxtech.advancedmonitor.adapters.SubMessageAdapter;
 import com.netlynxtech.advancedmonitor.classes.Message;
 import com.netlynxtech.advancedmonitor.classes.SQLFunctions;
 
 public class SubMessagesActivity extends ActionBarActivity {
-	Message message;
 	DynamicBox box;
 	ListView lvMessage;
 	getMessages mTask;
@@ -26,8 +25,7 @@ public class SubMessagesActivity extends ActionBarActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_messages);
-		message = (Message) getIntent().getSerializableExtra("message");
-		eventId = message.getEventId();
+		eventId = getIntent().getStringExtra("eventId");
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		lvMessage = (ListView) findViewById(R.id.lvMessages);
@@ -55,7 +53,7 @@ public class SubMessagesActivity extends ActionBarActivity {
 				@Override
 				public void run() {
 					if (data != null && data.size() > 0) {
-						MessageAdapter adapter = new MessageAdapter(SubMessagesActivity.this, data);
+						SubMessageAdapter adapter = new SubMessageAdapter(SubMessagesActivity.this, data);
 						lvMessage.setAdapter(adapter);
 						box.hideAll();
 					} else {

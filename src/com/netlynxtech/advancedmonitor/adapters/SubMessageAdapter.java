@@ -62,7 +62,7 @@ public class SubMessageAdapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		final ViewHolder holder;
 		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.activity_message_item, parent, false);
+			convertView = inflater.inflate(R.layout.activity_sub_message_item, parent, false);
 			holder = new ViewHolder();
 			holder.tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
 			holder.tvTimestamp = (TextView) convertView.findViewById(R.id.tvTimestamp);

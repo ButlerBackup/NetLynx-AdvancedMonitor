@@ -249,10 +249,10 @@ public class WebRequestAPI {
 		}
 	}
 
-	public ArrayList<Message> GetMessages() {
+	public ArrayList<HashMap<String, String>> GetMessages() {
 		SQLFunctions sql = new SQLFunctions(context);
 		sql.open();
-		ArrayList<Message> list = new ArrayList<Message>();
+		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		SoapObject rpc = new SoapObject(Consts.NAMESPACE, Consts.NOISELYNX_API_GETMESSAGES_METHOD_NAME);
 		rpc.addProperty("UDID", new Utils(context).getDeviceUniqueId());
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -295,7 +295,7 @@ public class WebRequestAPI {
 			e.printStackTrace();
 			// return e.getMessage();
 		}
-		list = sql.loadEventMessages();
+		list = sql.loadEventMessage();
 		sql.close();
 		return list;
 	}
