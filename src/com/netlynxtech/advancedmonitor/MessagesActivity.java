@@ -21,7 +21,6 @@ import com.manuelpeinado.refreshactionitem.ProgressIndicatorType;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem.RefreshActionListener;
 import com.netlynxtech.advancedmonitor.adapters.MessageAdapter;
-import com.netlynxtech.advancedmonitor.classes.Message;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
 
 public class MessagesActivity extends ActionBarActivity {
@@ -82,13 +81,16 @@ public class MessagesActivity extends ActionBarActivity {
 
 				@Override
 				public void run() {
-					if (data != null && data.size() > 0) {
-						MessageAdapter adapter = new MessageAdapter(MessagesActivity.this, data);
-						lvMessage.setAdapter(adapter);
-						box.hideAll();
-					} else {
-						box.setOtherExceptionTitle("No messages");
-						box.showExceptionLayout();
+					if (!isCancelled()) {
+						if (data != null && data.size() > 0) {
+							MessageAdapter adapter = new MessageAdapter(MessagesActivity.this, data);
+							lvMessage.setAdapter(adapter);
+							box.hideAll();
+						} else {
+							box.setOtherExceptionTitle("No messages");
+							box.setOtherExceptionMessage("No messages");
+							box.showExceptionLayout();
+						}
 					}
 				}
 			});
@@ -142,4 +144,11 @@ public class MessagesActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		supportInvalidateOptionsMenu();
+	}
+
 }

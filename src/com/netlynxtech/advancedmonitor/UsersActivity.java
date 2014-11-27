@@ -71,6 +71,8 @@ public class UsersActivity extends ActionBarActivity {
 						lvUsers.setAdapter(adapter);
 						box.hideAll();
 					} else {
+						box.setOtherExceptionTitle("No users");
+						box.setOtherExceptionMessage("No Users");
 						box.showExceptionLayout();
 					}
 				}

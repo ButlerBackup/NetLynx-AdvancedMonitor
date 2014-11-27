@@ -75,6 +75,14 @@ public class SubMessageAdapter extends BaseAdapter {
 
 		Message d = data.get(position);
 		final String messageId = d.getMessageId();
+		SQLFunctions sql = new SQLFunctions(context);
+		sql.open();
+		if (d.getAckRequired().equals("1") && d.getAckDone().equals("0")) {
+			// dont mark as read if needs ack and not ack yet
+		} else {
+			sql.setMessageRead(d.getMessageId());
+		}
+		sql.close();
 		final String eventId = d.getEventId();
 		// String udid = d.getUdid();
 		holder.tvTitle.setText(d.getTitle());
@@ -112,12 +120,14 @@ public class SubMessageAdapter extends BaseAdapter {
 									((Activity) context).runOnUiThread(new Runnable() {
 										@Override
 										public void run() {
-											if (!res.equals("success")) {
+											if (res.equals("success")) {
 												SQLFunctions sql = new SQLFunctions(context);
 												sql.open();
 												sql.setMessageAckDone(messageId);
+												sql.setMessageRead(messageId);
 												sql.close();
 												holder.bAck.setVisibility(View.GONE);
+												holder.bAck.setEnabled(false);
 											} else {
 												Toast.makeText(context, res, Toast.LENGTH_SHORT).show();
 											}

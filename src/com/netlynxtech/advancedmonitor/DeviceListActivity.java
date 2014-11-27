@@ -167,7 +167,7 @@ public class DeviceListActivity extends ActionBarActivity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			Log.e("getDevice", "loading..");
+			// Log.e("getDevice", "loading..");
 			isProcessing = true;
 			box.showLoadingLayout();
 			mRefreshActionItem.showProgress(true);
@@ -175,8 +175,8 @@ public class DeviceListActivity extends ActionBarActivity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			//devices.clear();
-			//devices = new ArrayList<Device>();
+			// devices.clear();
+			// devices = new ArrayList<Device>();
 			devices = new WebRequestAPI(DeviceListActivity.this).GetDevices();
 			return null;
 		}
@@ -200,13 +200,10 @@ public class DeviceListActivity extends ActionBarActivity {
 							box.hideAll();
 							lvDevices.setSelectionFromTop(index, top);
 						} else {
+							box.setOtherExceptionTitle("No devices found");
 							box.setOtherExceptionMessage("No devices found");
 							box.showExceptionLayout();
 						}
-					} else {
-						Log.e("Cancelled", "Cancelled");
-						box.setOtherExceptionMessage("Cancelled");
-						box.showExceptionLayout();
 					}
 					isProcessing = false;
 					SecurePreferences sp = new SecurePreferences(DeviceListActivity.this);

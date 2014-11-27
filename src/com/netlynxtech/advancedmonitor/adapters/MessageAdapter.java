@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ public class MessageAdapter extends BaseAdapter {
 		this.context = context;
 		this.data = data;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
 	}
 
 	@Override
@@ -63,6 +63,13 @@ public class MessageAdapter extends BaseAdapter {
 		holder.tvTitle.setText(map.get("title"));
 		holder.tvCount.setText("(" + map.get("count") + ")");
 		holder.tvMessage.setText(map.get("message"));
+		if (map.get("read").equals("0")) {
+			holder.tvMessage.setTypeface(null, Typeface.BOLD);
+			holder.tvTitle.setTypeface(null, Typeface.BOLD);
+		} else {
+			holder.tvMessage.setTypeface(null, Typeface.NORMAL);
+			holder.tvTitle.setTypeface(null, Typeface.NORMAL);
+		}
 		return convertView;
 	}
 }

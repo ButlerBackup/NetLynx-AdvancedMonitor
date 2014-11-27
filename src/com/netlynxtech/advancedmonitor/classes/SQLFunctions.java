@@ -111,9 +111,20 @@ public class SQLFunctions {
 		}
 	}
 
+	public boolean setMessageRead(String messageId) {
+		String strFilter = Consts.MESSAGES_MESSAGE_ID + "='" + messageId + "'";
+		ContentValues args = new ContentValues();
+		args.put(TABLE_MESSAGES_READ, "1");
+		if (ourDatabase.update(TABLE_MESSAGES, args, strFilter, null) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public ArrayList<Message> loadMessages(String eventId) {
 		ArrayList<Message> map = new ArrayList<Message>();
-		Cursor cursor = ourDatabase.rawQuery("SELECT * FROM " + TABLE_MESSAGES + " WHERE " + Consts.MESSAGES_MESSAGE_EVENTID + "= '" + eventId + "'", null);
+		Cursor cursor = ourDatabase.rawQuery("SELECT * FROM " + TABLE_MESSAGES + " WHERE " + Consts.MESSAGES_MESSAGE_EVENTID + "= '" + eventId + "' ORDER BY " + GLOBAL_ROWID + " DESC", null);
 		if (cursor != null) {
 			if (cursor.moveToFirst()) {
 				while (cursor.isAfterLast() == false) {
@@ -172,7 +183,7 @@ public class SQLFunctions {
 	public int getUnreadMessage(String eventId) {
 		int count = 0;
 		try {
-			Cursor mCount = ourDatabase.rawQuery("SELECT COUNT(*) FROM " + TABLE_MESSAGES + " WHERE " + Consts.MESSAGES_MESSAGE_EVENTID + " = '" + eventId + "'", null);
+			Cursor mCount = ourDatabase.rawQuery("SELECT COUNT(*) FROM " + TABLE_MESSAGES + " WHERE " + Consts.MESSAGES_MESSAGE_EVENTID + " = '" + eventId + "' AND " + TABLE_MESSAGES_READ + " = '0'", null);
 			mCount.moveToFirst();
 			count = mCount.getInt(0);
 			mCount.close();
@@ -184,7 +195,7 @@ public class SQLFunctions {
 
 	public ArrayList<HashMap<String, String>> loadEventMessage() {
 		ArrayList<HashMap<String, String>> map = new ArrayList<HashMap<String, String>>();
-		Cursor cursor = ourDatabase.rawQuery("SELECT * FROM " + TABLE_MESSAGES + " GROUP BY " + Consts.MESSAGES_MESSAGE_EVENTID, null);
+		Cursor cursor = ourDatabase.rawQuery("SELECT * FROM " + TABLE_MESSAGES + " GROUP BY " + Consts.MESSAGES_MESSAGE_EVENTID + " ORDER BY " + GLOBAL_ROWID + " DESC", null);
 		if (cursor != null) {
 			if (cursor.moveToFirst()) {
 				while (cursor.isAfterLast() == false) {
@@ -194,6 +205,7 @@ public class SQLFunctions {
 						h.put("message", cursor.getString(cursor.getColumnIndex(Consts.MESSAGES_MESSAGE_MESSAGE)));
 						h.put("count", String.valueOf(getUnreadMessage(cursor.getString(cursor.getColumnIndex(Consts.MESSAGES_MESSAGE_EVENTID)))));
 						h.put("eventId", cursor.getString(cursor.getColumnIndex(Consts.MESSAGES_MESSAGE_EVENTID)));
+						h.put("read", cursor.getString(cursor.getColumnIndex(TABLE_MESSAGES_READ)));
 						map.add(h);
 					} catch (Exception e) {
 						e.printStackTrace();
