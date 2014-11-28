@@ -2449,7 +2449,7 @@ containing a value of this type.
         public static final int topRight=0x7f060022;
         public static final int top_action_bar=0x7f06003e;
         public static final int triangle=0x7f060001;
-        public static final int tvCount=0x7f060087;
+        public static final int tvCount=0x7f060088;
         public static final int tvDeviceDescription=0x7f06005e;
         public static final int tvDeviceHumidity=0x7f06006b;
         public static final int tvDeviceId=0x7f06005f;
@@ -2463,7 +2463,7 @@ containing a value of this type.
         public static final int tvIndicatorMin=0x7f0600a6;
         public static final int tvInputOneDescription=0x7f060061;
         public static final int tvInputTwoDescription=0x7f060064;
-        public static final int tvMessage=0x7f060088;
+        public static final int tvMessage=0x7f060087;
         public static final int tvName=0x7f06009a;
         public static final int tvOutputOneDescription=0x7f060063;
         public static final int tvOutputTwoDescription=0x7f060065;

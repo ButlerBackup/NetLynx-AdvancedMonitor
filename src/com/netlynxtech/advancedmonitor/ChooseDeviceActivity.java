@@ -49,14 +49,14 @@ public class ChooseDeviceActivity extends ActionBarActivity {
 		etWifiPassword = (EditText) findViewById(R.id.etWifiPassword);
 		bConnect = (Button) findViewById(R.id.bConnect);
 		bRescan = (Button) findViewById(R.id.bRescan);
-		bRescan.setEnabled(false);
+		// bRescan.setEnabled(false);
 		adapter = new ArrayAdapter<String>(ChooseDeviceActivity.this, android.R.layout.simple_dropdown_item_1line, data);
 		sWifi.setAdapter(adapter);
 		bRescan.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				bRescan.setEnabled(false);
+				// bRescan.setEnabled(false);
 				registerReceiver(wifiBroadcastReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
 				wifiManager.startScan();
 			}
@@ -175,7 +175,7 @@ public class ChooseDeviceActivity extends ActionBarActivity {
 				TCPClass.sendDataWithString("^X|1|" + deviceId + "|ZZ~");
 				SystemClock.sleep(3000);
 				TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, params[0], params[1], "192.168.10.8", "5090", "192.168.10.8", "5090", "ZZ"));
-				// TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, "YEN", params[1], "192.168.10.8", "5090", "192.168.10.8", "5090", "ZZ"));
+				//TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, params[0], params[1], "123.100.251.49", "5090", "123.100.251.49", "5090", "ZZ"));
 
 			} catch (Exception e) {
 				e.printStackTrace();

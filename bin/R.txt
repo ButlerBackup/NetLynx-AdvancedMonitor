@@ -720,7 +720,7 @@ int id topLeft 0x7f060021
 int id topRight 0x7f060022
 int id top_action_bar 0x7f06003e
 int id triangle 0x7f060001
-int id tvCount 0x7f060087
+int id tvCount 0x7f060088
 int id tvDeviceDescription 0x7f06005e
 int id tvDeviceHumidity 0x7f06006b
 int id tvDeviceId 0x7f06005f
@@ -734,7 +734,7 @@ int id tvIndicatorMax 0x7f0600a5
 int id tvIndicatorMin 0x7f0600a6
 int id tvInputOneDescription 0x7f060061
 int id tvInputTwoDescription 0x7f060064
-int id tvMessage 0x7f060088
+int id tvMessage 0x7f060087
 int id tvName 0x7f06009a
 int id tvOutputOneDescription 0x7f060063
 int id tvOutputTwoDescription 0x7f060065

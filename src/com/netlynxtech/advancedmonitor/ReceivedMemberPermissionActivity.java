@@ -8,12 +8,12 @@ import mehdi.sakout.dynamicbox.DynamicBox;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ListView;
 
 import com.netlynxtech.advancedmonitor.adapters.ListRequestAdapter;
-import com.netlynxtech.advancedmonitor.classes.Consts;
 import com.netlynxtech.advancedmonitor.classes.DeviceRequest;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
 import com.securepreferences.SecurePreferences;
@@ -24,6 +24,7 @@ public class ReceivedMemberPermissionActivity extends ActionBarActivity {
 	HashMap<String, String> roles = new HashMap<String, String>();
 	ArrayList<DeviceRequest> data = new ArrayList<DeviceRequest>();
 	SecurePreferences sp;
+	listRequests mTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class ReceivedMemberPermissionActivity extends ActionBarActivity {
 		sp = new SecurePreferences(ReceivedMemberPermissionActivity.this);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		Log.e("GCM", sp.getString(Consts.PREFERENCES_GCMID, ""));
+		// Log.e("GCM", sp.getString(Consts.PREFERENCES_GCMID, ""));
 		String[] rolesValue = getResources().getStringArray(R.array.roles_array_value);
 		ArrayList<String> rolesValueArray = new ArrayList<String>(Arrays.asList(rolesValue));
 
@@ -43,7 +44,9 @@ public class ReceivedMemberPermissionActivity extends ActionBarActivity {
 		}
 		lvReceivedMemberPermission = (ListView) findViewById(R.id.lvReceivedMemberPermission);
 		box = new DynamicBox(ReceivedMemberPermissionActivity.this, lvReceivedMemberPermission);
-		new listRequests().execute();
+		mTask = null;
+		mTask = new listRequests();
+		mTask.execute();
 	}
 
 	private class listRequests extends AsyncTask<Void, Void, Void> {
@@ -61,13 +64,25 @@ public class ReceivedMemberPermissionActivity extends ActionBarActivity {
 
 				@Override
 				public void run() {
-					if (data != null && data.size() > 0) {
-						ListRequestAdapter adapter = new ListRequestAdapter(ReceivedMemberPermissionActivity.this, data, roles);
-						lvReceivedMemberPermission.setAdapter(adapter);
-						box.hideAll();
-					} else {
-						box.setOtherExceptionMessage("You have no invites yet.");
-						box.showExceptionLayout();
+					if (!isCancelled()) {
+						if (data != null && data.size() > 0) {
+							ListRequestAdapter adapter = new ListRequestAdapter(ReceivedMemberPermissionActivity.this, data, roles);
+							lvReceivedMemberPermission.setAdapter(adapter);
+							box.hideAll();
+						} else {
+							box.setOtherExceptionMessage("You have no invites yet.");
+							box.setOtherExceptionTitle("You have no invites yet.");
+							box.showExceptionLayout();
+							box.setClickListener(new OnClickListener() {
+
+								@Override
+								public void onClick(View v) {
+									mTask = null;
+									mTask = new listRequests();
+									mTask.execute();
+								}
+							});
+						}
 					}
 				}
 			});
@@ -92,4 +107,10 @@ public class ReceivedMemberPermissionActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
+
 }
