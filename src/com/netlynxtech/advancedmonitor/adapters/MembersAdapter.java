@@ -95,7 +95,6 @@ public class MembersAdapter extends BaseAdapter {
 		}
 
 		holder.tvTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(d.getUpdateTimestamp()) + "</b></i>"));
-		holder.tvTimestamp.setTextColor(Color.parseColor("#A4A4A4"));
 		if (d.getRole().equals("9")) {
 			holder.tvRole.setText("Administrator");
 			holder.tvRole.setTextColor(Color.RED);

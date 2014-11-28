@@ -98,7 +98,7 @@
         <!-- Goolge Maps API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDzCqgDPWcNWDy-00v-DfsEVAN2s-GVELs" />
+            android:value="AIzaSyDzCqgDPWcNWDy-00v-DfsEVAN2s-GVELs" /> <!-- mine -->
 
         <receiver
             android:name="com.netlynxtech.advancedmonitor.gcm.GCMBroadcastReceiver"

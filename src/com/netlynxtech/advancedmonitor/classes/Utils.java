@@ -61,13 +61,21 @@ public class Utils {
 		}
 		SharedPreferences getAlarms = PreferenceManager.getDefaultSharedPreferences(context);
 		String alarms = "";
+		Intent myIntent = null;
 		if (messageType.equals("1")) {
+			alarms = getAlarms.getString("pref_notification_alert", "default ringtone");
+			myIntent = new Intent(context, MessagesActivity.class);
+		} else if (messageType.equals("2")) {
+			alarms = getAlarms.getString("pref_notification_restore", "default ringtone");
+		} else if (messageType.equals("3")) {
 			alarms = getAlarms.getString("pref_notification_ack", "default ringtone");
-		} else {
-			alarms = getAlarms.getString("pref_notification_normal", "default ringtone");
+		} else if (messageType.equals("4")) {
+			alarms = getAlarms.getString("pref_notification_enrollment", "default ringtone");
+			myIntent = new Intent(context, ReceivedMemberPermissionActivity.class);
+		} else if (messageType.equals("5")) {
+			alarms = getAlarms.getString("pref_notification_notification", "default ringtone");
 		}
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		Intent myIntent = new Intent(context, ReceivedMemberPermissionActivity.class);
 		myIntent.putExtra("notification", "true");
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, myIntent, Intent.FLAG_ACTIVITY_NEW_TASK);
 		NotificationCompat.Builder myNotification = new NotificationCompat.Builder(context);

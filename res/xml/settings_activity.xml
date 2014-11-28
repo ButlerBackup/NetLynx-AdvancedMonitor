@@ -4,29 +4,40 @@
     <PreferenceCategory android:title="Settings" >
         <RingtonePreference
             android:defaultValue="content://settings/system/notification_sound"
-            android:key="pref_notification_ack"
+            android:key="pref_notification_alert"
             android:ringtoneType="notification"
             android:showDefault="true"
-            android:title="Notification Tones for Acknowledgement Notices" >
+            android:title="Alert Notification Tone" >
         </RingtonePreference>
         <RingtonePreference
             android:defaultValue="content://settings/system/notification_sound"
-            android:key="pref_notification_normal"
+            android:key="pref_notification_restore"
             android:ringtoneType="notification"
             android:showDefault="true"
-            android:title="Notification Tones for other notices" >
+            android:title="Restoration Notification Tone" >
         </RingtonePreference>
-
-        <ListPreference
-            android:defaultValue="20"
-            android:dialogTitle="@string/pref_housekeep_dialog_title"
-            android:entries="@array/pref_housekeep_shown"
-            android:entryValues="@array/pref_housekeep_values"
-            android:key="pref_housekeep"
-            android:summary="@string/pref_housekeep_summary"
-            android:title="@string/pref_housekeep_title" />
-
-        <CheckBoxPreference
+        <RingtonePreference
+            android:defaultValue="content://settings/system/notification_sound"
+            android:key="pref_notification_ack"
+            android:ringtoneType="notification"
+            android:showDefault="true"
+            android:title="Acknowledgement Notification Tone" >
+        </RingtonePreference>
+        <RingtonePreference
+            android:defaultValue="content://settings/system/notification_sound"
+            android:key="pref_notification_enrollment"
+            android:ringtoneType="notification"
+            android:showDefault="true"
+            android:title="Enrollment Notification Tone" >
+        </RingtonePreference>
+        <RingtonePreference
+            android:defaultValue="content://settings/system/notification_sound"
+            android:key="pref_notification_notification"
+            android:ringtoneType="notification"
+            android:showDefault="true"
+            android:title="Other Notification Tone" >
+        </RingtonePreference>
+        <CheckBoxPreference
             android:defaultValue="false"
             android:key="pref_force_sound"
             android:summary="@string/pref_force_sound_summary"
