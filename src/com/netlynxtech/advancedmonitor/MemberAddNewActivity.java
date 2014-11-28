@@ -40,7 +40,7 @@ public class MemberAddNewActivity extends ActionBarActivity {
 		getSupportActionBar().setHomeButtonEnabled(true);
 		devices = (ArrayList<Device>) getIntent().getSerializableExtra("devices");
 		if (devices.size() < 1) {
-			startActivity(new Intent(MemberAddNewActivity.this, ReceivedMemberPermissionActivity.class));
+			Toast.makeText(MemberAddNewActivity.this, "You have no devices", Toast.LENGTH_SHORT).show();
 			finish();
 		}
 		deviceIDs = new ArrayList<String>();
