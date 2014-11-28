@@ -25,8 +25,8 @@ public class Consts {
 
 	final static public int WEBREQUEST_TIMEOUT = 20000;
 
-	final static public String NOISELYNX_API_URL = "http://192.168.10.8/wsnoiselynx/sensor.asmx";
-	// final static public String NOISELYNX_API_URL = "http://123.100.251.49/wsnoiselynx/sensor.asmx";
+	// final static public String NOISELYNX_API_URL = "http://192.168.10.8/wsnoiselynx/sensor.asmx";
+	final static public String NOISELYNX_API_URL = "http://123.100.251.49/wsnoiselynx/sensor.asmx";
 	final static public String NOISELYNX_API_REGISTERDEVICE_SOAP_ACTION = "http://NetlynxTech.com/RegisterDevice";
 	final static public String NOISELYNX_API_REGISTERDEVICE_METHOD_NAME = "RegisterDevice";
 

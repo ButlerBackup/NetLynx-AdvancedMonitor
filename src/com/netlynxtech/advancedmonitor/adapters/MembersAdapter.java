@@ -3,8 +3,10 @@ package com.netlynxtech.advancedmonitor.adapters;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.text.Html;
@@ -110,7 +112,21 @@ public class MembersAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				new removeMember().execute(memberUdid, String.valueOf(position));
+				DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						switch (which) {
+						case DialogInterface.BUTTON_POSITIVE:
+							new removeMember().execute(memberUdid, String.valueOf(position));
+							break;
+						case DialogInterface.BUTTON_NEGATIVE:
+							break;
+						}
+					}
+				};
+
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setMessage("Are you sure you want to remove this person from the device?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
 			}
 		});
 		return convertView;

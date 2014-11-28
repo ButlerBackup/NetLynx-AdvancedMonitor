@@ -884,7 +884,9 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 			break;
 		case R.id.menu_delete_device:
-			showDeleteDialog();
+			if (device.getRole().equals("9")) {
+				showDeleteDialog();
+			}
 			break;
 		default:
 			return super.onOptionsItemSelected(item);

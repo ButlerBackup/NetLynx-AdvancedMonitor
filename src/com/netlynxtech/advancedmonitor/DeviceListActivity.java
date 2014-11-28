@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -175,8 +176,6 @@ public class DeviceListActivity extends ActionBarActivity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			// devices.clear();
-			// devices = new ArrayList<Device>();
 			devices = new WebRequestAPI(DeviceListActivity.this).GetDevices();
 			return null;
 		}
@@ -189,14 +188,17 @@ public class DeviceListActivity extends ActionBarActivity {
 				@Override
 				public void run() {
 					mRefreshActionItem.showProgress(false);
+					box.hideAll();
 					if (!isCancelled()) {
+						Log.e("DEVICE SIZE", devices.size() + "");
 						if (devices.size() > 0) {
 							adapter = new DevicesAdapter(DeviceListActivity.this, devices);
+							lvDevices.setAdapter(adapter);
+							// adapter = new DevicesAdapter(DeviceListActivity.this, devices);
 							index = lvDevices.getFirstVisiblePosition();
 							View v = lvDevices.getChildAt(0);
 							top = (v == null) ? 0 : v.getTop();
 							Log.e("Cancelled", "Not cancelled");
-							lvDevices.setAdapter(adapter);
 							box.hideAll();
 							lvDevices.setSelectionFromTop(index, top);
 						} else {

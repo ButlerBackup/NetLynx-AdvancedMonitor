@@ -174,8 +174,8 @@ public class ChooseDeviceActivity extends ActionBarActivity {
 				Log.e("DeviceID", deviceId);
 				TCPClass.sendDataWithString("^X|1|" + deviceId + "|ZZ~");
 				SystemClock.sleep(3000);
-				TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, params[0], params[1], "192.168.10.8", "5090", "192.168.10.8", "5090", "ZZ"));
-				//TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, params[0], params[1], "123.100.251.49", "5090", "123.100.251.49", "5090", "ZZ"));
+				// TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, params[0], params[1], "192.168.10.8", "5090", "192.168.10.8", "5090", "ZZ"));
+				TCPClass.sendDataWithString(String.format(Consts.X_CONFIGURE_TWO_WIFISERVER_TODEVICE, params[0], params[1], "123.100.251.49", "5090", "123.100.251.49", "5090", "ZZ"));
 
 			} catch (Exception e) {
 				e.printStackTrace();
