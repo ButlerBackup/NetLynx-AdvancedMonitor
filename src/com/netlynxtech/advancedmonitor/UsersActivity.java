@@ -71,6 +71,8 @@ public class UsersActivity extends ActionBarActivity {
 						lvUsers.setAdapter(adapter);
 						box.hideAll();
 					} else {
+						box.setExceptionMessageColor("#ff0040");
+						box.setExceptionTitleColor("#ff0040");
 						box.setOtherExceptionTitle("No users");
 						box.setOtherExceptionMessage("No Users");
 						box.showExceptionLayout();

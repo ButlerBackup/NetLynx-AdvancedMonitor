@@ -976,7 +976,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (task != null) {
+		if (task != null && task.getStatus() == AsyncTask.Status.RUNNING) {
 			task.cancel(true);
 			task = null;
 		}

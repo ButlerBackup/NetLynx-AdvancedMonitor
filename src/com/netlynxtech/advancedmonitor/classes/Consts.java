@@ -1,7 +1,7 @@
 package com.netlynxtech.advancedmonitor.classes;
 
 public class Consts {
-
+	public static final String PREF_MESSAGES_MARK_READ = "messages_read";
 	public static final String DEVICE_SOFT_ACCESS_IP = "192.168.4.1";
 	public static final String DEVICE_SOFT_ACCESS_PORT = "9012";
 

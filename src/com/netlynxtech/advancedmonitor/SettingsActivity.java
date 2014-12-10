@@ -19,17 +19,13 @@ public class SettingsActivity extends PreferenceActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		// getSupportActionBar().setHomeButtonEnabled(true);
 		addPreferencesFromResource(R.xml.settings_activity);
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
-
 		Preference pref_about = (Preference) findPreference("pref_about");
 		pref_about.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				// startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
+				startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
 				return true;
 			}
 		});

@@ -202,6 +202,8 @@ public class DeviceListActivity extends ActionBarActivity {
 							box.hideAll();
 							lvDevices.setSelectionFromTop(index, top);
 						} else {
+							box.setExceptionMessageColor("#ff0040");
+							box.setExceptionTitleColor("#ff0040");
 							box.setOtherExceptionTitle("No devices found");
 							box.setOtherExceptionMessage("No devices found");
 							box.showExceptionLayout();
@@ -226,7 +228,7 @@ public class DeviceListActivity extends ActionBarActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (task != null) {
+		if (task != null && task.getStatus() == AsyncTask.Status.RUNNING) {
 			task.cancel(true);
 			task = null;
 			isProcessing = false;

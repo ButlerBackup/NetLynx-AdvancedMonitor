@@ -70,6 +70,8 @@ public class ReceivedMemberPermissionActivity extends ActionBarActivity {
 							lvReceivedMemberPermission.setAdapter(adapter);
 							box.hideAll();
 						} else {
+							box.setExceptionMessageColor("#ff0040");
+							box.setExceptionTitleColor("#ff0040");
 							box.setOtherExceptionMessage("You have no invites yet.");
 							box.setOtherExceptionTitle("You have no invites yet.");
 							box.showExceptionLayout();

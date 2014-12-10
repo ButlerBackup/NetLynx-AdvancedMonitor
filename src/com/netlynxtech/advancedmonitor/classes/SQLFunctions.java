@@ -111,6 +111,24 @@ public class SQLFunctions {
 		}
 	}
 
+	public void markAllAsRead() {
+		Cursor cursor = ourDatabase.rawQuery("SELECT * FROM " + TABLE_MESSAGES + " WHERE " + TABLE_MESSAGES_READ + " = '0' AND " + Consts.MESSAGES_MESSAGE_ACKREQUIRED + " = '0'", null);
+		if (cursor != null) {
+			if (cursor.moveToFirst()) {
+				while (cursor.isAfterLast() == false) {
+					try {
+						String id = cursor.getString(cursor.getColumnIndex(Consts.MESSAGES_MESSAGE_ID));
+						setMessageRead(id);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					cursor.moveToNext();
+				}
+			}
+		}
+		cursor.close();
+	}
+
 	public boolean setMessageRead(String messageId) {
 		String strFilter = Consts.MESSAGES_MESSAGE_ID + "='" + messageId + "'";
 		ContentValues args = new ContentValues();
@@ -183,7 +201,8 @@ public class SQLFunctions {
 	public int getUnreadMessage(String eventId) {
 		int count = 0;
 		try {
-			Cursor mCount = ourDatabase.rawQuery("SELECT COUNT(*) FROM " + TABLE_MESSAGES + " WHERE " + Consts.MESSAGES_MESSAGE_EVENTID + " = '" + eventId + "' AND " + TABLE_MESSAGES_READ + " = '0'", null);
+			Cursor mCount = ourDatabase.rawQuery("SELECT COUNT(*) FROM " + TABLE_MESSAGES + " WHERE " + Consts.MESSAGES_MESSAGE_EVENTID + " = '" + eventId + "' AND " + TABLE_MESSAGES_READ + " = '0'",
+					null);
 			mCount.moveToFirst();
 			count = mCount.getInt(0);
 			mCount.close();

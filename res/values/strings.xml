@@ -21,6 +21,7 @@
     <string name="menu_chart">Chart</string>
     <string name="menu_delete_device">Delete</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="menu_mark_all_read">Mark All As Read</string>
     <string name="menu_add_users">Add Users</string>
     <string name="menu_add_device">Add Devices</string>
     <string name="menu_add_members">Add Members</string>
@@ -79,7 +80,7 @@
     <string name="password_info_password_null">Enter both passwords or click "Skip Now"</string>
     <string name="password_info_password_notequal">Both passwords do not match</string>
     <string name="version">Version</string>
-    <string name="about_us_title">Environmental Noise Monitoring System</string>
+    <string name="about_us_title">SensorLynx</string>
     <string name="about_us_company_one">Absolute Instrument Systems</string>
     <string name="about_us_company_two">NetLynx Technology Pte Ltd</string>
     <string name="password_activity_set_password">Set Password</string>

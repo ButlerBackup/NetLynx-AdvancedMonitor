@@ -4,24 +4,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import mehdi.sakout.dynamicbox.DynamicBox;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.manuelpeinado.refreshactionitem.ProgressIndicatorType;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem.RefreshActionListener;
 import com.netlynxtech.advancedmonitor.adapters.MessageAdapter;
+import com.netlynxtech.advancedmonitor.classes.Consts;
+import com.netlynxtech.advancedmonitor.classes.SQLFunctions;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
+import com.securepreferences.SecurePreferences;
 
 public class MessagesActivity extends ActionBarActivity {
 	ArrayList<HashMap<String, String>> data;
@@ -29,6 +38,7 @@ public class MessagesActivity extends ActionBarActivity {
 	ListView lvMessage;
 	getMessages mTask;
 	RefreshActionItem mRefreshActionItem;
+	messagesMarkRead mTaskRead;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,7 @@ public class MessagesActivity extends ActionBarActivity {
 		getSupportActionBar().setHomeButtonEnabled(true);
 		getSupportActionBar().setTitle("Messages");
 		lvMessage = (ListView) findViewById(R.id.lvMessages);
+		lvMessage.setFastScrollEnabled(true);
 		lvMessage.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -87,6 +98,8 @@ public class MessagesActivity extends ActionBarActivity {
 							lvMessage.setAdapter(adapter);
 							box.hideAll();
 						} else {
+							box.setExceptionMessageColor("#ff0040");
+							box.setExceptionTitleColor("#ff0040");
 							box.setOtherExceptionTitle("No messages");
 							box.setOtherExceptionMessage("No messages");
 							box.showExceptionLayout();
@@ -139,16 +152,138 @@ public class MessagesActivity extends ActionBarActivity {
 		case android.R.id.home:
 			finish();
 			break;
+		case R.id.menu_mark_all_read:
+			Log.e("WUT", "WUT");
+			showMarkAllReadDialog();
+			break;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
+	private void showMarkAllReadDialog() {
+		final SecurePreferences sp = new SecurePreferences(MessagesActivity.this);
+		AlertDialog.Builder adb = new AlertDialog.Builder(MessagesActivity.this);
+		LayoutInflater adbInflater = LayoutInflater.from(MessagesActivity.this);
+		View eulaLayout = adbInflater.inflate(R.layout.message_dialog_mark_all_read, null);
+		final CheckBox dontShowAgain = (CheckBox) eulaLayout.findViewById(R.id.skip);
+		adb.setView(eulaLayout);
+		adb.setTitle("Mark All As Read");
+		adb.setMessage("Mark all messages as read?\nNote: Messages that needs acknowledgement will not be marked as read. You have to acknowledge the messages individually");
+		adb.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				if (dontShowAgain.isChecked()) {
+					sp.edit().putBoolean(Consts.PREF_MESSAGES_MARK_READ, true).commit();
+				}
+				try {
+					mTaskRead = null;
+					mTaskRead = new messagesMarkRead();
+					mTaskRead.execute();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return;
+			}
+		});
+
+		adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				if (dontShowAgain.isChecked()) {
+					sp.edit().putBoolean(Consts.PREF_MESSAGES_MARK_READ, true).commit();
+				}
+				return;
+			}
+		});
+
+		if (!sp.getBoolean(Consts.PREF_MESSAGES_MARK_READ, false)) {
+			adb.show();
+		} else {
+			try {
+				mTaskRead = null;
+				mTaskRead = new messagesMarkRead();
+				mTaskRead.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private class messagesMarkRead extends AsyncTask<Void, Void, Void> {
+		ProgressDialog pd;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pd = new ProgressDialog(MessagesActivity.this);
+			pd.setCancelable(false);
+			pd.setCanceledOnTouchOutside(false);
+			pd.setMessage("Please hold..");
+			pd.show();
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			MessagesActivity.this.runOnUiThread(new Runnable() {
+
+				@Override
+				public void run() {
+					if (pd != null && pd.isShowing()) {
+						pd.dismiss();
+					}
+					try {
+						mTask = null;
+						mTask = new getMessages();
+						mTask.execute();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			SQLFunctions sql = new SQLFunctions(MessagesActivity.this);
+			sql.open();
+			sql.markAllAsRead();
+			sql.close();
+			return null;
+		}
+
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		supportInvalidateOptionsMenu();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING) {
+			mTask.cancel(true);
+			mTask = null;
+		}
+		if (mTaskRead != null && mTaskRead.getStatus() == AsyncTask.Status.RUNNING) {
+			mTaskRead.cancel(true);
+			mTaskRead = null;
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING) {
+			mTask.cancel(true);
+			mTask = null;
+		}
+		if (mTaskRead != null && mTaskRead.getStatus() == AsyncTask.Status.RUNNING) {
+			mTaskRead.cancel(true);
+			mTaskRead = null;
+		}
 	}
 
 }
