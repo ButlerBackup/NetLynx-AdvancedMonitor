@@ -8,11 +8,11 @@ package info.hoang8f.fbutton;
 
 public final class R {
 	public static final class attr {
-		public static final int buttonColor = 0x7f0100d2;
-		public static final int cornerRadius = 0x7f0100d5;
-		public static final int shadowColor = 0x7f0100d3;
-		public static final int shadowEnabled = 0x7f0100d1;
-		public static final int shadowHeight = 0x7f0100d4;
+		public static final int buttonColor = 0x7f0100db;
+		public static final int cornerRadius = 0x7f0100de;
+		public static final int shadowColor = 0x7f0100dc;
+		public static final int shadowEnabled = 0x7f0100da;
+		public static final int shadowHeight = 0x7f0100dd;
 	}
 	public static final class color {
 		public static final int fbutton_color_alizarin = 0x7f070048;
@@ -48,7 +48,7 @@ public final class R {
 		public static final int fbutton_default_shadow_height = 0x7f0a002d;
 	}
 	public static final class styleable {
-		public static final int[] FButton = { 0x7f0100d1, 0x7f0100d2, 0x7f0100d3, 0x7f0100d4, 0x7f0100d5 };
+		public static final int[] FButton = { 0x7f0100da, 0x7f0100db, 0x7f0100dc, 0x7f0100dd, 0x7f0100de };
 		public static final int FButton_buttonColor = 1;
 		public static final int FButton_cornerRadius = 4;
 		public static final int FButton_shadowColor = 2;

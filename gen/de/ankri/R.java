@@ -8,44 +8,44 @@ package de.ankri;
 
 public final class R {
 	public static final class attr {
-		public static final int fontFamily = 0x7f010036;
-		public static final int switchMinWidth = 0x7f01002f;
-		public static final int switchPadding = 0x7f010030;
-		public static final int switchStyle = 0x7f010028;
-		public static final int switchTextAppearance = 0x7f01002e;
-		public static final int textAppearance = 0x7f010031;
-		public static final int textColor = 0x7f010032;
-		public static final int textColorHighlight = 0x7f010037;
-		public static final int textColorHint = 0x7f010038;
-		public static final int textColorLink = 0x7f010039;
-		public static final int textOff = 0x7f01002c;
-		public static final int textOn = 0x7f01002b;
-		public static final int textSize = 0x7f010033;
-		public static final int textStyle = 0x7f010034;
-		public static final int thumb = 0x7f010029;
-		public static final int thumbTextPadding = 0x7f01002d;
-		public static final int track = 0x7f01002a;
-		public static final int typeface = 0x7f010035;
+		public static final int fontFamily = 0x7f01003f;
+		public static final int switchMinWidth = 0x7f010038;
+		public static final int switchPadding = 0x7f010039;
+		public static final int switchStyle = 0x7f010031;
+		public static final int switchTextAppearance = 0x7f010037;
+		public static final int textAppearance = 0x7f01003a;
+		public static final int textColor = 0x7f01003b;
+		public static final int textColorHighlight = 0x7f010040;
+		public static final int textColorHint = 0x7f010041;
+		public static final int textColorLink = 0x7f010042;
+		public static final int textOff = 0x7f010035;
+		public static final int textOn = 0x7f010034;
+		public static final int textSize = 0x7f01003c;
+		public static final int textStyle = 0x7f01003d;
+		public static final int thumb = 0x7f010032;
+		public static final int thumbTextPadding = 0x7f010036;
+		public static final int track = 0x7f010033;
+		public static final int typeface = 0x7f01003e;
 	}
 	public static final class drawable {
-		public static final int switch_bg_disabled_holo_dark = 0x7f020091;
-		public static final int switch_bg_disabled_holo_light = 0x7f020092;
-		public static final int switch_bg_focused_holo_dark = 0x7f020093;
-		public static final int switch_bg_focused_holo_light = 0x7f020094;
-		public static final int switch_bg_holo_dark = 0x7f020095;
-		public static final int switch_bg_holo_light = 0x7f020096;
-		public static final int switch_inner_holo_dark = 0x7f020097;
-		public static final int switch_inner_holo_light = 0x7f020098;
-		public static final int switch_thumb_activated_holo_dark = 0x7f020099;
-		public static final int switch_thumb_activated_holo_light = 0x7f02009a;
-		public static final int switch_thumb_disabled_holo_dark = 0x7f02009b;
-		public static final int switch_thumb_disabled_holo_light = 0x7f02009c;
-		public static final int switch_thumb_holo_dark = 0x7f02009d;
-		public static final int switch_thumb_holo_light = 0x7f02009e;
-		public static final int switch_thumb_pressed_holo_dark = 0x7f02009f;
-		public static final int switch_thumb_pressed_holo_light = 0x7f0200a0;
-		public static final int switch_track_holo_dark = 0x7f0200a1;
-		public static final int switch_track_holo_light = 0x7f0200a2;
+		public static final int switch_bg_disabled_holo_dark = 0x7f020094;
+		public static final int switch_bg_disabled_holo_light = 0x7f020095;
+		public static final int switch_bg_focused_holo_dark = 0x7f020096;
+		public static final int switch_bg_focused_holo_light = 0x7f020097;
+		public static final int switch_bg_holo_dark = 0x7f020098;
+		public static final int switch_bg_holo_light = 0x7f020099;
+		public static final int switch_inner_holo_dark = 0x7f02009a;
+		public static final int switch_inner_holo_light = 0x7f02009b;
+		public static final int switch_thumb_activated_holo_dark = 0x7f02009c;
+		public static final int switch_thumb_activated_holo_light = 0x7f02009d;
+		public static final int switch_thumb_disabled_holo_dark = 0x7f02009e;
+		public static final int switch_thumb_disabled_holo_light = 0x7f02009f;
+		public static final int switch_thumb_holo_dark = 0x7f0200a0;
+		public static final int switch_thumb_holo_light = 0x7f0200a1;
+		public static final int switch_thumb_pressed_holo_dark = 0x7f0200a2;
+		public static final int switch_thumb_pressed_holo_light = 0x7f0200a3;
+		public static final int switch_track_holo_dark = 0x7f0200a4;
+		public static final int switch_track_holo_light = 0x7f0200a5;
 	}
 	public static final class string {
 		public static final int textOff = 0x7f0c0001;
@@ -59,7 +59,7 @@ public final class R {
 		public static final int switch_light = 0x7f0b0006;
 	}
 	public static final class styleable {
-		public static final int[] Switch = { 0x7f010029, 0x7f01002a, 0x7f01002b, 0x7f01002c, 0x7f01002d, 0x7f01002e, 0x7f01002f, 0x7f010030 };
+		public static final int[] Switch = { 0x7f010032, 0x7f010033, 0x7f010034, 0x7f010035, 0x7f010036, 0x7f010037, 0x7f010038, 0x7f010039 };
 		public static final int Switch_switchMinWidth = 6;
 		public static final int Switch_switchPadding = 7;
 		public static final int Switch_switchTextAppearance = 5;
@@ -68,7 +68,7 @@ public final class R {
 		public static final int Switch_thumb = 0;
 		public static final int Switch_thumbTextPadding = 4;
 		public static final int Switch_track = 1;
-		public static final int[] TextAppearanceSwitch = { 0x7f010032, 0x7f010033, 0x7f010034, 0x7f010035, 0x7f010036, 0x7f010037, 0x7f010038, 0x7f010039 };
+		public static final int[] TextAppearanceSwitch = { 0x7f01003b, 0x7f01003c, 0x7f01003d, 0x7f01003e, 0x7f01003f, 0x7f010040, 0x7f010041, 0x7f010042 };
 		public static final int TextAppearanceSwitch_fontFamily = 4;
 		public static final int TextAppearanceSwitch_textColor = 0;
 		public static final int TextAppearanceSwitch_textColorHighlight = 5;

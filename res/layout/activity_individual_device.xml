@@ -5,222 +5,263 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-
-        <LinearLayout
-            android:id="@+id/llIndividualDevice"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-        </LinearLayout>
-    </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/rlIndividualDevice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sliding_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:dragView="@+id/dragView"
+        sothree:panelHeight="40dp"
+        sothree:paralaxOffset="100dp"
+        sothree:shadowHeight="4dp" >
 
         <RelativeLayout
-            android:id="@+id/rl_device_details"
+            android:id="@+id/rlIndividualDevice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/download2" >
+            android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/tvDeviceDescription"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/rl_device_details"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvDeviceId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tvDeviceTimestamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/tvDeviceDescription"
-                android:gravity="right"
-                android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#FFFFFF" />
-
-            <TextView
-                android:id="@+id/tvInputOneDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/tvDeviceTimestamp"
-                android:gravity="center_vertical"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF"
-                android:textStyle="italic" />
-
-            <ImageView
-                android:id="@+id/ivInputOne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/tvInputOneDescription"
-                android:src="@drawable/ic_greendot" />
-
-            <TextView
-                android:id="@+id/tvOutputOneDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/tvDeviceTimestamp"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/tvInputTwoDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/ivInputOne"
-                android:gravity="center_vertical"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/tvOutputTwoDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/tvInputTwoDescription"
-                android:layout_alignBottom="@+id/tvInputTwoDescription"
-                android:layout_alignParentRight="true"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#FFFFFF"
-                android:textStyle="italic" />
-
-            <de.ankri.views.Switch
-                android:id="@+id/sOutputOne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/ivInputOne"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/tvOutputOneDescription"
-                android:gravity="center_vertical"
-                app:textOff="Off"
-                app:textOn="On" />
-
-            <ImageView
-                android:id="@+id/ivInputTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tvInputTwoDescription"
-                android:layout_below="@+id/tvInputTwoDescription"
-                android:src="@drawable/ic_greendot" />
-
-            <de.ankri.views.Switch
-                android:id="@+id/sOutputTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/ivInputTwo"
-                android:layout_alignRight="@+id/tvOutputTwoDescription"
-                android:layout_below="@+id/tvOutputTwoDescription"
-                android:gravity="center_vertical"
-                app:textOff="Off"
-                app:textOn="On" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/ivInputTwo"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/ivInputTwo"
-                android:weightSum="3" >
+                android:background="@drawable/download2" >
 
                 <TextView
-                    android:id="@+id/tvDeviceTemperature"
+                    android:id="@+id/tvDeviceDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Temperature"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Large Text"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvDeviceHumidity"
+                    android:id="@+id/tvDeviceId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Humidity"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/tvDeviceVoltage"
+                    android:id="@+id/tvDeviceTimestamp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Voltage"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/tvDeviceDescription"
+                    android:gravity="right"
+                    android:text="Small Text"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#FFFFFF" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/ivInputTwo"
-                android:layout_below="@+id/linearLayout1"
-                android:padding="5dp"
-                android:weightSum="3" >
-
-                <ImageView
-                    android:id="@+id/imageView1"
+                <TextView
+                    android:id="@+id/tvInputOneDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingLeft="12dp"
-                    android:src="@drawable/termometer" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/tvDeviceTimestamp"
+                    android:gravity="center_vertical"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="italic" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/ivInputOne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingLeft="18dp"
-                    android:src="@drawable/humidity" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/tvInputOneDescription"
+                    android:src="@drawable/ic_greendot" />
+
+                <TextView
+                    android:id="@+id/tvOutputOneDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/tvDeviceTimestamp"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/tvInputTwoDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/ivInputOne"
+                    android:gravity="center_vertical"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/tvOutputTwoDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tvInputTwoDescription"
+                    android:layout_alignBottom="@+id/tvInputTwoDescription"
+                    android:layout_alignParentRight="true"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="italic" />
+
+                <de.ankri.views.Switch
+                    android:id="@+id/sOutputOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/ivInputOne"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/tvOutputOneDescription"
+                    android:gravity="center_vertical"
+                    app:textOff="Off"
+                    app:textOn="On" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/ivInputTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingLeft="5dp"
-                    android:src="@drawable/lightning" />
-            </LinearLayout>
+                    android:layout_alignLeft="@+id/tvInputTwoDescription"
+                    android:layout_below="@+id/tvInputTwoDescription"
+                    android:src="@drawable/ic_greendot" />
+
+                <de.ankri.views.Switch
+                    android:id="@+id/sOutputTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/ivInputTwo"
+                    android:layout_alignRight="@+id/tvOutputTwoDescription"
+                    android:layout_below="@+id/tvOutputTwoDescription"
+                    android:gravity="center_vertical"
+                    app:textOff="Off"
+                    app:textOn="On" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/ivInputTwo"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/ivInputTwo"
+                    android:weightSum="3" >
+
+                    <TextView
+                        android:id="@+id/tvDeviceTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Temperature"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tvDeviceHumidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Humidity"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tvDeviceVoltage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Voltage"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/ivInputTwo"
+                    android:layout_below="@+id/linearLayout1"
+                    android:padding="5dp"
+                    android:weightSum="3" >
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="12dp"
+                        android:src="@drawable/termometer" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="18dp"
+                        android:src="@drawable/humidity" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp"
+                        android:src="@drawable/lightning" />
+                </LinearLayout>
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/dragView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eeeeee"
+            android:clickable="true"
+            android:focusable="false"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Temperature &amp; Humidity History"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llGraphHere"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
 </RelativeLayout>

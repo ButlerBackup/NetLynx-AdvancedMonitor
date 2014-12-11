@@ -20,7 +20,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,17 +27,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-import com.jjoe64.graphview.GraphView.LegendAlign;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
-import com.jjoe64.graphview.LineGraphView;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.Legend;
+import com.github.mikephil.charting.utils.Legend.LegendForm;
+import com.github.mikephil.charting.utils.XLabels;
+import com.github.mikephil.charting.utils.YLabels;
 import com.manuelpeinado.refreshactionitem.ProgressIndicatorType;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem.RefreshActionListener;
 import com.netlynxtech.advancedmonitor.classes.Consts;
 import com.netlynxtech.advancedmonitor.classes.Device;
+import com.netlynxtech.advancedmonitor.classes.MyMarkerView;
 import com.netlynxtech.advancedmonitor.classes.Utils;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
 
@@ -56,6 +58,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	Switch sOutputOne, sOutputTwo;
 	boolean isProcessing = false, loadedBefore = false;
 	deleteDevice mDeleteDevice;
+	private LineChart[] mCharts = new LineChart[4];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -700,25 +703,128 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		}
 	}
 
+	private LineData getData(ArrayList<Double> xValues, ArrayList<String> yValues, String type) {
+		ArrayList<String> xVals = yValues;
+
+		ArrayList<Entry> yVals = new ArrayList<Entry>();
+
+		for (int i = 0; i < xVals.size(); i++) {
+			double val = xValues.get(i);
+			yVals.add(new Entry((float) val, i));
+		}
+
+		// create a dataset and give it a type
+		LineDataSet set1 = new LineDataSet(yVals, type);
+		// set1.setFillAlpha(110);
+		// set1.setFillColor(Color.RED);
+
+		set1.setLineWidth(1.75f);
+		set1.setCircleSize(3f);
+		set1.setColor(Color.WHITE);
+		set1.setCircleColor(Color.WHITE);
+		set1.setHighLightColor(Color.WHITE);
+
+		ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+		dataSets.add(set1); // add the datasets
+
+		// create a data object with the datasets
+		LineData data = new LineData(xVals, dataSets);
+
+		return data;
+	}
+
+	private void setupChart(LineChart chart, LineData data, int color) {
+		chart.setHighlightEnabled(true);
+		MyMarkerView mv = new MyMarkerView(IndividualDeviceActivity.this, R.layout.custom_marker_view);
+		mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
+		chart.setMarkerView(mv);
+		chart.setHighlightIndicatorEnabled(false);
+
+		// if enabled, the chart will always start at zero on the y-axis
+		chart.setStartAtZero(false);
+
+		// enable the drawing of values into the chart
+		chart.setDrawYValues(true);
+
+		chart.setDrawBorder(false);
+
+		// no description text
+		chart.setDescription("");
+		chart.setNoDataTextDescription("You need to provide data for the chart.");
+
+		// enable / disable grid lines
+		chart.setDrawVerticalGrid(false);
+		// mChart.setDrawHorizontalGrid(false);
+		//
+		// enable / disable grid background
+		chart.setDrawGridBackground(false);
+		chart.setGridColor(Color.WHITE & 0x70FFFFFF);
+		chart.setGridWidth(1.25f);
+
+		// enable touch gestures
+		chart.setTouchEnabled(true);
+
+		// enable scaling and dragging
+		chart.setDragEnabled(true);
+		chart.setScaleEnabled(true);
+
+		// if disabled, scaling can be done on x- and y-axis separately
+		chart.setPinchZoom(true);
+
+		chart.setBackgroundColor(color);
+
+		// chart.setValueTypeface(mTf);
+
+		// add data
+		chart.setData(data);
+
+		// get the legend (only possible after setting data)
+		Legend l = chart.getLegend();
+
+		// modify the legend ...
+		// l.setPosition(LegendPosition.LEFT_OF_CHART);
+		l.setForm(LegendForm.CIRCLE);
+		l.setFormSize(6f);
+		l.setTextColor(Color.WHITE);
+		// l.setTypeface(mTf);
+
+		YLabels y = chart.getYLabels();
+		y.setTextColor(Color.WHITE);
+		// y.setTypeface(mTf);
+		y.setLabelCount(4);
+
+		XLabels x = chart.getXLabels();
+		x.setTextColor(Color.WHITE);
+		// x.setTypeface(mTf);
+
+		// animate calls invalidate()...
+		chart.animateX(2500);
+	}
+
 	private class loadGraphData extends AsyncTask<Void, Void, Void> {
 		ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
 		ArrayList<Double> temperature = new ArrayList<Double>();
 		ArrayList<Double> humidity = new ArrayList<Double>();
 		ArrayList<String> timing = new ArrayList<String>();
-		int num = 12;
+
+		LineData data1, data2;
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			// data = new WebRequestAPI(IndividualDeviceActivity.this).GetChartData(deviceId, Utils.getCustomDateTime(), Utils.getCurrentDateTime(), 12);
 			data = new WebRequestAPI(IndividualDeviceActivity.this).GetChartData(deviceId, Utils.getCurrentDateTime(), Utils.getCustomDateTime(), 12);
 			if (data.size() > 0) {
 				for (HashMap<String, String> d : data) {
 					temperature.add(Double.parseDouble(d.get(Consts.GETDEVICES_TEMPERATURE)));
-					// temperature.add(Double.parseDouble("1.1"));
 					humidity.add(Double.parseDouble(d.get(Consts.GETDEVICES_HUMIDITY)));
 					timing.add(d.get(Consts.GETDEVICES_DATATIMESTAMP));
 				}
 			}
+			mCharts[0] = (LineChart) findViewById(R.id.chart1);
+			mCharts[1] = (LineChart) findViewById(R.id.chart2);
+
+			data1 = getData(temperature, timing, "Temperature");
+			data2 = getData(humidity, timing, "Humidity");
+
 			return null;
 		}
 
@@ -730,41 +836,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				@Override
 				public void run() {
 					if (data.size() > 0) {
-						int num = 12;
-						GraphViewData[] tempData = new GraphViewData[num];
-						GraphViewData[] humidData = new GraphViewData[num];
-						String[] timeData = new String[num];
-						for (int i = 0; i < num; i++) {
-							tempData[i] = new GraphViewData(i, temperature.get(i));
-							humidData[i] = new GraphViewData(i, humidity.get(i));
-							timeData[i] = timing.get(i);
-							Log.e("HERE?!", timing.get(i));
-						}
-
-						GraphViewSeries tempGraph = new GraphViewSeries("Temperature", new GraphViewSeriesStyle(Color.rgb(200, 50, 00), 3), tempData);
-						GraphViewSeries humidGraph = new GraphViewSeries("Humidity", new GraphViewSeriesStyle(Color.rgb(90, 250, 00), 3), humidData);
-
-						GraphView graphView = new LineGraphView(IndividualDeviceActivity.this, "History");
-
-						graphView.addSeries(tempGraph);
-						graphView.addSeries(humidGraph);
-						// optional - set view port, start=2, size=10
-						graphView.setViewPort(2, 10);
-						graphView.setScalable(true);
-						// optional - legend
-						graphView.setShowLegend(true);
-						graphView.setLegendAlign(LegendAlign.BOTTOM);
-						graphView.setLegendWidth(210);
-						graphView.setHorizontalLabels(timeData);
-						RelativeLayout llIndividualDevice = (RelativeLayout) findViewById(R.id.rlIndividualDevice);
-
-						RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-						p.addRule(RelativeLayout.BELOW, R.id.rl_device_details);
-
-						graphView.setLayoutParams(p);
-						llIndividualDevice.addView(graphView);
-						graphView.setLayoutParams(p);
+						setupChart(mCharts[0], data1, Color.rgb(137, 230, 81));
+						setupChart(mCharts[1], data2, Color.rgb(240, 240, 30));
 					} else {
 						Toast.makeText(IndividualDeviceActivity.this, "Unable to load graph", Toast.LENGTH_SHORT).show();
 					}

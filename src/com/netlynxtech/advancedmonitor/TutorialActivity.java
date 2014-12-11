@@ -3,16 +3,10 @@ package com.netlynxtech.advancedmonitor;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.netlynxtech.advancedmonitor.fragments.TutorialFragmentAdapter;
-import com.netlynxtech.advancedmonitor.fragments.TutorialOneFragment;
-import com.netlynxtech.advancedmonitor.fragments.TutorialThreeFragment;
-import com.netlynxtech.advancedmonitor.fragments.TutorialTwoFragment;
 import com.securepreferences.SecurePreferences;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
