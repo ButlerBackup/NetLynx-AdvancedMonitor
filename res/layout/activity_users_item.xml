@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/test1"
-    android:orientation="vertical" >
+    android:background="@drawable/card"
+    android:orientation="vertical"
+    android:padding="10dp" >
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,10 +15,10 @@
         android:layout_alignParentRight="true"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:customTypeface="roboto_bold.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvTimestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,11 +26,12 @@
         android:layout_below="@+id/tvName"
         android:layout_toLeftOf="@+id/ivDeleteUser"
         android:gravity="right"
+        android:paddingRight="8dp"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#FFFFFF" />
+        app:customTypeface="roboto.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvRequestStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,9 +40,9 @@
         android:layout_toRightOf="@+id/textView1"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
+        app:customTypeface="roboto.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,10 +51,10 @@
         android:layout_below="@+id/tvRequestStatus"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:customTypeface="roboto_bold.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +63,7 @@
         android:layout_alignParentLeft="true"
         android:text="Status : "
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
+        app:customTypeface="roboto.ttf" />
 
     <ImageView
         android:id="@+id/ivDeleteUser"

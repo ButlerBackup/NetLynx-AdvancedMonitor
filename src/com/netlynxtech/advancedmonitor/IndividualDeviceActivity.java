@@ -53,7 +53,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	AsyncTask<Void, Void, Void> task = new loadData();
 	DynamicBox box;
 	TextView tvDeviceId, tvDeviceDescription, tvDeviceTemperature, tvDeviceHumidity, tvDeviceVoltage, tvDeviceTimestamp, tvInputOneDescription, tvInputTwoDescription, tvOutputOneDescription,
-			tvOutputTwoDescription;
+			tvOutputTwoDescription, tvPastHistory;
 	ImageView ivInputOne, ivInputTwo, ivTemperature, ivHumidity;
 	Switch sOutputOne, sOutputTwo;
 	boolean isProcessing = false, loadedBefore = false;
@@ -89,6 +89,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		tvOutputOneDescription = (TextView) findViewById(R.id.tvOutputOneDescription);
 		tvOutputTwoDescription = (TextView) findViewById(R.id.tvOutputTwoDescription);
 		tvDeviceTimestamp = (TextView) findViewById(R.id.tvDeviceTimestamp);
+		tvPastHistory = (TextView) findViewById(R.id.tvPastHistory);
 
 		ivInputOne = (ImageView) findViewById(R.id.ivInputOne);
 		ivInputTwo = (ImageView) findViewById(R.id.ivInputTwo);
@@ -487,37 +488,35 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 
 	private void setData() {
 		isProcessing = true;
-		tvDeviceTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(device.getTimestamp()) + "</b></i>"));
+		tvDeviceTimestamp.setText(Html.fromHtml("<b>" + Utils.parseTime(device.getTimestamp()) + "</b>"));
 		tvDeviceId.setText(device.getDeviceID());
 		tvDeviceDescription.setText(device.getDescription());
 		tvInputOneDescription.setText(device.getDescriptionInput1());
 		tvInputTwoDescription.setText(device.getDescriptionInput2());
-		tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><i><font color='#00FF00'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></i></font>"));
-		tvDeviceTemperature.setTextColor(Color.WHITE);
+		tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#00FF00'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		float temperatureCurrent = Float.parseFloat(device.getTemperature());
 		float temperatureHi = Float.parseFloat(device.getTemperatureHi());
 		float temperatureLo = Float.parseFloat(device.getTemperatureLo());
 		if (temperatureCurrent > temperatureHi) {
-			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><i><font color='#FF0000'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></i></font>"));
+			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FF0000'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		}
 		if (temperatureCurrent < temperatureLo) {
-			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><i><font color='#FFFF00'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></i></font>"));
+			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FFFF00'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		}
 
-		tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><i><font color='#00FF00'>" + device.getHumidity() + " %" + "</b></i></font>"));
-		tvDeviceHumidity.setTextColor(Color.WHITE);
+		tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#00FF00'>" + device.getHumidity() + " %" + "</b></font>"));
 		float humidityCurrent = Float.parseFloat(device.getHumidity());
 		float humidityHi = Float.parseFloat(device.getHumidityHi());
 		float humidityLo = Float.parseFloat(device.getHumidityLo());
 		if (humidityCurrent > humidityHi) {
-			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><i><font color='#FF0000'>" + device.getHumidity() + " %" + "</b></i></font>"));
+			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FF0000'>" + device.getHumidity() + " %" + "</b></font>"));
 		}
 		if (humidityCurrent < humidityLo) {
-			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><i><font color='#FFFF00'>" + device.getHumidity() + " %" + "</b></i></font>"));
+			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FFFF00'>" + device.getHumidity() + " %" + "</b></font>"));
 		}
 
-		tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><i><font color='#00FF00'>" + device.getVoltage() + " V" + "</b></i></font>"));
-		tvDeviceVoltage.setTextColor(Color.WHITE);
+		tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#00FF00'>" + device.getVoltage() + " V" + "</b></font>"));
+
 		if (device.getEnableInput1().equals("1")) {
 			if (device.getInput1().equals("1")) {
 				ivInputOne.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
@@ -838,6 +837,24 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 					if (data.size() > 0) {
 						setupChart(mCharts[0], data1, Color.rgb(137, 230, 81));
 						setupChart(mCharts[1], data2, Color.rgb(240, 240, 30));
+						String pastHistoryTemp = "Last 3 Temperature Values<br>";
+						String pastHistoryHumid = "Last 3 Humidity Values<br>";
+						if (data.get(2) != null) {
+							HashMap<String, String> d = data.get(2);
+							pastHistoryTemp += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
+							pastHistoryHumid += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
+						}
+						if (data.get(1) != null) {
+							HashMap<String, String> d = data.get(1);
+							pastHistoryTemp += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
+							pastHistoryHumid += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
+						}
+						if (data.get(0) != null) {
+							HashMap<String, String> d = data.get(0);
+							pastHistoryTemp += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
+							pastHistoryHumid += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
+						}
+						tvPastHistory.setText(Html.fromHtml(pastHistoryTemp + "<br>" + pastHistoryHumid));
 					} else {
 						Toast.makeText(IndividualDeviceActivity.this, "Unable to load graph", Toast.LENGTH_SHORT).show();
 					}

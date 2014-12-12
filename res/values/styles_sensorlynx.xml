@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Sensorlynx" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarItemBackground">@drawable/selectable_background_sensorlynx</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Sensorlynx</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Sensorlynx</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Sensorlynx</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Sensorlynx</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Sensorlynx</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_sensorlynx</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_sensorlynx</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Sensorlynx</item>
+
+        <!-- Light.DarkActionBar specific -->
+        <item name="actionBarWidgetTheme">@style/Theme.Sensorlynx.Widget</item>
+        <item name="switchStyle">@style/switch_light</item>
+        <item name="textAppearance">@style/TextAppearance</item>
+    </style>
+
+    <style name="ActionBar.Solid.Sensorlynx" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@drawable/ab_solid_sensorlynx</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_sensorlynx</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_sensorlynx</item>
+        <item name="progressBarStyle">@style/ProgressBar.Sensorlynx</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Sensorlynx" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@drawable/ab_transparent_sensorlynx</item>
+        <item name="progressBarStyle">@style/ProgressBar.Sensorlynx</item>
+    </style>
+
+    <style name="PopupMenu.Sensorlynx" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_sensorlynx</item>
+    </style>
+
+    <style name="DropDownListView.Sensorlynx" parent="@style/Widget.AppCompat.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_sensorlynx</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Sensorlynx" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_sensorlynx</item>
+    </style>
+
+    <style name="DropDownNav.Sensorlynx" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_sensorlynx</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_sensorlynx</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_sensorlynx</item>
+    </style>
+
+    <style name="ProgressBar.Sensorlynx" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_sensorlynx</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Sensorlynx" parent="@style/Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_sensorlynx</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Sensorlynx.Widget" parent="@style/Theme.AppCompat">
+        <item name="popupMenuStyle">@style/PopupMenu.Sensorlynx</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Sensorlynx</item>
+    </style>
+
+</resources>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp" >
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,16 +15,18 @@
         android:gravity="center_vertical"
         android:text="+65"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:customTypeface="roboto.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Their Handphone Number"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
 
     <EditText
         android:id="@+id/etPhoneNumber"
@@ -37,7 +39,7 @@
         android:hint="Handphone Number"
         android:inputType="phone" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +47,8 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"
         android:text="Role to Assign"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
 
     <Spinner
         android:id="@+id/sRoles"
@@ -55,14 +58,15 @@
         android:layout_below="@+id/textView3"
         android:entries="@array/roles_array_text_string" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/sRoles"
         android:text="Device to Assign"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
 
     <Spinner
         android:id="@+id/sDevices"
@@ -79,9 +83,9 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/sDevices"
         android:text="Send Request"
-        fbutton:cornerRadius="0dp"
-        fbutton:shadowColor="@color/fbutton_default_shadow_color"
-        fbutton:shadowEnabled="true"
-        fbutton:shadowHeight="5dp" />
+        app:cornerRadius="0dp"
+        app:shadowColor="@color/fbutton_default_shadow_color"
+        app:shadowEnabled="true"
+        app:shadowHeight="5dp" />
 
 </RelativeLayout>

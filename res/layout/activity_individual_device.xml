@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="5dp" >
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
         xmlns:sothree="http://schemas.android.com/apk/res-auto"
@@ -26,9 +27,10 @@
                 android:id="@+id/rl_device_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/download2" >
+                android:background="@drawable/card"
+                android:padding="8dp" >
 
-                <TextView
+                <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvDeviceDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,19 +39,19 @@
                     android:layout_alignParentTop="true"
                     android:text="Large Text"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold" />
+                    app:customTypeface="roboto_bold.ttf" />
 
-                <TextView
+                <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvDeviceId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    app:customTypeface="roboto.ttf" />
 
-                <TextView
+                <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvDeviceTimestamp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,9 +61,9 @@
                     android:gravity="right"
                     android:text="Small Text"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="#FFFFFF" />
+                    app:customTypeface="roboto.ttf" />
 
-                <TextView
+                <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvInputOneDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,8 +72,7 @@
                     android:gravity="center_vertical"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="italic" />
+                    app:customTypeface="roboto.ttf" />
 
                 <ImageView
                     android:id="@+id/ivInputOne"
@@ -81,7 +82,7 @@
                     android:layout_below="@+id/tvInputOneDescription"
                     android:src="@drawable/ic_greendot" />
 
-                <TextView
+                <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvOutputOneDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,10 +90,9 @@
                     android:layout_below="@+id/tvDeviceTimestamp"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="italic" />
+                    app:customTypeface="roboto.ttf" />
 
-                <TextView
+                <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvInputTwoDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,10 +101,9 @@
                     android:gravity="center_vertical"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="italic" />
+                    app:customTypeface="roboto.ttf" />
 
-                <TextView
+                <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvOutputTwoDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -113,8 +112,7 @@
                     android:layout_alignParentRight="true"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="italic" />
+                    app:customTypeface="roboto.ttf" />
 
                 <de.ankri.views.Switch
                     android:id="@+id/sOutputOne"
@@ -155,32 +153,35 @@
                     android:layout_below="@+id/ivInputTwo"
                     android:weightSum="3" >
 
-                    <TextView
+                    <com.mobsandgeeks.ui.TypefaceTextView
                         android:id="@+id/tvDeviceTemperature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Temperature"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        app:customTypeface="roboto.ttf" />
 
-                    <TextView
+                    <com.mobsandgeeks.ui.TypefaceTextView
                         android:id="@+id/tvDeviceHumidity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Humidity"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        app:customTypeface="roboto.ttf" />
 
-                    <TextView
+                    <com.mobsandgeeks.ui.TypefaceTextView
                         android:id="@+id/tvDeviceVoltage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Voltage"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        app:customTypeface="roboto.ttf" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -217,6 +218,30 @@
                         android:src="@drawable/lightning" />
                 </LinearLayout>
             </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/rl_device_details" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <com.mobsandgeeks.ui.TypefaceTextView
+                        android:id="@+id/tvPastHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        app:customTypeface="roboto.ttf" />
+                </LinearLayout>
+            </ScrollView>
         </RelativeLayout>
 
         <LinearLayout
@@ -233,14 +258,15 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal" >
 
-                <TextView
+                <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="Temperature &amp; Humidity History"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    app:customTypeface="roboto.ttf" />
             </LinearLayout>
 
             <LinearLayout

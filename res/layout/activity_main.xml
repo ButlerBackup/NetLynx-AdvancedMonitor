@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,11 +17,11 @@
         android:layout_alignRight="@+id/etWifiPassword"
         android:layout_below="@+id/etWifiPassword"
         android:text="@string/activity_choose_device_button_connect"
-        fbutton:buttonColor="@color/fbutton_default_color"
-        fbutton:cornerRadius="0dp"
-        fbutton:shadowColor="@color/fbutton_default_shadow_color"
-        fbutton:shadowEnabled="true"
-        fbutton:shadowHeight="5dp" />
+        app:buttonColor="@color/fbutton_default_color"
+        app:cornerRadius="0dp"
+        app:shadowColor="@color/fbutton_default_shadow_color"
+        app:shadowEnabled="true"
+        app:shadowHeight="5dp" />
 
     <Spinner
         android:id="@+id/sWifi"
@@ -31,14 +31,15 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView2" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/etWifiPassword"
         android:layout_below="@+id/sWifi"
         android:text="@string/wifi_to_connect_to_password"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:customTypeface="roboto.ttf" />
 
     <EditText
         android:id="@+id/etWifiPassword"
@@ -59,13 +60,13 @@
         android:layout_below="@+id/bConnect"
         android:layout_marginTop="5dp"
         android:text="@string/activity_choose_device_button_rescan"
-        fbutton:buttonColor="@color/fbutton_default_color"
-        fbutton:cornerRadius="0dp"
-        fbutton:shadowColor="@color/fbutton_default_shadow_color"
-        fbutton:shadowEnabled="true"
-        fbutton:shadowHeight="5dp" />
+        app:buttonColor="@color/fbutton_default_color"
+        app:cornerRadius="0dp"
+        app:shadowColor="@color/fbutton_default_shadow_color"
+        app:shadowEnabled="true"
+        app:shadowHeight="5dp" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +74,7 @@
         android:layout_alignRight="@+id/sWifi"
         android:paddingTop="8dp"
         android:text="@string/wifi_to_connect_to_ssid"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:customTypeface="roboto.ttf" />
 
 </RelativeLayout>

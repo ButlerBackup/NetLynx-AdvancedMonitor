@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -19,13 +20,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <TextView
+            <com.mobsandgeeks.ui.TypefaceTextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Turn on your mobile phone WiFi"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:customTypeface="roboto.ttf" />
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -35,13 +37,14 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/tutorial_four" />
 
-            <TextView
+            <com.mobsandgeeks.ui.TypefaceTextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Look for the device&apos;s WiFi (starting with &apos;netlynx...&apos;)"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:customTypeface="roboto.ttf" />
 
             <ImageView
                 android:id="@+id/imageView2"

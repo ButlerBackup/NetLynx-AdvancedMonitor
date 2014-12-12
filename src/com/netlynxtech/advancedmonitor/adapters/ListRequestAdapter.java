@@ -80,7 +80,7 @@ public class ListRequestAdapter extends BaseAdapter {
 		holder.tvDeviceId.setText(d.getDeviceId());
 		holder.tvDeviceName.setText(d.getDeviceName());
 		holder.tvRequestorName.setText(d.getRequestorName());
-		holder.tvRequestorTimestamp.setText(Html.fromHtml("<b><i>" + Utils.parseTime(d.getTimestamp()) + "</b></i>"));
+		holder.tvRequestorTimestamp.setText(Html.fromHtml("<b>" + Utils.parseTime(d.getTimestamp()) + "</b>"));
 		holder.tvRole.setText(rolesValueArray.get(d.getRole()));
 		if (d.getRole().equals("9")) {
 			holder.tvRole.setTextColor(Color.RED);

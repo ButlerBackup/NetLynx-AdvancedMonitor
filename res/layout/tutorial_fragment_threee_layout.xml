@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -20,13 +20,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <TextView
+            <com.mobsandgeeks.ui.TypefaceTextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:text="Enter the default password and connect"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:customTypeface="roboto.ttf" />
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -36,13 +37,14 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/tutorial_six" />
 
-            <TextView
+            <com.mobsandgeeks.ui.TypefaceTextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:text="You should see &apos;connected&apos;"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                app:customTypeface="roboto.ttf" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -59,11 +61,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="Let&apos;s Set Up Now!"
-                fbutton:buttonColor="@color/fbutton_default_color"
-                fbutton:cornerRadius="0dp"
-                fbutton:shadowColor="@color/fbutton_default_shadow_color"
-                fbutton:shadowEnabled="true"
-                fbutton:shadowHeight="5dp" />
+                app:buttonColor="@color/fbutton_default_color"
+                app:cornerRadius="0dp"
+                app:shadowColor="@color/fbutton_default_shadow_color"
+                app:shadowEnabled="true"
+                app:shadowHeight="5dp" />
         </LinearLayout>
     </ScrollView>
 

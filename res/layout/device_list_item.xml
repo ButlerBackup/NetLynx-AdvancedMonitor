@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/test1" >
+    android:background="@drawable/card"
+    android:padding="10dp" >
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvDeviceDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,19 +15,19 @@
         android:layout_alignParentTop="true"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        app:customTypeface="roboto_bold.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvDeviceId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:customTypeface="roboto.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvDeviceTimestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,10 +36,10 @@
         android:layout_below="@+id/tvDeviceDescription"
         android:gravity="right"
         android:text="Small Text"
-        android:textColor="#FFFFFF"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        app:customTypeface="roboto.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvInputOneDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,8 +48,8 @@
         android:gravity="center_vertical"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        app:customTypeface="roboto.ttf" />
 
     <ImageView
         android:id="@+id/ivInputOne"
@@ -58,7 +59,7 @@
         android:layout_below="@+id/tvInputOneDescription"
         android:src="@drawable/ic_greendot" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvOutputOneDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,10 +67,10 @@
         android:layout_below="@+id/tvDeviceTimestamp"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        app:customTypeface="roboto.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvInputTwoDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,10 +79,10 @@
         android:gravity="center_vertical"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        app:customTypeface="roboto.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvOutputTwoDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,8 +91,8 @@
         android:layout_alignParentRight="true"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        app:customTypeface="roboto.ttf" />
 
     <de.ankri.views.Switch
         android:id="@+id/sOutputOne"
@@ -132,32 +133,35 @@
         android:layout_below="@+id/ivInputTwo"
         android:weightSum="3" >
 
-        <TextView
+        <com.mobsandgeeks.ui.TypefaceTextView
             android:id="@+id/tvDeviceTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Temperature"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:customTypeface="roboto.ttf" />
 
-        <TextView
+        <com.mobsandgeeks.ui.TypefaceTextView
             android:id="@+id/tvDeviceHumidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Humidity"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:customTypeface="roboto.ttf" />
 
-        <TextView
+        <com.mobsandgeeks.ui.TypefaceTextView
             android:id="@+id/tvDeviceVoltage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Voltage"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:customTypeface="roboto.ttf" />
     </LinearLayout>
 
     <LinearLayout

@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -16,16 +16,16 @@
         android:text="@string/check_pin"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        custom:pb_colorComplete="@color/green_complete"
-        custom:pb_colorError="@color/red_error"
-        custom:pb_colorNormal="@color/blue_normal"
-        custom:pb_colorPressed="@color/blue_pressed"
-        custom:pb_colorProgress="@color/purple_progress"
-        custom:pb_textComplete="Success"
-        custom:pb_textError="Error"
-        custom:pb_textProgress="Loading" />
+        app:pb_colorComplete="@color/green_complete"
+        app:pb_colorError="@color/red_error"
+        app:pb_colorNormal="@color/blue_normal"
+        app:pb_colorPressed="@color/blue_pressed"
+        app:pb_colorProgress="@color/purple_progress"
+        app:pb_textComplete="Success"
+        app:pb_textError="Error"
+        app:pb_textProgress="Loading" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,9 +36,10 @@
         android:paddingTop="20dp"
         android:text="#ErrorMessage"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:customTypeface="roboto.ttf" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvGCMID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +48,7 @@
         android:layout_alignRight="@+id/etPinNo"
         android:text="@string/gcm_id_retrieved_waiting"
         android:textAppearance="?android:attr/textAppearanceSmall"
-         />
+        app:customTypeface="roboto.ttf" />
 
     <EditText
         android:id="@+id/etPinNo"
@@ -62,7 +63,7 @@
         android:paddingBottom="10dp"
         android:textSize="20sp" />
 
-    <TextView
+    <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/tvStatusDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,6 +72,7 @@
         android:layout_below="@+id/tvError"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:customTypeface="roboto.ttf" />
 
 </RelativeLayout>
