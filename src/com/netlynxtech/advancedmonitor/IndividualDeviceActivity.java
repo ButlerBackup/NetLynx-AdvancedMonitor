@@ -38,9 +38,11 @@ import com.github.mikephil.charting.utils.YLabels;
 import com.manuelpeinado.refreshactionitem.ProgressIndicatorType;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem.RefreshActionListener;
+import com.netlynxtech.advancedmonitor.IndividualDeviceActivity.getMessages;
 import com.netlynxtech.advancedmonitor.classes.Consts;
 import com.netlynxtech.advancedmonitor.classes.Device;
 import com.netlynxtech.advancedmonitor.classes.MyMarkerView;
+import com.netlynxtech.advancedmonitor.classes.SQLFunctions;
 import com.netlynxtech.advancedmonitor.classes.Utils;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
 
@@ -1070,5 +1072,25 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			task.cancel(true);
 			task = null;
 		}
+	}
+	
+	private void deleteDevice() {
+		AlertDialog.Builder adb = new AlertDialog.Builder(IndividualDeviceActivity.this);
+		adb.setTitle("Delete Device?");
+		adb.setMessage("Delete this device?");
+		adb.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				
+				return;
+			}
+		});
+
+		adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+
+				return;
+			}
+		});
+		adb.show();
 	}
 }

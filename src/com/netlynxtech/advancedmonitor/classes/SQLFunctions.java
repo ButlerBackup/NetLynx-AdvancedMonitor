@@ -69,6 +69,10 @@ public class SQLFunctions {
 		return System.currentTimeMillis() / 1000L;
 	}
 
+	public boolean deleteEvent(String eventId) {
+		return ourDatabase.delete(TABLE_MESSAGES, Consts.MESSAGES_MESSAGE_EVENTID + "=" + eventId, null) > 0;
+	}
+
 	public boolean longerThanTwoHours(String pTime) {
 		int prevTime = Integer.parseInt(pTime);
 		int currentTime = (int) (System.currentTimeMillis() / 1000L);
