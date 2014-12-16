@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,9 +32,10 @@ public class DeviceListActivity extends ActionBarActivity {
 	DevicesAdapter adapter;
 	ListView lvDevices;
 	AsyncTask<Void, Void, Void> task = new getDevice();
-	boolean isProcessing = false;
+	boolean isProcessing = false, stopTask = false;
 	int index = 0, top = 0;
 	RefreshActionItem mRefreshActionItem;
+	Thread refreshWholeThing;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,31 +75,31 @@ public class DeviceListActivity extends ActionBarActivity {
 	}
 
 	private void processData() {
-		if (!isProcessing) {
-			Log.e("PROCESSDATA", "PROCESSDATA");
+		refreshWholeThing = new Thread(new Runnable() {
 
-			(new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					if (!Thread.interrupted())
-						try {
-							Thread.sleep(15000);
-							runOnUiThread(new Runnable() {
-								@Override
-								public void run() {
-									if (task != null) {
-										task = null;
-										task = new getDevice();
-										task.execute();
-									}
+			@Override
+			public void run() {
+				if (!Thread.interrupted()) {
+					try {
+						Thread.sleep(15000);
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								if (task != null) {
+									task = null;
+									task = new getDevice();
+									task.execute();
 								}
-							});
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+							}
+						});
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
-			})).start();
+			}
+		});
+		if (!isProcessing && !stopTask) {
+			refreshWholeThing.start();
 		}
 	}
 
@@ -151,11 +151,9 @@ public class DeviceListActivity extends ActionBarActivity {
 			break;
 		case R.id.menu_show_messages:
 			startActivity(new Intent(DeviceListActivity.this, MessagesActivity.class));
-
 			break;
 		case R.id.menu_settings:
 			startActivity(new Intent(DeviceListActivity.this, SettingsActivity.class));
-
 			break;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -168,7 +166,6 @@ public class DeviceListActivity extends ActionBarActivity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			// Log.e("getDevice", "loading..");
 			isProcessing = true;
 			box.showLoadingLayout();
 			mRefreshActionItem.showProgress(true);
@@ -222,16 +219,22 @@ public class DeviceListActivity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-
+		stopTask = false;
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (task != null && task.getStatus() == AsyncTask.Status.RUNNING) {
-			task.cancel(true);
-			task = null;
-			isProcessing = false;
+		if (task != null) {
+			try {
+				task.cancel(true);
+				task = null;
+				isProcessing = false;
+				stopTask = true;
+				refreshWholeThing.interrupt();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

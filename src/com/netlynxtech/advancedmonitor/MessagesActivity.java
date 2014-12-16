@@ -12,20 +12,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.view.ActionMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.manuelpeinado.multichoiceadapter.extras.actionbarcompat.MultiChoiceBaseAdapter;
 import com.manuelpeinado.refreshactionitem.ProgressIndicatorType;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem.RefreshActionListener;
@@ -42,8 +41,10 @@ public class MessagesActivity extends ActionBarActivity {
 	getMessages mTask;
 	RefreshActionItem mRefreshActionItem;
 	messagesMarkRead mTaskRead;
-	MessageAdapter adapter;
+	deleteAllMessages mTaskDelete;
+	MultiChoiceBaseAdapter adapter;
 	int index = 0, top = 0;
+	Bundle savedInstanceState;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,26 +55,7 @@ public class MessagesActivity extends ActionBarActivity {
 		getSupportActionBar().setTitle("Messages");
 		lvMessage = (ListView) findViewById(R.id.lvMessages);
 		lvMessage.setFastScrollEnabled(true);
-		lvMessage.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				HashMap<String, String> map = data.get(position);
-				String eventId = map.get("eventId");
-				// Message m = data.get(position);
-				startActivity(new Intent(MessagesActivity.this, SubMessagesActivity.class).putExtra("eventId", eventId));
-			}
-		});
-		lvMessage.setOnItemLongClickListener(new OnItemLongClickListener() {
-
-			@Override
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				HashMap<String, String> map = data.get(arg2);
-				String eventId = map.get("eventId");
-				deleteEventMessages(eventId, arg2);
-				return false;
-			}
-		});
+		this.savedInstanceState = savedInstanceState;
 		box = new DynamicBox(MessagesActivity.this, lvMessage);
 		box.setClickListener(new OnClickListener() {
 
@@ -90,30 +72,9 @@ public class MessagesActivity extends ActionBarActivity {
 		});
 	}
 
-	private void deleteEventMessages(final String eventId, final int position) {
-		AlertDialog.Builder adb = new AlertDialog.Builder(MessagesActivity.this);
-		adb.setTitle("Delete Messages?");
-		adb.setMessage("Delete all event's messages?");
-		adb.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				SQLFunctions sql = new SQLFunctions(MessagesActivity.this);
-				sql.open();
-				sql.deleteEvent(eventId);
-				sql.close();
-				data.remove(position);
-				adapter.notifyDataSetChanged();
-				new getMessages().execute();
-				return;
-			}
-		});
-
-		adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-
-				return;
-			}
-		});
-		adb.show();
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		adapter.save(outState);
 	}
 
 	private class getMessages extends AsyncTask<Void, Void, Void> {
@@ -134,16 +95,28 @@ public class MessagesActivity extends ActionBarActivity {
 				@Override
 				public void run() {
 					if (!isCancelled()) {
+						Log.e("SIZE", data.size() + "");
 						if (data != null && data.size() > 0) {
-							adapter = new MessageAdapter(MessagesActivity.this, data);
+							adapter = new MessageAdapter(savedInstanceState, MessagesActivity.this, data);
+							lvMessage.setVisibility(View.VISIBLE);
 							lvMessage.setAdapter(adapter);
-							index = lvMessage.getFirstVisiblePosition();
-							View v = lvMessage.getChildAt(0);
-							top = (v == null) ? 0 : v.getTop();
 							Log.e("Cancelled", "Not cancelled");
 							box.hideAll();
+							adapter.setAdapterView(lvMessage);
 							lvMessage.setSelectionFromTop(index, top);
+							adapter.setOnItemClickListener(new OnItemClickListener() {
+
+								@Override
+								public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+									Log.e("CLICKED", "CLICKED");
+									HashMap<String, String> map = data.get(position);
+									String eventId = map.get("eventId");
+									// Message m = data.get(position);
+									startActivity(new Intent(MessagesActivity.this, SubMessagesActivity.class).putExtra("eventId", eventId));
+								}
+							});
 						} else {
+							lvMessage.setVisibility(View.INVISIBLE);
 							box.setExceptionMessageColor("#ff0040");
 							box.setExceptionTitleColor("#ff0040");
 							box.setOtherExceptionTitle("No messages");
@@ -157,7 +130,13 @@ public class MessagesActivity extends ActionBarActivity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
+			if (data != null && data.size() > 0) {
+				data.clear();
+			}
 			data = new WebRequestAPI(MessagesActivity.this).GetMessages();
+			index = lvMessage.getFirstVisiblePosition();
+			View v = lvMessage.getChildAt(0);
+			top = (v == null) ? 0 : v.getTop();
 			return null;
 		}
 	}
@@ -199,8 +178,10 @@ public class MessagesActivity extends ActionBarActivity {
 			finish();
 			break;
 		case R.id.menu_mark_all_read:
-			Log.e("WUT", "WUT");
 			showMarkAllReadDialog();
+			break;
+		case R.id.menu_delete_all_messages:
+			showDeleteAllMessagesDialog();
 			break;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -212,7 +193,7 @@ public class MessagesActivity extends ActionBarActivity {
 		final SecurePreferences sp = new SecurePreferences(MessagesActivity.this);
 		AlertDialog.Builder adb = new AlertDialog.Builder(MessagesActivity.this);
 		LayoutInflater adbInflater = LayoutInflater.from(MessagesActivity.this);
-		View eulaLayout = adbInflater.inflate(R.layout.message_dialog_mark_all_read, null);
+		View eulaLayout = adbInflater.inflate(R.layout.message_dialog_mark_all_read, new LinearLayout(MessagesActivity.this), false);
 		final CheckBox dontShowAgain = (CheckBox) eulaLayout.findViewById(R.id.skip);
 		adb.setView(eulaLayout);
 		adb.setTitle("Mark All As Read");
@@ -253,6 +234,77 @@ public class MessagesActivity extends ActionBarActivity {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private void showDeleteAllMessagesDialog() {
+		AlertDialog.Builder adb = new AlertDialog.Builder(MessagesActivity.this);
+		adb.setTitle("Delete All Messages");
+		adb.setMessage("Delete All Messages from Inbox?");
+		adb.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+
+				try {
+					mTaskDelete = null;
+					mTaskDelete = new deleteAllMessages();
+					mTaskDelete.execute();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return;
+			}
+		});
+
+		adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				return;
+			}
+		});
+		adb.show();
+	}
+
+	private class deleteAllMessages extends AsyncTask<Void, Void, Void> {
+		ProgressDialog pd;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pd = new ProgressDialog(MessagesActivity.this);
+			pd.setCancelable(false);
+			pd.setCanceledOnTouchOutside(false);
+			pd.setMessage("Please hold..");
+			pd.show();
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			MessagesActivity.this.runOnUiThread(new Runnable() {
+
+				@Override
+				public void run() {
+					if (pd != null && pd.isShowing()) {
+						pd.dismiss();
+					}
+					try {
+						mTask = null;
+						mTask = new getMessages();
+						mTask.execute();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			SQLFunctions sql = new SQLFunctions(MessagesActivity.this);
+			sql.open();
+			sql.deleteAllMessages();
+			sql.close();
+			return null;
+		}
+
 	}
 
 	private class messagesMarkRead extends AsyncTask<Void, Void, Void> {
@@ -317,6 +369,10 @@ public class MessagesActivity extends ActionBarActivity {
 			mTaskRead.cancel(true);
 			mTaskRead = null;
 		}
+		if (mTaskDelete != null && mTaskDelete.getStatus() == AsyncTask.Status.RUNNING) {
+			mTaskDelete.cancel(true);
+			mTaskDelete = null;
+		}
 	}
 
 	@Override
@@ -329,6 +385,10 @@ public class MessagesActivity extends ActionBarActivity {
 		if (mTaskRead != null && mTaskRead.getStatus() == AsyncTask.Status.RUNNING) {
 			mTaskRead.cancel(true);
 			mTaskRead = null;
+		}
+		if (mTaskDelete != null && mTaskDelete.getStatus() == AsyncTask.Status.RUNNING) {
+			mTaskDelete.cancel(true);
+			mTaskDelete = null;
 		}
 	}
 

@@ -19,19 +19,19 @@ public final class R {
 	}
 	public static final class drawable {
 		public static final int exception_button_with_focus = 0x7f020082;
-		public static final int ic_launcher = 0x7f020089;
-		public static final int include_exception_button = 0x7f020093;
-		public static final int include_exception_button_focus = 0x7f020094;
-		public static final int include_exception_button_icon = 0x7f020095;
+		public static final int ic_launcher = 0x7f02008a;
+		public static final int include_exception_button = 0x7f020094;
+		public static final int include_exception_button_focus = 0x7f020095;
+		public static final int include_exception_button_icon = 0x7f020096;
 	}
 	public static final class id {
-		public static final int RelativeLayout1 = 0x7f0600b5;
-		public static final int RelativeLayout2 = 0x7f0600b6;
-		public static final int exception_Wrapper = 0x7f0600b7;
-		public static final int exception_button = 0x7f0600ba;
-		public static final int exception_message = 0x7f0600b9;
-		public static final int exception_progressbar = 0x7f0600bb;
-		public static final int exception_title = 0x7f0600b8;
+		public static final int RelativeLayout1 = 0x7f0600b7;
+		public static final int RelativeLayout2 = 0x7f0600b8;
+		public static final int exception_Wrapper = 0x7f0600b9;
+		public static final int exception_button = 0x7f0600bc;
+		public static final int exception_message = 0x7f0600bb;
+		public static final int exception_progressbar = 0x7f0600bd;
+		public static final int exception_title = 0x7f0600ba;
 	}
 	public static final class layout {
 		public static final int exception_failure = 0x7f03002d;

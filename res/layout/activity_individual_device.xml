@@ -230,14 +230,36 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical" >
+                    android:orientation="horizontal"
+                    android:weightSum="3" >
 
                     <com.mobsandgeeks.ui.TypefaceTextView
-                        android:id="@+id/tvPastHistory"
+                        android:id="@+id/tvPastHistoryTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:text="Time"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        app:customTypeface="roboto.ttf" />
+
+                    <com.mobsandgeeks.ui.TypefaceTextView
+                        android:id="@+id/tvPastHistoryTemperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Temperature"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        app:customTypeface="roboto.ttf" />
+
+                    <com.mobsandgeeks.ui.TypefaceTextView
+                        android:id="@+id/tvPastHistoryHumidity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Humidity"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         app:customTypeface="roboto.ttf" />
                 </LinearLayout>

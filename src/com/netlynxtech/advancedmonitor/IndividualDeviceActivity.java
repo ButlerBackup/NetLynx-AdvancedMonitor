@@ -38,11 +38,9 @@ import com.github.mikephil.charting.utils.YLabels;
 import com.manuelpeinado.refreshactionitem.ProgressIndicatorType;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem.RefreshActionListener;
-import com.netlynxtech.advancedmonitor.IndividualDeviceActivity.getMessages;
 import com.netlynxtech.advancedmonitor.classes.Consts;
 import com.netlynxtech.advancedmonitor.classes.Device;
 import com.netlynxtech.advancedmonitor.classes.MyMarkerView;
-import com.netlynxtech.advancedmonitor.classes.SQLFunctions;
 import com.netlynxtech.advancedmonitor.classes.Utils;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
 
@@ -55,8 +53,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	AsyncTask<Void, Void, Void> task = new loadData();
 	DynamicBox box;
 	TextView tvDeviceId, tvDeviceDescription, tvDeviceTemperature, tvDeviceHumidity, tvDeviceVoltage, tvDeviceTimestamp, tvInputOneDescription, tvInputTwoDescription, tvOutputOneDescription,
-			tvOutputTwoDescription, tvPastHistory;
-	ImageView ivInputOne, ivInputTwo, ivTemperature, ivHumidity;
+			tvOutputTwoDescription, tvPastHistoryTime, tvPastHistoryTemperature, tvPastHistoryHumidity;
+	ImageView ivInputOne, ivInputTwo, ivTemperature, ivHumidity, ivVoltage;
 	Switch sOutputOne, sOutputTwo;
 	boolean isProcessing = false, loadedBefore = false;
 	deleteDevice mDeleteDevice;
@@ -91,12 +89,15 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		tvOutputOneDescription = (TextView) findViewById(R.id.tvOutputOneDescription);
 		tvOutputTwoDescription = (TextView) findViewById(R.id.tvOutputTwoDescription);
 		tvDeviceTimestamp = (TextView) findViewById(R.id.tvDeviceTimestamp);
-		tvPastHistory = (TextView) findViewById(R.id.tvPastHistory);
+		tvPastHistoryTime = (TextView) findViewById(R.id.tvPastHistoryTime);
+		tvPastHistoryTemperature = (TextView) findViewById(R.id.tvPastHistoryTemperature);
+		tvPastHistoryHumidity = (TextView) findViewById(R.id.tvPastHistoryHumidity);
 
 		ivInputOne = (ImageView) findViewById(R.id.ivInputOne);
 		ivInputTwo = (ImageView) findViewById(R.id.ivInputTwo);
 		ivTemperature = (ImageView) findViewById(R.id.imageView1);
 		ivHumidity = (ImageView) findViewById(R.id.imageView2);
+		ivVoltage = (ImageView) findViewById(R.id.imageView3);
 		sOutputOne = (Switch) findViewById(R.id.sOutputOne);
 		sOutputTwo = (Switch) findViewById(R.id.sOutputTwo);
 		setData();
@@ -670,6 +671,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			tvDeviceHumidity.setEnabled(false);
 			ivTemperature.setEnabled(false);
 			ivHumidity.setEnabled(false);
+			tvDeviceVoltage.setEnabled(false);
+			ivVoltage.setEnabled(false);
 		}
 		isProcessing = false;
 		loadedBefore = true;
@@ -839,24 +842,20 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 					if (data.size() > 0) {
 						setupChart(mCharts[0], data1, Color.rgb(137, 230, 81));
 						setupChart(mCharts[1], data2, Color.rgb(240, 240, 30));
-						String pastHistoryTemp = "Last 3 Temperature Values<br>";
-						String pastHistoryHumid = "Last 3 Humidity Values<br>";
-						if (data.get(2) != null) {
-							HashMap<String, String> d = data.get(2);
-							pastHistoryTemp += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
-							pastHistoryHumid += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
+						Log.e("HERE", "HERE");
+						HashMap<String, String> d2 = data.get(11);
+						Log.e("HERE", d2.get(Consts.GETDEVICES_DATATIMESTAMP));
+						String pastTime = "Time<br>", pastTemp = "Temperature<br>", pastHumidity = "Humidity<br>";
+						for (int i = 11; --i >= 0;) {
+							HashMap<String, String> d = data.get(i);
+							pastTime += d.get(Consts.GETDEVICES_DATATIMESTAMP) + "<br>";
+							pastTemp += d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
+							pastHumidity += d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
 						}
-						if (data.get(1) != null) {
-							HashMap<String, String> d = data.get(1);
-							pastHistoryTemp += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
-							pastHistoryHumid += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
-						}
-						if (data.get(0) != null) {
-							HashMap<String, String> d = data.get(0);
-							pastHistoryTemp += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
-							pastHistoryHumid += "[" + d.get(Consts.GETDEVICES_DATATIMESTAMP) + "] " + d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
-						}
-						tvPastHistory.setText(Html.fromHtml(pastHistoryTemp + "<br>" + pastHistoryHumid));
+						tvPastHistoryTime.setText(Html.fromHtml(pastTime));
+						tvPastHistoryTemperature.setText(Html.fromHtml(pastTemp));
+						tvPastHistoryHumidity.setText(Html.fromHtml(pastHumidity));
+						Log.e("Humidity", pastHumidity);
 					} else {
 						Toast.makeText(IndividualDeviceActivity.this, "Unable to load graph", Toast.LENGTH_SHORT).show();
 					}
@@ -1073,24 +1072,5 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			task = null;
 		}
 	}
-	
-	private void deleteDevice() {
-		AlertDialog.Builder adb = new AlertDialog.Builder(IndividualDeviceActivity.this);
-		adb.setTitle("Delete Device?");
-		adb.setMessage("Delete this device?");
-		adb.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				
-				return;
-			}
-		});
 
-		adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-
-				return;
-			}
-		});
-		adb.show();
-	}
 }

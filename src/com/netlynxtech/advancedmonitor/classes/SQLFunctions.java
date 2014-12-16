@@ -115,6 +115,10 @@ public class SQLFunctions {
 		}
 	}
 
+	public void deleteAllMessages() {
+		ourDatabase.delete(TABLE_MESSAGES, null, null);
+	}
+
 	public void markAllAsRead() {
 		Cursor cursor = ourDatabase.rawQuery("SELECT * FROM " + TABLE_MESSAGES + " WHERE " + TABLE_MESSAGES_READ + " = '0' AND " + Consts.MESSAGES_MESSAGE_ACKREQUIRED + " = '0'", null);
 		if (cursor != null) {

@@ -22,6 +22,7 @@
     <string name="menu_delete_device">Delete</string>
     <string name="menu_refresh">Refresh</string>
     <string name="menu_mark_all_read">Mark All As Read</string>
+    <string name="menu_delete_all_messages">Delete All Messages</string>
     <string name="menu_add_users">Add Users</string>
     <string name="menu_add_device">Add Devices</string>
     <string name="menu_add_members">Add Members</string>

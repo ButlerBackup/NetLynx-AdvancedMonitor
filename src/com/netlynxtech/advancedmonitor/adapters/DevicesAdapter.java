@@ -3,7 +3,6 @@ package com.netlynxtech.advancedmonitor.adapters;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.text.Html;
 import android.util.Log;
@@ -99,7 +98,7 @@ public class DevicesAdapter extends BaseAdapter {
 		holder.tvInputOneDescription.setText(item.getDescriptionInput1());
 		holder.tvInputTwoDescription.setText(item.getDescriptionInput2());
 
-		holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#00FF00'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
+		holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#0000FF'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		float temperatureCurrent = Float.parseFloat(item.getTemperature());
 		float temperatureHi = Float.parseFloat(item.getTemperatureHi());
 		float temperatureLo = Float.parseFloat(item.getTemperatureLo());
@@ -109,7 +108,7 @@ public class DevicesAdapter extends BaseAdapter {
 		if (temperatureCurrent < temperatureLo) {
 			holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FFFF00'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		}
-		holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#00FF00'>" + item.getHumidity() + " %" + "</b></font>"));
+		holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#0000FF'>" + item.getHumidity() + " %" + "</b></font>"));
 		float humidityCurrent = Float.parseFloat(item.getHumidity());
 		float humidityHi = Float.parseFloat(item.getHumidityHi());
 		float humidityLo = Float.parseFloat(item.getHumidityLo());
@@ -119,7 +118,7 @@ public class DevicesAdapter extends BaseAdapter {
 		if (humidityCurrent < humidityLo) {
 			holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FFFF00'>" + item.getHumidity() + " %" + "</b></font>"));
 		}
-		holder.tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#00FF00'>" + item.getVoltage() + " V" + "</b></font>"));
+		holder.tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#0000FF'>" + item.getVoltage() + " V" + "</b></font>"));
 		if (item.getEnableInput1().equals("1")) {
 			if (item.getInput1().equals("1")) {
 				holder.ivInputOne.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
