@@ -161,7 +161,7 @@
                         android:gravity="center"
                         android:text="Temperature"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        app:customTypeface="roboto.ttf" />
+                        app:customTypeface="roboto_bold.ttf" />
 
                     <com.mobsandgeeks.ui.TypefaceTextView
                         android:id="@+id/tvDeviceHumidity"
@@ -171,7 +171,7 @@
                         android:gravity="center"
                         android:text="Humidity"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        app:customTypeface="roboto.ttf" />
+                        app:customTypeface="roboto_bold.ttf" />
 
                     <com.mobsandgeeks.ui.TypefaceTextView
                         android:id="@+id/tvDeviceVoltage"
@@ -181,7 +181,7 @@
                         android:gravity="center"
                         android:text="Voltage"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        app:customTypeface="roboto.ttf" />
+                        app:customTypeface="roboto_bold.ttf" />
                 </LinearLayout>
 
                 <LinearLayout
