@@ -789,16 +789,16 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		// l.setPosition(LegendPosition.LEFT_OF_CHART);
 		l.setForm(LegendForm.CIRCLE);
 		l.setFormSize(6f);
-		l.setTextColor(Color.WHITE);
+		l.setTextColor(Color.BLACK);
 		// l.setTypeface(mTf);
 
 		YLabels y = chart.getYLabels();
-		y.setTextColor(Color.WHITE);
+		y.setTextColor(Color.BLACK);
 		// y.setTypeface(mTf);
 		y.setLabelCount(4);
 
 		XLabels x = chart.getXLabels();
-		x.setTextColor(Color.WHITE);
+		x.setTextColor(Color.BLACK);
 		// x.setTypeface(mTf);
 
 		// animate calls invalidate()...

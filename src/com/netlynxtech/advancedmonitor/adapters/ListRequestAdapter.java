@@ -85,7 +85,7 @@ public class ListRequestAdapter extends BaseAdapter {
 		if (d.getRole().equals("9")) {
 			holder.tvRole.setTextColor(Color.RED);
 		} else if (d.getRole().equals("2")) {
-			holder.tvRole.setTextColor(Color.YELLOW);
+			holder.tvRole.setTextColor(Color.BLUE);
 		} else if (d.getRole().equals("1")) {
 			holder.tvRole.setTextColor(Color.GREEN);
 		}

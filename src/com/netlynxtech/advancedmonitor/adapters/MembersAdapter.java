@@ -100,7 +100,7 @@ public class MembersAdapter extends BaseAdapter {
 			holder.tvRole.setTextColor(Color.RED);
 		} else if (d.getRole().equals("2")) {
 			holder.tvRole.setText("Controller");
-			holder.tvRole.setTextColor(Color.YELLOW);
+			holder.tvRole.setTextColor(Color.BLUE);
 		} else if (d.getRole().equals("1")) {
 			holder.tvRole.setText("Viewer");
 			holder.tvRole.setTextColor(Color.GREEN);
