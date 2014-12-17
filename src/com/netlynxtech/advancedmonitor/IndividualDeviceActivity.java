@@ -496,29 +496,29 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		tvDeviceDescription.setText(device.getDescription());
 		tvInputOneDescription.setText(device.getDescriptionInput1());
 		tvInputTwoDescription.setText(device.getDescriptionInput2());
-		tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#00FF00'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
+		tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#4CAF50'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		float temperatureCurrent = Float.parseFloat(device.getTemperature());
 		float temperatureHi = Float.parseFloat(device.getTemperatureHi());
 		float temperatureLo = Float.parseFloat(device.getTemperatureLo());
 		if (temperatureCurrent > temperatureHi) {
-			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FF0000'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
+			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FF1744'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		}
 		if (temperatureCurrent < temperatureLo) {
-			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FFFF00'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
+			tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#2196F3'>" + device.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		}
 
-		tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#00FF00'>" + device.getHumidity() + " %" + "</b></font>"));
+		tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#4CAF50'>" + device.getHumidity() + " %" + "</b></font>"));
 		float humidityCurrent = Float.parseFloat(device.getHumidity());
 		float humidityHi = Float.parseFloat(device.getHumidityHi());
 		float humidityLo = Float.parseFloat(device.getHumidityLo());
 		if (humidityCurrent > humidityHi) {
-			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FF0000'>" + device.getHumidity() + " %" + "</b></font>"));
+			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FF1744'>" + device.getHumidity() + " %" + "</b></font>"));
 		}
 		if (humidityCurrent < humidityLo) {
-			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FFFF00'>" + device.getHumidity() + " %" + "</b></font>"));
+			tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#2196F3'>" + device.getHumidity() + " %" + "</b></font>"));
 		}
 
-		tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#00FF00'>" + device.getVoltage() + " V" + "</b></font>"));
+		tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#4CAF50'>" + device.getVoltage() + " V" + "</b></font>"));
 
 		if (device.getEnableInput1().equals("1")) {
 			if (device.getInput1().equals("1")) {
@@ -845,7 +845,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 						Log.e("HERE", "HERE");
 						HashMap<String, String> d2 = data.get(11);
 						Log.e("HERE", d2.get(Consts.GETDEVICES_DATATIMESTAMP));
-						String pastTime = "Time<br>", pastTemp = "Temperature<br>", pastHumidity = "Humidity<br>";
+						String pastTime = "<b><u>Time</u></b><br>", pastTemp = "<b><u>Temperature</u></b><br>", pastHumidity = "<b><u>Humidity</u></b><br>";
 						for (int i = 11; --i >= 0;) {
 							HashMap<String, String> d = data.get(i);
 							pastTime += d.get(Consts.GETDEVICES_DATATIMESTAMP) + "<br>";

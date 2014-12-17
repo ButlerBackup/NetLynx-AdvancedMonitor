@@ -98,27 +98,27 @@ public class DevicesAdapter extends BaseAdapter {
 		holder.tvInputOneDescription.setText(item.getDescriptionInput1());
 		holder.tvInputTwoDescription.setText(item.getDescriptionInput2());
 
-		holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#0000FF'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
+		holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#4CAF50'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		float temperatureCurrent = Float.parseFloat(item.getTemperature());
 		float temperatureHi = Float.parseFloat(item.getTemperatureHi());
 		float temperatureLo = Float.parseFloat(item.getTemperatureLo());
 		if (temperatureCurrent > temperatureHi) {
-			holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FF0000'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
+			holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FF1744'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		}
 		if (temperatureCurrent < temperatureLo) {
-			holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#FFFF00'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
+			holder.tvDeviceTemperature.setText(Html.fromHtml("Temperature<br>" + "<b><font color='#2196F3'>" + item.getTemperature() + " " + (char) 0x00B0 + "C" + "</b></font>"));
 		}
-		holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#0000FF'>" + item.getHumidity() + " %" + "</b></font>"));
+		holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#4CAF50'>" + item.getHumidity() + " %" + "</b></font>"));
 		float humidityCurrent = Float.parseFloat(item.getHumidity());
 		float humidityHi = Float.parseFloat(item.getHumidityHi());
 		float humidityLo = Float.parseFloat(item.getHumidityLo());
 		if (humidityCurrent > humidityHi) {
-			holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FF0000'>" + item.getHumidity() + " %" + "</b></font>"));
+			holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FF1744'>" + item.getHumidity() + " %" + "</b></font>"));
 		}
 		if (humidityCurrent < humidityLo) {
-			holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#FFFF00'>" + item.getHumidity() + " %" + "</b></font>"));
+			holder.tvDeviceHumidity.setText(Html.fromHtml("Humidity<br>" + "<b><font color='#2196F3'>" + item.getHumidity() + " %" + "</b></font>"));
 		}
-		holder.tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#0000FF'>" + item.getVoltage() + " V" + "</b></font>"));
+		holder.tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#4CAF50'>" + item.getVoltage() + " V" + "</b></font>"));
 		if (item.getEnableInput1().equals("1")) {
 			if (item.getInput1().equals("1")) {
 				holder.ivInputOne.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
