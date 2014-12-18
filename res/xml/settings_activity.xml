@@ -37,11 +37,35 @@
             android:showDefault="true"
             android:title="Other Notification Tone" >
         </RingtonePreference>
-        <CheckBoxPreference
+
+        <CheckBoxPreference
             android:defaultValue="false"
             android:key="pref_force_sound"
             android:summary="@string/pref_force_sound_summary"
             android:title="@string/pref_force_sound_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Colors" >
+        <ListPreference
+            android:defaultValue="Green"
+            android:entries="@array/pref_graph_temp_entries"
+            android:entryValues="@array/pref_graph_temp_entries"
+            android:key="pref_graph_temperature_colors"
+            android:summary="Set temperature graph color"
+            android:title="Temperature Graph&apos;s Color" />
+        <ListPreference
+            android:defaultValue="Yellow"
+            android:entries="@array/pref_graph_temp_entries"
+            android:entryValues="@array/pref_graph_temp_entries"
+            android:key="pref_graph_humidity_colors"
+            android:summary="Set humidity graph color"
+            android:title="Humidity Graph&apos;s Color" />
+        <ListPreference
+            android:defaultValue="Black"
+            android:entries="@array/pref_graph_text_color"
+            android:entryValues="@array/pref_graph_text_color"
+            android:key="pref_graph_text_colors"
+            android:summary="Set graph&apos;s text color"
+            android:title="Graph&apos;s text Color" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Misc" >
         <Preference

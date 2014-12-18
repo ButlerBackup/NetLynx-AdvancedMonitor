@@ -9,9 +9,11 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -59,10 +61,12 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	boolean isProcessing = false, loadedBefore = false;
 	deleteDevice mDeleteDevice;
 	private LineChart[] mCharts = new LineChart[4];
+	SharedPreferences prefs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		prefs = PreferenceManager.getDefaultSharedPreferences(IndividualDeviceActivity.this);
 		Intent i = getIntent();
 		deviceId = i.getStringExtra("deviceId");
 		Log.e("DeviceId", deviceId);
@@ -784,21 +788,29 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 
 		// get the legend (only possible after setting data)
 		Legend l = chart.getLegend();
-
+		String textColor = prefs.getString("pref_graph_text_colors", "Black");
+		int txtClr = Color.BLACK;
+		if (textColor.equals("Black")) {
+			txtClr = Color.BLACK;
+		} else if (textColor.equals("Gray")) {
+			txtClr = Color.GRAY;
+		} else if (textColor.equals("White")) {
+			txtClr = Color.WHITE;
+		}
 		// modify the legend ...
 		// l.setPosition(LegendPosition.LEFT_OF_CHART);
 		l.setForm(LegendForm.CIRCLE);
 		l.setFormSize(6f);
-		l.setTextColor(Color.BLACK);
+		l.setTextColor(txtClr);
 		// l.setTypeface(mTf);
 
 		YLabels y = chart.getYLabels();
-		y.setTextColor(Color.BLACK);
+		y.setTextColor(txtClr);
 		// y.setTypeface(mTf);
 		y.setLabelCount(4);
 
 		XLabels x = chart.getXLabels();
-		x.setTextColor(Color.BLACK);
+		x.setTextColor(txtClr);
 		// x.setTypeface(mTf);
 
 		// animate calls invalidate()...
@@ -815,6 +827,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
+
 			data = new WebRequestAPI(IndividualDeviceActivity.this).GetChartData(deviceId, Utils.getCurrentDateTime(), Utils.getCustomDateTime(), 12);
 			if (data.size() > 0) {
 				for (HashMap<String, String> d : data) {
@@ -840,8 +853,31 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				@Override
 				public void run() {
 					if (data.size() > 0) {
-						setupChart(mCharts[0], data1, Color.rgb(137, 230, 81));
-						setupChart(mCharts[1], data2, Color.rgb(240, 240, 30));
+						String tempColor = prefs.getString("pref_graph_temperature_colors", "Green");
+						String humidityColor = prefs.getString("pref_graph_humidity_colors", "Yellow");
+						Log.e("TEMPCOLOR", tempColor);
+						int tempGraphColor = Color.GREEN;
+						int humidityGraphColor = Color.YELLOW;
+						if (tempColor.equals("Red")) {
+							tempGraphColor = Color.RED;
+						} else if (tempColor.equals("Yellow")) {
+							tempGraphColor = Color.YELLOW;
+						} else if (tempColor.equals("Blue")) {
+							tempGraphColor = Color.BLUE;
+						} else {
+							tempGraphColor = Color.GREEN;
+						}
+						if (humidityColor.equals("Red")) {
+							humidityGraphColor = Color.RED;
+						} else if (humidityColor.equals("Yellow")) {
+							humidityGraphColor = Color.YELLOW;
+						} else if (humidityColor.equals("Blue")) {
+							humidityGraphColor = Color.BLUE;
+						} else {
+							humidityGraphColor = Color.GREEN;
+						}
+						setupChart(mCharts[0], data1, tempGraphColor);
+						setupChart(mCharts[1], data2, humidityGraphColor);
 						Log.e("HERE", "HERE");
 						HashMap<String, String> d2 = data.get(11);
 						Log.e("HERE", d2.get(Consts.GETDEVICES_DATATIMESTAMP));

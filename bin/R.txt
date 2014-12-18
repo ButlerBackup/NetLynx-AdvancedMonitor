@@ -4,12 +4,14 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
+int array pref_graph_temp_entries 0x7f0e0004
+int array pref_graph_text_color 0x7f0e0005
 int array pref_housekeep_shown 0x7f0e0000
 int array pref_housekeep_values 0x7f0e0001
 int array pref_timing_shown 0x7f0e0002
 int array pref_timing_values 0x7f0e0003
-int array roles_array_text_string 0x7f0e0004
-int array roles_array_value 0x7f0e0005
+int array roles_array_text_string 0x7f0e0006
+int array roles_array_value 0x7f0e0007
 int attr actionBarDivider 0x7f010012
 int attr actionBarItemBackground 0x7f010013
 int attr actionBarSize 0x7f010011

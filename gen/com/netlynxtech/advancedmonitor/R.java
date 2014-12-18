@@ -17,12 +17,14 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040005;
     }
     public static final class array {
+        public static final int pref_graph_temp_entries=0x7f0e0004;
+        public static final int pref_graph_text_color=0x7f0e0005;
         public static final int pref_housekeep_shown=0x7f0e0000;
         public static final int pref_housekeep_values=0x7f0e0001;
         public static final int pref_timing_shown=0x7f0e0002;
         public static final int pref_timing_values=0x7f0e0003;
-        public static final int roles_array_text_string=0x7f0e0004;
-        public static final int roles_array_value=0x7f0e0005;
+        public static final int roles_array_text_string=0x7f0e0006;
+        public static final int roles_array_value=0x7f0e0007;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
