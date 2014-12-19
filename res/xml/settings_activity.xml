@@ -44,28 +44,37 @@
             android:summary="@string/pref_force_sound_summary"
             android:title="@string/pref_force_sound_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Colors" >
+    <PreferenceCategory android:title="Graph&apos;s Settings" >
         <ListPreference
-            android:defaultValue="Green"
-            android:entries="@array/pref_graph_temp_entries"
-            android:entryValues="@array/pref_graph_temp_entries"
-            android:key="pref_graph_temperature_colors"
-            android:summary="Set temperature graph color"
-            android:title="Temperature Graph&apos;s Color" />
-        <ListPreference
-            android:defaultValue="Yellow"
-            android:entries="@array/pref_graph_temp_entries"
-            android:entryValues="@array/pref_graph_temp_entries"
-            android:key="pref_graph_humidity_colors"
-            android:summary="Set humidity graph color"
-            android:title="Humidity Graph&apos;s Color" />
-        <ListPreference
-            android:defaultValue="Black"
-            android:entries="@array/pref_graph_text_color"
-            android:entryValues="@array/pref_graph_text_color"
-            android:key="pref_graph_text_colors"
-            android:summary="Set graph&apos;s text color"
-            android:title="Graph&apos;s text Color" />
+            android:defaultValue="6"
+            android:dialogTitle="@string/pref_history_amount_dialog_title"
+            android:entries="@array/pref_housekeep_shown"
+            android:entryValues="@array/pref_housekeep_values"
+            android:key="pref_graph_history_amount"
+            android:summary="@string/pref_housekeep_summary"
+            android:title="@string/pref_housekeep_title" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_graph_animate"
+            android:title="Animate graph&apos;s values" />
+
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@integer/COLOR_LIGHT_GREEN"
+            android:key="pref_cp_temperature_graph_color"
+            android:title="Temperature graph&apos;s color" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@integer/COLOR_LIGHT_YELLOW"
+            android:key="pref_cp_humidity_graph_color"
+            android:title="Humidity graph&apos;s color" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@integer/COLOR_BLACK"
+            android:key="pref_cp_graph_text"
+            android:title="Graph&apos;s text color" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@integer/COLOR_WHITE"
+            android:key="pref_cp_graph_line"
+            android:title="Graph&apos;s line color" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Misc" >
         <Preference

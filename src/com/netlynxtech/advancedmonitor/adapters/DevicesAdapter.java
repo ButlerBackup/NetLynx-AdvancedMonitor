@@ -126,8 +126,8 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.ivInputOne.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			holder.tvInputOneDescription.setVisibility(View.GONE);
-			holder.ivInputOne.setVisibility(View.GONE);
+			holder.tvInputOneDescription.setVisibility(View.INVISIBLE);
+			holder.ivInputOne.setVisibility(View.INVISIBLE);
 		}
 
 		if (item.getEnableInput2().equals("1")) {
@@ -137,8 +137,8 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.ivInputTwo.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			holder.tvInputTwoDescription.setVisibility(View.GONE);
-			holder.ivInputTwo.setVisibility(View.GONE);
+			holder.tvInputTwoDescription.setVisibility(View.INVISIBLE);
+			holder.ivInputTwo.setVisibility(View.INVISIBLE);
 		}
 
 		if (item.getEnableOutput1().equals("1")) {
@@ -153,8 +153,8 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.sOutputOne.setChecked(false);
 			}
 		} else {
-			holder.sOutputOne.setVisibility(View.GONE);
-			holder.tvOutputOneDescription.setVisibility(View.GONE);
+			holder.sOutputOne.setVisibility(View.INVISIBLE);
+			holder.tvOutputOneDescription.setVisibility(View.INVISIBLE);
 		}
 		holder.sOutputOne.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -217,8 +217,8 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.sOutputTwo.setChecked(false);
 			}
 		} else {
-			holder.sOutputTwo.setVisibility(View.GONE);
-			holder.tvOutputTwoDescription.setVisibility(View.GONE);
+			holder.sOutputTwo.setVisibility(View.INVISIBLE);
+			holder.tvOutputTwoDescription.setVisibility(View.INVISIBLE);
 		}
 		holder.sOutputTwo.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

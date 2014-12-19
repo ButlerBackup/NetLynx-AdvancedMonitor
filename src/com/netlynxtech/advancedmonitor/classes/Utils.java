@@ -17,6 +17,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -46,9 +47,39 @@ public class Utils {
 		this.context = con;
 	}
 
+	public void storeSecurePreference(String key, String value) {
+		SecurePreferences sp = new SecurePreferences(context);
+		sp.edit().putString(key, value).commit();
+	}
+
+	public String getGraphTextColor() {
+		SecurePreferences sp = new SecurePreferences(context);
+		return sp.getString("pref_cp_graph_text", "#000000");
+	}
+
+	public String getGraphTemperatureColor() {
+		SecurePreferences sp = new SecurePreferences(context);
+		return sp.getString("pref_cp_temperature_graph_color", "#00ff00");
+	}
+
+	public String getGraphHumidityColor() {
+		SecurePreferences sp = new SecurePreferences(context);
+		return sp.getString("pref_cp_humidity_graph_color", "#ffff00");
+	}
+
+	public String getGraphLineColor() {
+		SecurePreferences sp = new SecurePreferences(context);
+		return sp.getString("pref_cp_graph_line", "#ffffff");
+	}
+
+	public boolean getGraphAnimate() {
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+		return sp.getBoolean("pref_graph_animate", false);
+	}
+
 	public String getHousekeep() {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-		return sp.getString("pref_housekeep", "20");
+		return sp.getString("pref_graph_history_amount", "6");
 	}
 
 	public void showNotifications(String shortTitle, String title, String message, String messageType) {

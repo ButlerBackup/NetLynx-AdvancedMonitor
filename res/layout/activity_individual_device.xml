@@ -160,8 +160,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Temperature"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        app:customTypeface="roboto_bold.ttf" />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <com.mobsandgeeks.ui.TypefaceTextView
                         android:id="@+id/tvDeviceHumidity"
@@ -170,8 +169,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Humidity"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        app:customTypeface="roboto_bold.ttf" />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <com.mobsandgeeks.ui.TypefaceTextView
                         android:id="@+id/tvDeviceVoltage"
@@ -180,8 +178,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Voltage"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        app:customTypeface="roboto_bold.ttf" />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -278,17 +275,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:weightSum="5" >
 
                 <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:gravity="center_vertical"
                     android:text="Temperature &amp; Humidity History"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     app:customTypeface="roboto.ttf" />
+
+                <ImageView
+                    android:id="@+id/imageView2009"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/ic_slideup_arrow" />
             </LinearLayout>
 
             <LinearLayout

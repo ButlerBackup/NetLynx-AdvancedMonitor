@@ -531,8 +531,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				ivInputOne.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			tvInputOneDescription.setVisibility(View.GONE);
-			ivInputOne.setVisibility(View.GONE);
+			tvInputOneDescription.setVisibility(View.INVISIBLE);
+			ivInputOne.setVisibility(View.INVISIBLE);
 		}
 
 		if (device.getEnableInput2().equals("1")) {
@@ -542,8 +542,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				ivInputTwo.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			tvInputTwoDescription.setVisibility(View.GONE);
-			ivInputTwo.setVisibility(View.GONE);
+			tvInputTwoDescription.setVisibility(View.INVISIBLE);
+			ivInputTwo.setVisibility(View.INVISIBLE);
 		}
 
 		if (device.getEnableOutput1().equals("1")) {
@@ -556,8 +556,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				sOutputOne.setChecked(false);
 			}
 		} else {
-			sOutputOne.setVisibility(View.GONE);
-			tvOutputOneDescription.setVisibility(View.GONE);
+			sOutputOne.setVisibility(View.INVISIBLE);
+			tvOutputOneDescription.setVisibility(View.INVISIBLE);
 		}
 		sOutputOne.setOnClickListener(new OnClickListener() {
 
@@ -616,8 +616,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				sOutputTwo.setChecked(false);
 			}
 		} else {
-			sOutputTwo.setVisibility(View.GONE);
-			tvOutputTwoDescription.setVisibility(View.GONE);
+			sOutputTwo.setVisibility(View.INVISIBLE);
+			tvOutputTwoDescription.setVisibility(View.INVISIBLE);
 		}
 		sOutputTwo.setOnClickListener(new OnClickListener() {
 
@@ -724,14 +724,16 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		// create a dataset and give it a type
 		LineDataSet set1 = new LineDataSet(yVals, type);
 		// set1.setFillAlpha(110);
-		// set1.setFillColor(Color.RED);
 
 		set1.setLineWidth(1.75f);
 		set1.setCircleSize(3f);
-		set1.setColor(Color.WHITE);
-		set1.setCircleColor(Color.WHITE);
-		set1.setHighLightColor(Color.WHITE);
+		int gridColor = Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphLineColor());
 
+		set1.setColor(gridColor);
+		set1.setCircleColor(gridColor);
+		set1.setHighLightColor(gridColor);
+		set1.setFillColor(gridColor);
+		
 		ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 		dataSets.add(set1); // add the datasets
 
@@ -766,7 +768,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		//
 		// enable / disable grid background
 		chart.setDrawGridBackground(false);
-		chart.setGridColor(Color.WHITE & 0x70FFFFFF);
+		int gridColor = Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphLineColor());
+		chart.setGridColor(gridColor & 0x70FFFFFF);
 		chart.setGridWidth(1.25f);
 
 		// enable touch gestures
@@ -788,33 +791,23 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 
 		// get the legend (only possible after setting data)
 		Legend l = chart.getLegend();
-		String textColor = prefs.getString("pref_graph_text_colors", "Black");
-		int txtClr = Color.BLACK;
-		if (textColor.equals("Black")) {
-			txtClr = Color.BLACK;
-		} else if (textColor.equals("Gray")) {
-			txtClr = Color.GRAY;
-		} else if (textColor.equals("White")) {
-			txtClr = Color.WHITE;
-		}
 		// modify the legend ...
 		// l.setPosition(LegendPosition.LEFT_OF_CHART);
 		l.setForm(LegendForm.CIRCLE);
 		l.setFormSize(6f);
-		l.setTextColor(txtClr);
-		// l.setTypeface(mTf);
+		String cpTextColor = new Utils(IndividualDeviceActivity.this).getGraphTextColor();
+		l.setTextColor(Color.parseColor(cpTextColor));
 
 		YLabels y = chart.getYLabels();
-		y.setTextColor(txtClr);
-		// y.setTypeface(mTf);
+		y.setTextColor(Color.parseColor(cpTextColor));
 		y.setLabelCount(4);
 
 		XLabels x = chart.getXLabels();
-		x.setTextColor(txtClr);
-		// x.setTypeface(mTf);
+		x.setTextColor(Color.parseColor(cpTextColor));
 
-		// animate calls invalidate()...
-		chart.animateX(2500);
+		if (new Utils(IndividualDeviceActivity.this).getGraphAnimate()) {
+			chart.animateX(2500);
+		}
 	}
 
 	private class loadGraphData extends AsyncTask<Void, Void, Void> {
@@ -853,36 +846,12 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				@Override
 				public void run() {
 					if (data.size() > 0) {
-						String tempColor = prefs.getString("pref_graph_temperature_colors", "Green");
-						String humidityColor = prefs.getString("pref_graph_humidity_colors", "Yellow");
-						Log.e("TEMPCOLOR", tempColor);
-						int tempGraphColor = Color.GREEN;
-						int humidityGraphColor = Color.YELLOW;
-						if (tempColor.equals("Red")) {
-							tempGraphColor = Color.RED;
-						} else if (tempColor.equals("Yellow")) {
-							tempGraphColor = Color.YELLOW;
-						} else if (tempColor.equals("Blue")) {
-							tempGraphColor = Color.BLUE;
-						} else {
-							tempGraphColor = Color.GREEN;
-						}
-						if (humidityColor.equals("Red")) {
-							humidityGraphColor = Color.RED;
-						} else if (humidityColor.equals("Yellow")) {
-							humidityGraphColor = Color.YELLOW;
-						} else if (humidityColor.equals("Blue")) {
-							humidityGraphColor = Color.BLUE;
-						} else {
-							humidityGraphColor = Color.GREEN;
-						}
-						setupChart(mCharts[0], data1, tempGraphColor);
-						setupChart(mCharts[1], data2, humidityGraphColor);
-						Log.e("HERE", "HERE");
+						setupChart(mCharts[0], data1, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphTemperatureColor()));
+						setupChart(mCharts[1], data2, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphHumidityColor()));
 						HashMap<String, String> d2 = data.get(11);
-						Log.e("HERE", d2.get(Consts.GETDEVICES_DATATIMESTAMP));
 						String pastTime = "<b><u>Time</u></b><br>", pastTemp = "<b><u>Temperature</u></b><br>", pastHumidity = "<b><u>Humidity</u></b><br>";
-						for (int i = 11; --i >= 0;) {
+						int pastHistoryAmount = Integer.parseInt(new Utils(IndividualDeviceActivity.this).getHousekeep());
+						for (int i = pastHistoryAmount; --i >= 0;) {
 							HashMap<String, String> d = data.get(i);
 							pastTime += d.get(Consts.GETDEVICES_DATATIMESTAMP) + "<br>";
 							pastTemp += d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
