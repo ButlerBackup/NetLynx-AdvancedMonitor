@@ -619,6 +619,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			sOutputTwo.setVisibility(View.INVISIBLE);
 			tvOutputTwoDescription.setVisibility(View.INVISIBLE);
 		}
+
 		sOutputTwo.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -677,6 +678,18 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			ivHumidity.setEnabled(false);
 			tvDeviceVoltage.setEnabled(false);
 			ivVoltage.setEnabled(false);
+		}
+		if (!device.getEnableOutput1().equals("1") && !device.getEnableInput1().equals("1")) {
+			tvInputOneDescription.setVisibility(View.GONE);
+			ivInputOne.setVisibility(View.GONE);
+			tvOutputOneDescription.setVisibility(View.GONE);
+			tvOutputOneDescription.setVisibility(View.GONE);
+		}
+		if (!device.getEnableOutput2().equals("1") && !device.getEnableInput2().equals("1")) {
+			tvInputTwoDescription.setVisibility(View.GONE);
+			ivInputTwo.setVisibility(View.GONE);
+			tvOutputTwoDescription.setVisibility(View.GONE);
+			tvOutputTwoDescription.setVisibility(View.GONE);
 		}
 		isProcessing = false;
 		loadedBefore = true;

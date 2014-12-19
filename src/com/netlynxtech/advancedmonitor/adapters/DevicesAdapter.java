@@ -156,6 +156,7 @@ public class DevicesAdapter extends BaseAdapter {
 			holder.sOutputOne.setVisibility(View.INVISIBLE);
 			holder.tvOutputOneDescription.setVisibility(View.INVISIBLE);
 		}
+		
 		holder.sOutputOne.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -271,6 +272,18 @@ public class DevicesAdapter extends BaseAdapter {
 		if (!item.getRole().equals("9") && !item.getRole().equals("2")) {
 			holder.sOutputOne.setEnabled(false);
 			holder.sOutputTwo.setEnabled(false);
+		}
+		if (!item.getEnableOutput1().equals("1") && !item.getEnableInput1().equals("1")) {
+			holder.tvInputOneDescription.setVisibility(View.GONE);
+			holder.ivInputOne.setVisibility(View.GONE);
+			holder.tvOutputOneDescription.setVisibility(View.GONE);
+			holder.tvOutputOneDescription.setVisibility(View.GONE);
+		}
+		if (!item.getEnableOutput2().equals("1") && !item.getEnableInput2().equals("1")) {
+			holder.tvInputTwoDescription.setVisibility(View.GONE);
+			holder.ivInputTwo.setVisibility(View.GONE);
+			holder.tvOutputTwoDescription.setVisibility(View.GONE);
+			holder.tvOutputTwoDescription.setVisibility(View.GONE);
 		}
 		return convertView;
 	}
