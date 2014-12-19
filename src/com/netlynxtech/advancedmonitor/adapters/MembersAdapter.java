@@ -88,7 +88,7 @@ public class MembersAdapter extends BaseAdapter {
 			holder.tvRequestStatus.setTextColor(Color.YELLOW);
 		} else if (d.getRequestStatus().equals("1")) {
 			holder.tvRequestStatus.setText("Accepted");
-			holder.tvRequestStatus.setTextColor(Color.GREEN);
+			holder.tvRequestStatus.setTextColor(Color.BLUE);
 		} else {
 			holder.tvRequestStatus.setText("Unknown");
 			holder.tvRequestStatus.setTextColor(Color.RED);
@@ -103,7 +103,7 @@ public class MembersAdapter extends BaseAdapter {
 			holder.tvRole.setTextColor(Color.BLUE);
 		} else if (d.getRole().equals("1")) {
 			holder.tvRole.setText("Viewer");
-			holder.tvRole.setTextColor(Color.GREEN);
+			holder.tvRole.setTextColor(Color.BLACK);
 		} else {
 			holder.tvRole.setText("No Access");
 		}
