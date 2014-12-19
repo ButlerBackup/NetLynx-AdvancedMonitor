@@ -733,7 +733,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		set1.setCircleColor(gridColor);
 		set1.setHighLightColor(gridColor);
 		set1.setFillColor(gridColor);
-		
+
 		ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 		dataSets.add(set1); // add the datasets
 
@@ -771,7 +771,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		int gridColor = Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphLineColor());
 		chart.setGridColor(gridColor & 0x70FFFFFF);
 		chart.setGridWidth(1.25f);
-
+		chart.setValueTextColor(Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphValuesTextColor()));
+		chart.setValueTextSize(12f);
 		// enable touch gestures
 		chart.setTouchEnabled(true);
 

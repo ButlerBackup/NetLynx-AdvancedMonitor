@@ -52,6 +52,11 @@ public class Utils {
 		sp.edit().putString(key, value).commit();
 	}
 
+	public String getGraphValuesTextColor() {
+		SecurePreferences sp = new SecurePreferences(context);
+		return sp.getString("pref_cp_graph_values_text", "#000000");
+	}
+
 	public String getGraphTextColor() {
 		SecurePreferences sp = new SecurePreferences(context);
 		return sp.getString("pref_cp_graph_text", "#000000");

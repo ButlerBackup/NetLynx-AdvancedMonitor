@@ -26,6 +26,15 @@ public class SettingsActivity extends PreferenceActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings_activity);
+		((ColorPickerPreference) findPreference("pref_cp_graph_values_text")).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				new Utils(SettingsActivity.this).storeSecurePreference("pref_cp_graph_values_text", ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
+				return true;
+			}
+
+		});
 		((ColorPickerPreference) findPreference("pref_cp_graph_text")).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			@Override

@@ -70,7 +70,11 @@
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:defaultValue="@integer/COLOR_BLACK"
             android:key="pref_cp_graph_text"
-            android:title="Graph&apos;s text color" />
+            android:title="Graph&apos;s axis text color" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@integer/COLOR_BLACK"
+            android:key="pref_cp_graph_values_text"
+            android:title="Graph&apos;s values text color" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:defaultValue="@integer/COLOR_WHITE"
             android:key="pref_cp_graph_line"
