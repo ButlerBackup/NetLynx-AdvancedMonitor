@@ -79,6 +79,14 @@
             android:defaultValue="@integer/COLOR_WHITE"
             android:key="pref_cp_graph_line"
             android:title="Graph&apos;s line color" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@integer/COLOR_RED"
+            android:key="pref_cp_graph_threshold_max"
+            android:title="Graph&apos;s threshold maximum line color" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@integer/COLOR_BLUE"
+            android:key="pref_cp_graph_threshold_min"
+            android:title="Graph&apos;s threshold minimum line color" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Misc" >
         <Preference

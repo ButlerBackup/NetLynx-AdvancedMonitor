@@ -2675,10 +2675,12 @@ containing a value of this type.
     }
     public static final class integer {
         public static final int COLOR_BLACK=0x7f060000;
+        public static final int COLOR_BLUE=0x7f060003;
         public static final int COLOR_GREEN=0x7f060001;
-        public static final int COLOR_LIGHT_GREEN=0x7f060009;
-        public static final int COLOR_LIGHT_YELLOW=0x7f06000a;
-        public static final int COLOR_WHITE=0x7f06000b;
+        public static final int COLOR_LIGHT_GREEN=0x7f06000b;
+        public static final int COLOR_LIGHT_YELLOW=0x7f06000c;
+        public static final int COLOR_RED=0x7f060002;
+        public static final int COLOR_WHITE=0x7f06000d;
         /**  The maximum number of action buttons that should be permitted within
          an action bar/action mode. This will be used to determine how many
          showAsAction="ifRoom" items can fit. "always" items can override this. 
@@ -2701,13 +2703,13 @@ containing a value of this type.
          an action bar/action mode. This will be used to determine how many
          showAsAction="ifRoom" items can fit. "always" items can override this. 
          */
-        public static final int abc_max_action_buttons=0x7f060002;
-        public static final int default_circle_indicator_orientation=0x7f060003;
-        public static final int default_title_indicator_footer_indicator_style=0x7f060004;
-        public static final int default_title_indicator_line_position=0x7f060005;
-        public static final int default_underline_indicator_fade_delay=0x7f060006;
-        public static final int default_underline_indicator_fade_length=0x7f060007;
-        public static final int google_play_services_version=0x7f060008;
+        public static final int abc_max_action_buttons=0x7f060004;
+        public static final int default_circle_indicator_orientation=0x7f060005;
+        public static final int default_title_indicator_footer_indicator_style=0x7f060006;
+        public static final int default_title_indicator_line_position=0x7f060007;
+        public static final int default_underline_indicator_fade_delay=0x7f060008;
+        public static final int default_underline_indicator_fade_length=0x7f060009;
+        public static final int google_play_services_version=0x7f06000a;
     }
     public static final class layout {
         public static final int abc_action_bar_decor=0x7f030000;

@@ -35,6 +35,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.Legend;
 import com.github.mikephil.charting.utils.Legend.LegendForm;
+import com.github.mikephil.charting.utils.LimitLine;
 import com.github.mikephil.charting.utils.XLabels;
 import com.github.mikephil.charting.utils.YLabels;
 import com.manuelpeinado.refreshactionitem.ProgressIndicatorType;
@@ -724,7 +725,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		}
 	}
 
-	private LineData getData(ArrayList<Double> xValues, ArrayList<String> yValues, String type) {
+	private LineData getData(ArrayList<Double> xValues, ArrayList<String> yValues, String type, String maxThreshold, String minThreshold) {
 		ArrayList<String> xVals = yValues;
 
 		ArrayList<Entry> yVals = new ArrayList<Entry>();
@@ -751,8 +752,16 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		dataSets.add(set1); // add the datasets
 
 		// create a data object with the datasets
-		LineData data = new LineData(xVals, dataSets);
 
+		LineData data = new LineData(xVals, dataSets);
+		LimitLine ll = new LimitLine(Float.parseFloat(maxThreshold));
+		ll.setLineColor(Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphMaximumThreshold()));
+		ll.setLineWidth(1f);
+		data.addLimitLine(ll);
+		LimitLine ll2 = new LimitLine(Float.parseFloat(minThreshold));
+		ll2.setLineColor(Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphMinimumThreshold()));
+		ll2.setLineWidth(1f);
+		data.addLimitLine(ll2);
 		return data;
 	}
 
@@ -846,8 +855,8 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			mCharts[0] = (LineChart) findViewById(R.id.chart1);
 			mCharts[1] = (LineChart) findViewById(R.id.chart2);
 
-			data1 = getData(temperature, timing, "Temperature");
-			data2 = getData(humidity, timing, "Humidity");
+			data1 = getData(temperature, timing, "Temperature", device.getTemperatureHi(), device.getTemperatureLo());
+			data2 = getData(humidity, timing, "Humidity", device.getHumidityHi(), device.getHumidityLo());
 
 			return null;
 		}

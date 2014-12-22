@@ -330,7 +330,7 @@ public final class R {
 		public static final int withText = 0x7f08000e;
 	}
 	public static final class integer {
-		public static final int abc_max_action_buttons = 0x7f060002;
+		public static final int abc_max_action_buttons = 0x7f060004;
 	}
 	public static final class layout {
 		public static final int abc_action_bar_decor = 0x7f030000;

@@ -125,7 +125,7 @@ public final class R {
 		public static final int wrap_content = 0x7f080037;
 	}
 	public static final class integer {
-		public static final int google_play_services_version = 0x7f060008;
+		public static final int google_play_services_version = 0x7f06000a;
 	}
 	public static final class string {
 		public static final int auth_client_needs_enabling_title = 0x7f07001f;

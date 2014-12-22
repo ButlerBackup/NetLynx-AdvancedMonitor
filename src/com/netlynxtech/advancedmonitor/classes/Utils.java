@@ -1,7 +1,5 @@
 package com.netlynxtech.advancedmonitor.classes;
 
-import com.netlynxtech.advancedmonitor.*;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +15,6 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -37,6 +34,10 @@ import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.netlynxtech.advancedmonitor.DeviceListActivity;
+import com.netlynxtech.advancedmonitor.MessagesActivity;
+import com.netlynxtech.advancedmonitor.R;
+import com.netlynxtech.advancedmonitor.ReceivedMemberPermissionActivity;
 import com.securepreferences.SecurePreferences;
 
 public class Utils {
@@ -45,6 +46,17 @@ public class Utils {
 
 	public Utils(Context con) {
 		this.context = con;
+	}
+
+	public String getGraphMaximumThreshold() {
+		SecurePreferences sp = new SecurePreferences(context);
+		return sp.getString("pref_cp_graph_threshold_max", "#FF0000");
+	}
+
+	public String getGraphMinimumThreshold() {
+		SecurePreferences sp = new SecurePreferences(context);
+		Log.e("MIN THRESHOLD COLOR", sp.getString("pref_cp_graph_values_text", "#2200FF"));
+		return sp.getString("pref_cp_graph_threshold_min", "#2200FF");
 	}
 
 	public void storeSecurePreference(String key, String value) {

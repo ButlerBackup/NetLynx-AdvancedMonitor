@@ -100,11 +100,11 @@ public final class R {
 		public static final int underline = 0x7f080021;
 	}
 	public static final class integer {
-		public static final int default_circle_indicator_orientation = 0x7f060003;
-		public static final int default_title_indicator_footer_indicator_style = 0x7f060004;
-		public static final int default_title_indicator_line_position = 0x7f060005;
-		public static final int default_underline_indicator_fade_delay = 0x7f060006;
-		public static final int default_underline_indicator_fade_length = 0x7f060007;
+		public static final int default_circle_indicator_orientation = 0x7f060005;
+		public static final int default_title_indicator_footer_indicator_style = 0x7f060006;
+		public static final int default_title_indicator_line_position = 0x7f060007;
+		public static final int default_underline_indicator_fade_delay = 0x7f060008;
+		public static final int default_underline_indicator_fade_length = 0x7f060009;
 	}
 	public static final class style {
 		public static final int TextAppearance_TabPageIndicator = 0x7f0c0090;

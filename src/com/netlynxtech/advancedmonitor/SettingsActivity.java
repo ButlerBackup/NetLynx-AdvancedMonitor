@@ -14,6 +14,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
 
@@ -67,6 +68,25 @@ public class SettingsActivity extends PreferenceActivity {
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				new Utils(SettingsActivity.this).storeSecurePreference("pref_cp_graph_line", ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
+				return true;
+			}
+
+		});
+		((ColorPickerPreference) findPreference("pref_cp_graph_threshold_max")).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				new Utils(SettingsActivity.this).storeSecurePreference("pref_cp_graph_threshold_max", ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
+				return true;
+			}
+
+		});
+		((ColorPickerPreference) findPreference("pref_cp_graph_threshold_min")).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				Log.e("VALUE", ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
+				new Utils(SettingsActivity.this).storeSecurePreference("pref_cp_graph_threshold_min", ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(newValue))));
 				return true;
 			}
 

@@ -72,7 +72,7 @@
                     android:gravity="center_vertical"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    app:customTypeface="roboto.ttf" />
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivInputOne"
@@ -90,7 +90,7 @@
                     android:layout_below="@+id/tvDeviceTimestamp"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    app:customTypeface="roboto.ttf" />
+                    android:textStyle="bold" />
 
                 <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvInputTwoDescription"
@@ -101,7 +101,7 @@
                     android:gravity="center_vertical"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    app:customTypeface="roboto.ttf" />
+                    android:textStyle="bold" />
 
                 <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvOutputTwoDescription"
@@ -112,7 +112,7 @@
                     android:layout_alignParentRight="true"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    app:customTypeface="roboto.ttf" />
+                    android:textStyle="bold" />
 
                 <de.ankri.views.Switch
                     android:id="@+id/sOutputOne"
@@ -276,15 +276,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
-                android:weightSum="5" >
+                android:weightSum="6" >
 
                 <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
+                    android:layout_weight="5"
                     android:gravity="center_vertical"
-                    android:text="Temperature &amp; Humidity History"
+                    android:paddingTop="0dp"
+                    android:text="Temperature/Humidity Graphs"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     app:customTypeface="roboto.ttf" />
 
