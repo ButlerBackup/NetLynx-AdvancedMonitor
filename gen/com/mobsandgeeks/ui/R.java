@@ -11,7 +11,7 @@ public final class R {
 		public static final int customTypeface = 0x7f010071;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f02008a;
+		public static final int ic_launcher = 0x7f02008b;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f070001;

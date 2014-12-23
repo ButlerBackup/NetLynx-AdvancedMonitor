@@ -63,6 +63,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	deleteDevice mDeleteDevice;
 	private LineChart[] mCharts = new LineChart[4];
 	SharedPreferences prefs;
+	loadGraphData mGraphTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -490,7 +491,9 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				}
 			}
 		});
-		new loadGraphData().execute();
+		mGraphTask = null;
+		mGraphTask = new loadGraphData();
+		mGraphTask.execute();
 		processData();
 	}
 
@@ -694,6 +697,9 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		}
 		isProcessing = false;
 		loadedBefore = true;
+		mGraphTask = null;
+		mGraphTask = new loadGraphData();
+		mGraphTask.execute();
 	}
 
 	private void processData() {
@@ -831,6 +837,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		if (new Utils(IndividualDeviceActivity.this).getGraphAnimate()) {
 			chart.animateX(2500);
 		}
+		chart.invalidate();
 	}
 
 	private class loadGraphData extends AsyncTask<Void, Void, Void> {
@@ -868,24 +875,25 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 
 				@Override
 				public void run() {
-					if (data.size() > 0) {
-						setupChart(mCharts[0], data1, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphTemperatureColor()));
-						setupChart(mCharts[1], data2, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphHumidityColor()));
-						HashMap<String, String> d2 = data.get(11);
-						String pastTime = "<b><u>Time</u></b><br>", pastTemp = "<b><u>Temperature</u></b><br>", pastHumidity = "<b><u>Humidity</u></b><br>";
-						int pastHistoryAmount = Integer.parseInt(new Utils(IndividualDeviceActivity.this).getHousekeep());
-						for (int i = pastHistoryAmount; --i >= 0;) {
-							HashMap<String, String> d = data.get(i);
-							pastTime += d.get(Consts.GETDEVICES_DATATIMESTAMP) + "<br>";
-							pastTemp += d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
-							pastHumidity += d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
+					if (!isCancelled()) {
+						if (data.size() > 0) {
+							setupChart(mCharts[0], data1, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphTemperatureColor()));
+							setupChart(mCharts[1], data2, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphHumidityColor()));
+							String pastTime = "<b><u>Time</u></b><br>", pastTemp = "<b><u>Temperature</u></b><br>", pastHumidity = "<b><u>Humidity</u></b><br>";
+							int pastHistoryAmount = Integer.parseInt(new Utils(IndividualDeviceActivity.this).getHousekeep());
+							for (int i = pastHistoryAmount; --i >= 0;) {
+								HashMap<String, String> d = data.get(i);
+								pastTime += d.get(Consts.GETDEVICES_DATATIMESTAMP) + "<br>";
+								pastTemp += d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
+								pastHumidity += d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
+							}
+							tvPastHistoryTime.setText(Html.fromHtml(pastTime));
+							tvPastHistoryTemperature.setText(Html.fromHtml(pastTemp));
+							tvPastHistoryHumidity.setText(Html.fromHtml(pastHumidity));
+							Log.e("Humidity", pastHumidity);
+						} else {
+							Toast.makeText(IndividualDeviceActivity.this, "Unable to load graph", Toast.LENGTH_SHORT).show();
 						}
-						tvPastHistoryTime.setText(Html.fromHtml(pastTime));
-						tvPastHistoryTemperature.setText(Html.fromHtml(pastTemp));
-						tvPastHistoryHumidity.setText(Html.fromHtml(pastHumidity));
-						Log.e("Humidity", pastHumidity);
-					} else {
-						Toast.makeText(IndividualDeviceActivity.this, "Unable to load graph", Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -1098,6 +1106,11 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		if (task != null && task.getStatus() == AsyncTask.Status.RUNNING) {
 			task.cancel(true);
 			task = null;
+		}
+
+		if (mGraphTask != null && mGraphTask.getStatus() == AsyncTask.Status.RUNNING) {
+			mGraphTask.cancel(true);
+			mGraphTask = null;
 		}
 	}
 

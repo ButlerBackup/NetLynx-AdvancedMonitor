@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#27405E"
     android:orientation="vertical"
     android:padding="10dp" >
 
@@ -16,7 +17,7 @@
         android:gravity="center"
         android:text="@string/about_us_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#0071B8"
+        android:textColor="#FFEE00"
         android:textSize="30dp"
         app:customTypeface="roboto.ttf" />
 
@@ -31,67 +32,67 @@
         android:paddingTop="10dp"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFEE00"
+        app:customTypeface="roboto.ttf" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvVersion"
+        android:paddingBottom="10dp"
+        android:paddingTop="15dp"
+        android:src="@drawable/big_icon" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/netlynx" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView1"
+        android:layout_alignLeft="@+id/imageView2"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/about_us_company_two"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFEE00"
         app:customTypeface="roboto.ttf" />
 
     <com.mobsandgeeks.ui.TypefaceTextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/textView5"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignRight="@+id/imageView1"
+        android:gravity="center"
         android:text="By"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFEE00"
         app:customTypeface="roboto.ttf" />
 
     <com.mobsandgeeks.ui.TypefaceTextView
-        android:id="@+id/textView3"
+        android:id="@+id/TypefaceTextView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/about_us_company_one"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        app:customTypeface="roboto.ttf" />
-
-    <com.mobsandgeeks.ui.TypefaceTextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:text="And"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        app:customTypeface="roboto.ttf" />
-
-    <com.mobsandgeeks.ui.TypefaceTextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvVersion"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView4"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/about_us_company_two"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        app:customTypeface="roboto.ttf" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/netlynx" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/netlynx" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/imageView2"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/about_us_desc"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFEE00"
+        app:customTypeface="roboto.ttf" />
 
 </RelativeLayout>
