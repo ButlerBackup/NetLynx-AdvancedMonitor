@@ -53,6 +53,7 @@
         android:layout_alignLeft="@+id/textView5"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:visibility="invisible"
         android:src="@drawable/netlynx" />
 
     <com.mobsandgeeks.ui.TypefaceTextView

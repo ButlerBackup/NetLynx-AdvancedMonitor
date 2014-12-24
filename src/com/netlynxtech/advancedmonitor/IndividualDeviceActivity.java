@@ -59,7 +59,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			tvOutputTwoDescription, tvPastHistoryTime, tvPastHistoryTemperature, tvPastHistoryHumidity;
 	ImageView ivInputOne, ivInputTwo, ivTemperature, ivHumidity, ivVoltage;
 	Switch sOutputOne, sOutputTwo;
-	boolean isProcessing = false, loadedBefore = false;
+	boolean isProcessing = false, loadedBefore = false, isUserRefresh = false;
 	deleteDevice mDeleteDevice;
 	private LineChart[] mCharts = new LineChart[4];
 	SharedPreferences prefs;
@@ -697,9 +697,11 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		}
 		isProcessing = false;
 		loadedBefore = true;
-		mGraphTask = null;
-		mGraphTask = new loadGraphData();
-		mGraphTask.execute();
+		if (isUserRefresh) {
+			mGraphTask = null;
+			mGraphTask = new loadGraphData();
+			mGraphTask.execute();
+		}
 	}
 
 	private void processData() {
@@ -837,7 +839,10 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		if (new Utils(IndividualDeviceActivity.this).getGraphAnimate()) {
 			chart.animateX(2500);
 		}
-		chart.invalidate();
+		if (isUserRefresh) {
+			chart.invalidate();
+			isUserRefresh = false;
+		}
 	}
 
 	private class loadGraphData extends AsyncTask<Void, Void, Void> {
@@ -955,6 +960,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			@Override
 			public void onRefreshButtonClick(RefreshActionItem sender) {
 				if (task != null) {
+					isUserRefresh = true;
 					task = null;
 					task = new loadData();
 					task.execute();
