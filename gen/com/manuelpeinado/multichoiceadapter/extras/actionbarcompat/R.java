@@ -261,9 +261,9 @@ public final class R {
 		public static final int abc_textfield_searchview_holo_light = 0x7f02005a;
 		public static final int abc_textfield_searchview_right_holo_dark = 0x7f02005b;
 		public static final int abc_textfield_searchview_right_holo_light = 0x7f02005c;
-		public static final int mca__gallery_selector = 0x7f02009e;
-		public static final int mca__grid_item_fg_pressed = 0x7f02009f;
-		public static final int mca__list_item_selector = 0x7f0200a0;
+		public static final int mca__gallery_selector = 0x7f02009f;
+		public static final int mca__grid_item_fg_pressed = 0x7f0200a0;
+		public static final int mca__list_item_selector = 0x7f0200a1;
 	}
 	public static final class id {
 		public static final int action_bar = 0x7f0d0040;

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netlynxtech.advancedmonitor.IndividualDeviceActivity;
 import com.netlynxtech.advancedmonitor.R;
 import com.netlynxtech.advancedmonitor.classes.Device;
 import com.netlynxtech.advancedmonitor.classes.Utils;
@@ -140,7 +141,7 @@ public class DevicesAdapter extends BaseAdapter {
 			}
 		} else {
 			holder.tvInputOneDescription.setVisibility(View.INVISIBLE);
-			holder.ivInputOne.setVisibility(View.INVISIBLE);
+			holder.ivInputOne.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 
 		if (item.getEnableInput2().equals("1")) {
@@ -152,7 +153,7 @@ public class DevicesAdapter extends BaseAdapter {
 			}
 		} else {
 			holder.tvInputTwoDescription.setVisibility(View.INVISIBLE);
-			holder.ivInputTwo.setVisibility(View.INVISIBLE);
+			holder.ivInputTwo.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (item.getEnableInput3().equals("1")) {
 			holder.ivInputThree.setVisibility(View.VISIBLE);
@@ -162,7 +163,7 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.ivInputThree.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			holder.ivInputThree.setVisibility(View.INVISIBLE);
+			holder.ivInputThree.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (item.getEnableInput4().equals("1")) {
 			holder.ivInputFour.setVisibility(View.VISIBLE);
@@ -172,7 +173,7 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.ivInputFour.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			holder.ivInputFour.setVisibility(View.INVISIBLE);
+			holder.ivInputFour.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (item.getEnableInput5().equals("1")) {
 			holder.ivInputFive.setVisibility(View.VISIBLE);
@@ -182,7 +183,7 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.ivInputFive.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			holder.ivInputFive.setVisibility(View.INVISIBLE);
+			holder.ivInputFive.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (item.getEnableInput6().equals("1")) {
 			holder.ivInputSix.setVisibility(View.VISIBLE);
@@ -192,7 +193,7 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.ivInputSix.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			holder.ivInputSix.setVisibility(View.INVISIBLE);
+			holder.ivInputSix.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (item.getEnableInput7().equals("1")) {
 			holder.ivInputSeven.setVisibility(View.VISIBLE);
@@ -202,7 +203,7 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.ivInputSeven.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			holder.ivInputSeven.setVisibility(View.INVISIBLE);
+			holder.ivInputSeven.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (item.getEnableInput8().equals("1")) {
 			holder.ivInputEight.setVisibility(View.VISIBLE);
@@ -212,7 +213,7 @@ public class DevicesAdapter extends BaseAdapter {
 				holder.ivInputEight.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			holder.ivInputEight.setVisibility(View.INVISIBLE);
+			holder.ivInputEight.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 
 		if (item.getEnableOutput1().equals("1")) {
@@ -369,6 +370,11 @@ public class DevicesAdapter extends BaseAdapter {
 		}
 		holder.sOutputOne.setEnabled(false);
 		holder.sOutputTwo.setEnabled(false);
+		if (!item.getEnableOutput2().equals("1")) {
+			holder.tvInputTwoDescription.setVisibility(View.GONE);
+			holder.tvOutputTwoDescription.setVisibility(View.GONE);
+			holder.sOutputTwo.setVisibility(View.GONE);
+		}
 		return convertView;
 	}
 }

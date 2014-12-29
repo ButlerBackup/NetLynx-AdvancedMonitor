@@ -548,7 +548,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputOneDescription.setVisibility(View.INVISIBLE);
-			ivInputOne.setVisibility(View.INVISIBLE);
+			ivInputOne.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 
 		if (device.getEnableInput2().equals("1")) {
@@ -560,7 +560,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputTwoDescription.setVisibility(View.INVISIBLE);
-			ivInputTwo.setVisibility(View.INVISIBLE);
+			ivInputTwo.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput3().equals("1")) {
 			ivInputThree.setVisibility(View.VISIBLE);
@@ -570,7 +570,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				ivInputThree.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			ivInputThree.setVisibility(View.INVISIBLE);
+			ivInputThree.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput4().equals("1")) {
 			ivInputFour.setVisibility(View.VISIBLE);
@@ -580,7 +580,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				ivInputFour.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			ivInputFour.setVisibility(View.INVISIBLE);
+			ivInputFour.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput5().equals("1")) {
 			ivInputFive.setVisibility(View.VISIBLE);
@@ -590,7 +590,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				ivInputFive.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			ivInputFive.setVisibility(View.INVISIBLE);
+			ivInputFive.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput6().equals("1")) {
 			ivInputSix.setVisibility(View.VISIBLE);
@@ -600,7 +600,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				ivInputSix.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			ivInputSix.setVisibility(View.INVISIBLE);
+			ivInputSix.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput7().equals("1")) {
 			ivInputSeven.setVisibility(View.VISIBLE);
@@ -610,7 +610,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				ivInputSeven.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			ivInputSeven.setVisibility(View.INVISIBLE);
+			ivInputSeven.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput8().equals("1")) {
 			ivInputEight.setVisibility(View.VISIBLE);
@@ -620,7 +620,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				ivInputEight.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
 			}
 		} else {
-			ivInputEight.setVisibility(View.INVISIBLE);
+			ivInputEight.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 
 		if (device.getEnableOutput1().equals("1")) {
@@ -832,6 +832,11 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 				showInputsDialog();
 			}
 		});
+		if (!device.getEnableOutput2().equals("1")) {
+			tvInputTwoDescription.setVisibility(View.GONE);
+			tvOutputTwoDescription.setVisibility(View.GONE);
+			sOutputTwo.setVisibility(View.GONE);
+		}
 		isProcessing = false;
 		loadedBefore = true;
 		if (isUserRefresh) {
@@ -1318,7 +1323,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputOneDescriptions.setVisibility(View.GONE);
-			ivInputOnes.setVisibility(View.GONE);
+			ivInputOnes.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 
 		if (device.getEnableInput2().equals("1")) {
@@ -1330,7 +1335,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputTwoDescriptions.setVisibility(View.GONE);
-			ivInputTwos.setVisibility(View.GONE);
+			ivInputTwos.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput3().equals("1")) {
 			tvInputThreeDescriptions.setText(device.getDescriptionInput3());
@@ -1341,7 +1346,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputThreeDescriptions.setVisibility(View.GONE);
-			ivInputThrees.setVisibility(View.GONE);
+			ivInputThrees.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput4().equals("1")) {
 			tvInputFourDescriptions.setText(device.getDescriptionInput4());
@@ -1352,7 +1357,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputFourDescriptions.setVisibility(View.GONE);
-			ivInputFours.setVisibility(View.GONE);
+			ivInputFours.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput5().equals("1")) {
 			tvInputFiveDescriptions.setText(device.getDescriptionInput5());
@@ -1363,7 +1368,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputFiveDescriptions.setVisibility(View.GONE);
-			ivInputFives.setVisibility(View.GONE);
+			ivInputFives.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput6().equals("1")) {
 			tvInputSixDescriptions.setText(device.getDescriptionInput6());
@@ -1374,7 +1379,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputSixDescriptions.setVisibility(View.GONE);
-			ivInputSix.setVisibility(View.GONE);
+			ivInputSix.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput7().equals("1")) {
 			tvInputSevenDescriptions.setText(device.getDescriptionInput7());
@@ -1385,7 +1390,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputSevenDescriptions.setVisibility(View.GONE);
-			ivInputSevens.setVisibility(View.GONE);
+			ivInputSevens.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		if (device.getEnableInput8().equals("1")) {
 			tvInputEightDescriptions.setText(device.getDescriptionInput8());
@@ -1396,7 +1401,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			}
 		} else {
 			tvInputEightDescriptions.setVisibility(View.GONE);
-			ivInputEights.setVisibility(View.GONE);
+			ivInputEights.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_nodot));
 		}
 		builder.setView(dialoglayout);
 		builder.show();
