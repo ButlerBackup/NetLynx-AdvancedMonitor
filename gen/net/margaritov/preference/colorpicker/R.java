@@ -11,11 +11,11 @@ public final class R {
 		public static final int icon = 0x7f020096;
 	}
 	public static final class id {
-		public static final int color_picker_view = 0x7f0800b4;
-		public static final int hex_val = 0x7f0800b6;
-		public static final int new_color_panel = 0x7f0800b8;
-		public static final int old_color_panel = 0x7f0800b7;
-		public static final int text_hex_wrapper = 0x7f0800b5;
+		public static final int color_picker_view = 0x7f0d00cc;
+		public static final int hex_val = 0x7f0d00ce;
+		public static final int new_color_panel = 0x7f0d00d0;
+		public static final int old_color_panel = 0x7f0d00cf;
+		public static final int text_hex_wrapper = 0x7f0d00cd;
 	}
 	public static final class integer {
 		public static final int COLOR_BLACK = 0x7f060000;
@@ -24,7 +24,7 @@ public final class R {
 		public static final int COLOR_RED = 0x7f060002;
 	}
 	public static final class layout {
-		public static final int dialog_color_picker = 0x7f03002c;
+		public static final int dialog_color_picker = 0x7f03002d;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f070001;

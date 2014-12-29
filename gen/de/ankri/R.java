@@ -52,11 +52,11 @@ public final class R {
 		public static final int textOn = 0x7f07001a;
 	}
 	public static final class style {
-		public static final int AppThemeDark = 0x7f0c0095;
-		public static final int AppThemeLight = 0x7f0c0096;
-		public static final int TextAppearance = 0x7f0c0094;
-		public static final int switch_dark = 0x7f0c0092;
-		public static final int switch_light = 0x7f0c0093;
+		public static final int AppThemeDark = 0x7f0b0095;
+		public static final int AppThemeLight = 0x7f0b0096;
+		public static final int TextAppearance = 0x7f0b0094;
+		public static final int switch_dark = 0x7f0b0092;
+		public static final int switch_light = 0x7f0b0093;
 	}
 	public static final class styleable {
 		public static final int[] Switch = { 0x7f0100a4, 0x7f0100a5, 0x7f0100a6, 0x7f0100a7, 0x7f0100a8, 0x7f0100a9, 0x7f0100aa, 0x7f0100ab };

@@ -1,113 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp" >
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/bUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/activity_update_io_description"
-        app:buttonColor="@color/fbutton_default_color"
-        app:cornerRadius="0dp"
-        app:shadowColor="@color/fbutton_default_shadow_color"
-        app:shadowEnabled="true"
-        app:shadowHeight="5dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <com.mobsandgeeks.ui.TypefaceTextView app:customTypeface="roboto.ttf"
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/edit_device_description"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
 
-    <EditText
-        android:id="@+id/etDescriptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:ems="10" />
+        <EditText
+            android:id="@+id/etDescriptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" >
 
-    <com.mobsandgeeks.ui.TypefaceTextView app:customTypeface="roboto.ttf"
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/etDescriptions"
-        android:text="@string/edit_device_input1_description"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+            <requestFocus />
+        </EditText>
 
-    <EditText
-        android:id="@+id/etInput1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView5"
-        android:ems="10" />
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_input1_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
 
-    <com.mobsandgeeks.ui.TypefaceTextView app:customTypeface="roboto.ttf"
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/etInput1"
-        android:text="@string/edit_device_input2_description"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <EditText
+            android:id="@+id/etInput1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
 
-    <EditText
-        android:id="@+id/etInput2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView2"
-        android:ems="10" />
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_input2_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
 
-    <com.mobsandgeeks.ui.TypefaceTextView app:customTypeface="roboto.ttf"
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/etInput2"
-        android:text="@string/edit_device_output1_description"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <EditText
+            android:id="@+id/etInput2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
 
-    <EditText
-        android:id="@+id/etOutput1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView3"
-        android:ems="10" />
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/TypefaceTextView01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_input3_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
 
-    <com.mobsandgeeks.ui.TypefaceTextView app:customTypeface="roboto.ttf"
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/etOutput1"
-        android:text="@string/edit_device_output2_description"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <EditText
+            android:id="@+id/etInput3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
 
-    <EditText
-        android:id="@+id/etOutput2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView4"
-        android:ems="10" />
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/TypedfaceTextViedw01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_input4_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/etInput4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/TypefaceTexftView01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_input5_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
+
+        <EditText
+            android:id="@+id/etInput5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/TypefaceTextVdiew01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_input6_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
+
+        <EditText
+            android:id="@+id/etInput6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/TypefaceTextVie2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_input7_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
+
+        <EditText
+            android:id="@+id/etInput7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/TypefaceTextView02222"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_input8_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
+
+        <EditText
+            android:id="@+id/etInput8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_output1_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
+
+        <EditText
+            android:id="@+id/etOutput1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+
+        <com.mobsandgeeks.ui.TypefaceTextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_device_output2_description"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:customTypeface="roboto.ttf" />
+
+        <EditText
+            android:id="@+id/etOutput2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/bUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_update_io_description"
+            app:buttonColor="@color/fbutton_default_color"
+            app:cornerRadius="0dp"
+            app:shadowColor="@color/fbutton_default_shadow_color"
+            app:shadowEnabled="true"
+            app:shadowHeight="5dp" />
+
+    </LinearLayout>
+
+</ScrollView>

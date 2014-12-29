@@ -72,7 +72,8 @@
                     android:gravity="center_vertical"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
 
                 <ImageView
                     android:id="@+id/ivInputOne"
@@ -101,7 +102,8 @@
                     android:gravity="center_vertical"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
 
                 <com.mobsandgeeks.ui.TypefaceTextView
                     android:id="@+id/tvOutputTwoDescription"
@@ -126,7 +128,7 @@
                     app:textOn="On" />
 
                 <ImageView
-                    android:id="@+id/ivInputTwo"
+                    android:id="@+id/ivInputFive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/tvInputTwoDescription"
@@ -137,7 +139,7 @@
                     android:id="@+id/sOutputTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/ivInputTwo"
+                    android:layout_alignBottom="@+id/ivInputFive"
                     android:layout_alignRight="@+id/tvOutputTwoDescription"
                     android:layout_below="@+id/tvOutputTwoDescription"
                     android:gravity="center_vertical"
@@ -148,9 +150,9 @@
                     android:id="@+id/linearLayout1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/ivInputTwo"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@+id/ivInputTwo"
+                    android:layout_below="@+id/ivInputFive"
                     android:weightSum="3" >
 
                     <com.mobsandgeeks.ui.TypefaceTextView
@@ -185,7 +187,7 @@
                     android:id="@+id/linearLayout2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/ivInputTwo"
+                    android:layout_alignLeft="@+id/ivInputFive"
                     android:layout_below="@+id/linearLayout1"
                     android:padding="5dp"
                     android:weightSum="3" >
@@ -214,6 +216,54 @@
                         android:paddingLeft="5dp"
                         android:src="@drawable/lightning" />
                 </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivInputTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInputOneDescription"
+                    android:layout_toRightOf="@+id/ivInputOne"
+                    android:src="@drawable/ic_greendot" />
+
+                <ImageView
+                    android:id="@+id/ivInputThree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInputOneDescription"
+                    android:layout_toRightOf="@+id/ivInputTwo"
+                    android:src="@drawable/ic_greendot" />
+
+                <ImageView
+                    android:id="@+id/ivInputFour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInputOneDescription"
+                    android:layout_toRightOf="@+id/ivInputThree"
+                    android:src="@drawable/ic_greendot" />
+
+                <ImageView
+                    android:id="@+id/ivInputSix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInputTwoDescription"
+                    android:layout_toRightOf="@+id/ivInputFive"
+                    android:src="@drawable/ic_greendot" />
+
+                <ImageView
+                    android:id="@+id/ivInputSeven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInputTwoDescription"
+                    android:layout_toRightOf="@+id/ivInputSix"
+                    android:src="@drawable/ic_greendot" />
+
+                <ImageView
+                    android:id="@+id/ivInputEight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/linearLayout1"
+                    android:layout_toRightOf="@+id/ivInputSeven"
+                    android:src="@drawable/ic_greendot" />
             </RelativeLayout>
 
             <ScrollView

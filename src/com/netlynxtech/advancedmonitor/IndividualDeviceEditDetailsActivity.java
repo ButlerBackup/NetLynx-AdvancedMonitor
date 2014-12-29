@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
 
 public class IndividualDeviceEditDetailsActivity extends ActionBarActivity {
-	EditText etInput1, etInput2, etOutput1, etOutput2, etDescriptions;
+	EditText etInput1, etInput2, etInput3, etInput4, etInput5, etInput6, etInput7, etInput8, etOutput1, etOutput2, etDescriptions;
 	Button bUpdate;
 	String deviceId = "", deviceDescription = "";
 
@@ -45,6 +45,42 @@ public class IndividualDeviceEditDetailsActivity extends ActionBarActivity {
 		} else {
 			etInput2.setEnabled(false);
 		}
+		etInput3 = (EditText) findViewById(R.id.etInput3);
+		if (i.hasExtra("input3")) {
+			etInput3.setText(i.getStringExtra("input3"));
+		} else {
+			etInput3.setEnabled(false);
+		}
+		etInput4 = (EditText) findViewById(R.id.etInput4);
+		if (i.hasExtra("input4")) {
+			etInput4.setText(i.getStringExtra("input4"));
+		} else {
+			etInput4.setEnabled(false);
+		}
+		etInput5 = (EditText) findViewById(R.id.etInput5);
+		if (i.hasExtra("input5")) {
+			etInput5.setText(i.getStringExtra("input5"));
+		} else {
+			etInput5.setEnabled(false);
+		}
+		etInput6 = (EditText) findViewById(R.id.etInput6);
+		if (i.hasExtra("input6")) {
+			etInput6.setText(i.getStringExtra("input6"));
+		} else {
+			etInput6.setEnabled(false);
+		}
+		etInput7 = (EditText) findViewById(R.id.etInput7);
+		if (i.hasExtra("input7")) {
+			etInput7.setText(i.getStringExtra("input7"));
+		} else {
+			etInput7.setEnabled(false);
+		}
+		etInput8 = (EditText) findViewById(R.id.etInput8);
+		if (i.hasExtra("input8")) {
+			etInput8.setText(i.getStringExtra("input8"));
+		} else {
+			etInput8.setEnabled(false);
+		}
 		etOutput1 = (EditText) findViewById(R.id.etOutput1);
 		if (i.hasExtra("output1")) {
 			etOutput1.setText(i.getStringExtra("output1"));
@@ -64,8 +100,9 @@ public class IndividualDeviceEditDetailsActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				new updateDescriptions().execute(etDescriptions.getText().toString(), etInput1.getText().toString(), etInput2.getText().toString(), etOutput1.getText().toString(), etOutput2.getText()
-						.toString());
+				new updateDescriptions().execute(etDescriptions.getText().toString(), etInput1.getText().toString(), etInput2.getText().toString(), etInput3.getText().toString(), etInput4.getText()
+						.toString(), etInput5.getText().toString(), etInput6.getText().toString(), etInput7.getText().toString(), etInput8.getText().toString(), etOutput1.getText().toString(),
+						etOutput2.getText().toString());
 			}
 		});
 	}
@@ -78,7 +115,7 @@ public class IndividualDeviceEditDetailsActivity extends ActionBarActivity {
 			// data = new WebRequestAPI(IndividualDeviceEditDetailsActivity.this).UpdateDescriptions("", params[0].toString(), params[1].toString(), params[2].toString(), params[3].toString(),
 			// params[4].toString());
 			data = new WebRequestAPI(IndividualDeviceEditDetailsActivity.this).UpdateDescriptions(deviceId, params[0].toString(), params[1].toString(), params[2].toString(), params[3].toString(),
-					params[4].toString());
+					params[4].toString(), params[5].toString(), params[6].toString(), params[7].toString(), params[8].toString(), params[9].toString(), params[10].toString());
 			return null;
 		}
 

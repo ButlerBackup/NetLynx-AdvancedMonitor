@@ -761,12 +761,26 @@ public class WebRequestAPI {
 				map.setVoltage(object.getProperty(Consts.GETDEVICES_VOLTAGE).toString());
 				map.setInput1(object.getProperty(Consts.GETDEVICES_INPUT1).toString());
 				map.setInput2(object.getProperty(Consts.GETDEVICES_INPUT2).toString());
+				map.setInput3(object.getProperty(Consts.GETDEVICES_INPUT3).toString());
+				map.setInput4(object.getProperty(Consts.GETDEVICES_INPUT4).toString());
+				map.setInput5(object.getProperty(Consts.GETDEVICES_INPUT5).toString());
+				map.setInput6(object.getProperty(Consts.GETDEVICES_INPUT6).toString());
+				map.setInput7(object.getProperty(Consts.GETDEVICES_INPUT7).toString());
+				map.setInput8(object.getProperty(Consts.GETDEVICES_INPUT8).toString());
+
 				map.setOutput1(object.getProperty(Consts.GETDEVICES_OUTPUT1).toString());
 				map.setOutput2(object.getProperty(Consts.GETDEVICES_OUTPUT2).toString());
 				map.setEnableTemperature(object.getProperty(Consts.GETDEVICES_ENABLETEMPERATURE).toString());
 				map.setEnableHumidity(object.getProperty(Consts.GETDEVICES_ENABLEHUMIDITY).toString());
 				map.setEnableInput1(object.getProperty(Consts.GETDEVICES_ENABLEINPUT1).toString());
 				map.setEnableInput2(object.getProperty(Consts.GETDEVICES_ENABLEINPUT2).toString());
+				map.setEnableInput3(object.getProperty(Consts.GETDEVICES_ENABLEINPUT3).toString());
+				map.setEnableInput4(object.getProperty(Consts.GETDEVICES_ENABLEINPUT4).toString());
+				map.setEnableInput5(object.getProperty(Consts.GETDEVICES_ENABLEINPUT5).toString());
+				map.setEnableInput6(object.getProperty(Consts.GETDEVICES_ENABLEINPUT6).toString());
+				map.setEnableInput7(object.getProperty(Consts.GETDEVICES_ENABLEINPUT7).toString());
+				map.setEnableInput8(object.getProperty(Consts.GETDEVICES_ENABLEINPUT8).toString());
+
 				map.setEnableOutput1(object.getProperty(Consts.GETDEVICES_ENABLEOUTPUT1).toString());
 				map.setEnableOutput2(object.getProperty(Consts.GETDEVICES_ENABLEOUTPUT2).toString());
 				Log.e("TIME", object.getProperty(Consts.GETDEVICES_TIMESTAMP).toString());
@@ -775,6 +789,12 @@ public class WebRequestAPI {
 				map.setDescription(object.getProperty(Consts.GETDEVICES_DESCRIPTION).toString());
 				map.setDescriptionInput1(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT1).toString());
 				map.setDescriptionInput2(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT2).toString());
+				map.setDescriptionInput3(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT3).toString());
+				map.setDescriptionInput4(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT4).toString());
+				map.setDescriptionInput5(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT5).toString());
+				map.setDescriptionInput6(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT6).toString());
+				map.setDescriptionInput7(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT7).toString());
+				map.setDescriptionInput8(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT8).toString());
 				map.setDescriptionOutput1(object.getProperty(Consts.GETDEVICES_DESCRIPTIONOUTPUT1).toString());
 				map.setDescriptionOutput2(object.getProperty(Consts.GETDEVICES_DESCRIPTIONOUTPUT2).toString());
 				map.setTemperatureHi(object.getProperty(Consts.GETDEVICES_TEMPERATUREHI).toString());
@@ -783,6 +803,12 @@ public class WebRequestAPI {
 				map.setHumidityLo(object.getProperty(Consts.GETDEVICES_HUMIDITYLO).toString());
 				map.setReverseLogicInput1(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT1).toString());
 				map.setReverseLogicInput2(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT2).toString());
+				map.setReverseLogicInput3(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT3).toString());
+				map.setReverseLogicInput4(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT4).toString());
+				map.setReverseLogicInput5(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT5).toString());
+				map.setReverseLogicInput6(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT6).toString());
+				map.setReverseLogicInput7(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT7).toString());
+				map.setReverseLogicInput8(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT8).toString());
 				map.setReverseLogicOutput1(object.getProperty(Consts.GETDEVICES_REVERSELOGICOUTPUT1).toString());
 				map.setReverseLogicOutput2(object.getProperty(Consts.GETDEVICES_REVERSELOGICOUTPUT2).toString());
 				map.setHumidityState(object.getProperty(Consts.GETDEVICES_HUMIDITYSTATE).toString());
@@ -824,42 +850,69 @@ public class WebRequestAPI {
 		try {
 			ht.call(Consts.NOISELYNX_API_GETDEVICE_SOAP_ACTION, envelope);
 			System.err.println(ht.responseDump);
-			SoapObject result = (SoapObject) envelope.getResponse();
-			map.setVersion(result.getProperty(Consts.GETDEVICES_VERSION).toString());
-			map.setDeviceID(result.getProperty(Consts.GETDEVICES_DEVICEID).toString());
-			map.setTemperature(result.getProperty(Consts.GETDEVICES_TEMPERATURE).toString());
-			map.setHumidity(result.getProperty(Consts.GETDEVICES_HUMIDITY).toString());
-			map.setVoltage(result.getProperty(Consts.GETDEVICES_VOLTAGE).toString());
-			map.setInput1(result.getProperty(Consts.GETDEVICES_INPUT1).toString());
-			map.setInput2(result.getProperty(Consts.GETDEVICES_INPUT2).toString());
-			map.setOutput1(result.getProperty(Consts.GETDEVICES_OUTPUT1).toString());
-			map.setOutput2(result.getProperty(Consts.GETDEVICES_OUTPUT2).toString());
-			map.setEnableTemperature(result.getProperty(Consts.GETDEVICES_ENABLETEMPERATURE).toString());
-			map.setEnableHumidity(result.getProperty(Consts.GETDEVICES_ENABLEHUMIDITY).toString());
-			map.setEnableInput1(result.getProperty(Consts.GETDEVICES_ENABLEINPUT1).toString());
-			map.setEnableInput2(result.getProperty(Consts.GETDEVICES_ENABLEINPUT2).toString());
-			map.setEnableOutput1(result.getProperty(Consts.GETDEVICES_ENABLEOUTPUT1).toString());
-			map.setEnableOutput2(result.getProperty(Consts.GETDEVICES_ENABLEOUTPUT2).toString());
-			Log.e("TIME", result.getProperty(Consts.GETDEVICES_TIMESTAMP).toString());
-			map.setTimestamp(result.getProperty(Consts.GETDEVICES_TIMESTAMP).toString());
-			map.setDescription(result.getProperty(Consts.GETDEVICES_DESCRIPTION).toString());
-			map.setDescriptionInput1(result.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT1).toString());
-			map.setDescriptionInput2(result.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT2).toString());
-			map.setDescriptionOutput1(result.getProperty(Consts.GETDEVICES_DESCRIPTIONOUTPUT1).toString());
-			map.setDescriptionOutput2(result.getProperty(Consts.GETDEVICES_DESCRIPTIONOUTPUT2).toString());
-			map.setTemperatureHi(result.getProperty(Consts.GETDEVICES_TEMPERATUREHI).toString());
-			map.setTemperatureLo(result.getProperty(Consts.GETDEVICES_TEMPERATURELO).toString());
-			map.setHumidityHi(result.getProperty(Consts.GETDEVICES_HUMIDITYHI).toString());
-			map.setHumidityLo(result.getProperty(Consts.GETDEVICES_HUMIDITYLO).toString());
-			map.setReverseLogicInput1(result.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT1).toString());
-			map.setReverseLogicInput2(result.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT2).toString());
-			map.setReverseLogicOutput1(result.getProperty(Consts.GETDEVICES_REVERSELOGICOUTPUT1).toString());
-			map.setReverseLogicOutput2(result.getProperty(Consts.GETDEVICES_REVERSELOGICOUTPUT2).toString());
-			map.setHumidityState(result.getProperty(Consts.GETDEVICES_HUMIDITYSTATE).toString());
-			map.setTemperatureState(result.getProperty(Consts.GETDEVICES_TEMPERATURESTATE).toString());
-			map.setLatitude(result.getProperty(Consts.GETDEVICES_LATITUDE).toString());
-			map.setLongitude(result.getProperty(Consts.GETDEVICES_LONGITUDE).toString());
-			map.setRole(result.getProperty(Consts.ROLE).toString());
+			SoapObject object = (SoapObject) envelope.getResponse();
+			map.setVersion(object.getProperty(Consts.GETDEVICES_VERSION).toString());
+			map.setDeviceID(object.getProperty(Consts.GETDEVICES_DEVICEID).toString());
+			map.setTemperature(object.getProperty(Consts.GETDEVICES_TEMPERATURE).toString());
+			map.setHumidity(object.getProperty(Consts.GETDEVICES_HUMIDITY).toString());
+			map.setVoltage(object.getProperty(Consts.GETDEVICES_VOLTAGE).toString());
+			map.setInput1(object.getProperty(Consts.GETDEVICES_INPUT1).toString());
+			map.setInput2(object.getProperty(Consts.GETDEVICES_INPUT2).toString());
+			map.setInput3(object.getProperty(Consts.GETDEVICES_INPUT3).toString());
+			map.setInput4(object.getProperty(Consts.GETDEVICES_INPUT4).toString());
+			map.setInput5(object.getProperty(Consts.GETDEVICES_INPUT5).toString());
+			map.setInput6(object.getProperty(Consts.GETDEVICES_INPUT6).toString());
+			map.setInput7(object.getProperty(Consts.GETDEVICES_INPUT7).toString());
+			map.setInput8(object.getProperty(Consts.GETDEVICES_INPUT8).toString());
+
+			map.setOutput1(object.getProperty(Consts.GETDEVICES_OUTPUT1).toString());
+			map.setOutput2(object.getProperty(Consts.GETDEVICES_OUTPUT2).toString());
+			map.setEnableTemperature(object.getProperty(Consts.GETDEVICES_ENABLETEMPERATURE).toString());
+			map.setEnableHumidity(object.getProperty(Consts.GETDEVICES_ENABLEHUMIDITY).toString());
+			map.setEnableInput1(object.getProperty(Consts.GETDEVICES_ENABLEINPUT1).toString());
+			map.setEnableInput2(object.getProperty(Consts.GETDEVICES_ENABLEINPUT2).toString());
+			map.setEnableInput3(object.getProperty(Consts.GETDEVICES_ENABLEINPUT3).toString());
+			map.setEnableInput4(object.getProperty(Consts.GETDEVICES_ENABLEINPUT4).toString());
+			map.setEnableInput5(object.getProperty(Consts.GETDEVICES_ENABLEINPUT5).toString());
+			map.setEnableInput6(object.getProperty(Consts.GETDEVICES_ENABLEINPUT6).toString());
+			map.setEnableInput7(object.getProperty(Consts.GETDEVICES_ENABLEINPUT7).toString());
+			map.setEnableInput8(object.getProperty(Consts.GETDEVICES_ENABLEINPUT8).toString());
+
+			map.setEnableOutput1(object.getProperty(Consts.GETDEVICES_ENABLEOUTPUT1).toString());
+			map.setEnableOutput2(object.getProperty(Consts.GETDEVICES_ENABLEOUTPUT2).toString());
+			Log.e("TIME", object.getProperty(Consts.GETDEVICES_TIMESTAMP).toString());
+			map.setTimestamp(object.getProperty(Consts.GETDEVICES_TIMESTAMP).toString());
+
+			map.setDescription(object.getProperty(Consts.GETDEVICES_DESCRIPTION).toString());
+			map.setDescriptionInput1(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT1).toString());
+			map.setDescriptionInput2(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT2).toString());
+			map.setDescriptionInput3(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT3).toString());
+			map.setDescriptionInput4(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT4).toString());
+			map.setDescriptionInput5(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT5).toString());
+			map.setDescriptionInput6(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT6).toString());
+			map.setDescriptionInput7(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT7).toString());
+			map.setDescriptionInput8(object.getProperty(Consts.GETDEVICES_DESCRIPTIONINPUT8).toString());
+			map.setDescriptionOutput1(object.getProperty(Consts.GETDEVICES_DESCRIPTIONOUTPUT1).toString());
+			map.setDescriptionOutput2(object.getProperty(Consts.GETDEVICES_DESCRIPTIONOUTPUT2).toString());
+			map.setTemperatureHi(object.getProperty(Consts.GETDEVICES_TEMPERATUREHI).toString());
+			map.setTemperatureLo(object.getProperty(Consts.GETDEVICES_TEMPERATURELO).toString());
+			map.setHumidityHi(object.getProperty(Consts.GETDEVICES_HUMIDITYHI).toString());
+			map.setHumidityLo(object.getProperty(Consts.GETDEVICES_HUMIDITYLO).toString());
+			map.setReverseLogicInput1(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT1).toString());
+			map.setReverseLogicInput2(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT2).toString());
+			map.setReverseLogicInput3(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT3).toString());
+			map.setReverseLogicInput4(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT4).toString());
+			map.setReverseLogicInput5(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT5).toString());
+			map.setReverseLogicInput6(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT6).toString());
+			map.setReverseLogicInput7(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT7).toString());
+			map.setReverseLogicInput8(object.getProperty(Consts.GETDEVICES_REVERSELOGICINPUT8).toString());
+			map.setReverseLogicOutput1(object.getProperty(Consts.GETDEVICES_REVERSELOGICOUTPUT1).toString());
+			map.setReverseLogicOutput2(object.getProperty(Consts.GETDEVICES_REVERSELOGICOUTPUT2).toString());
+			map.setHumidityState(object.getProperty(Consts.GETDEVICES_HUMIDITYSTATE).toString());
+			map.setTemperatureState(object.getProperty(Consts.GETDEVICES_TEMPERATURESTATE).toString());
+			map.setLatitude(object.getProperty(Consts.GETDEVICES_LATITUDE).toString());
+			map.setLongitude(object.getProperty(Consts.GETDEVICES_LONGITUDE).toString());
+			map.setRole(object.getProperty(Consts.ROLE).toString());
 		} catch (SocketTimeoutException e) {
 			e.printStackTrace();
 			// Toast.makeText(context, "Timed out. Please try again", Toast.LENGTH_SHORT).show();
@@ -916,13 +969,20 @@ public class WebRequestAPI {
 		}
 	}
 
-	public String UpdateDescriptions(String deviceId, String description, String input1, String input2, String output1, String output2) {
+	public String UpdateDescriptions(String deviceId, String description, String input1, String input2, String input3, String input4, String input5, String input6, String input7, String input8,
+			String output1, String output2) {
 		SoapObject rpc = new SoapObject(Consts.NAMESPACE, Consts.NOISELYNX_API_UPDATEDESCRIPTIONS_METHOD_NAME);
 		rpc.addProperty("UDID", new Utils(context).getDeviceUniqueId());
 		rpc.addProperty("deviceID", deviceId);
 		rpc.addProperty("description", description);
 		rpc.addProperty("descriptionInput1", input1);
 		rpc.addProperty("descriptionInput2", input2);
+		rpc.addProperty("descriptionInput3", input3);
+		rpc.addProperty("descriptionInput4", input4);
+		rpc.addProperty("descriptionInput5", input5);
+		rpc.addProperty("descriptionInput6", input6);
+		rpc.addProperty("descriptionInput7", input7);
+		rpc.addProperty("descriptionInput8", input8);
 		rpc.addProperty("descriptionOutput1", output1);
 		rpc.addProperty("descriptionOutput2", output2);
 

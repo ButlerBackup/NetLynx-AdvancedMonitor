@@ -19,19 +19,19 @@ public final class R {
 		public static final int pb_textProgress = 0x7f01009a;
 	}
 	public static final class color {
-		public static final int blue_normal = 0x7f09001a;
-		public static final int blue_pressed = 0x7f090019;
-		public static final int green_complete = 0x7f09001b;
-		public static final int holo_blue_bright = 0x7f09001e;
-		public static final int holo_green_light = 0x7f09001f;
-		public static final int holo_orange_light = 0x7f090020;
-		public static final int holo_red_light = 0x7f090021;
-		public static final int purple_progress = 0x7f09001c;
-		public static final int red_error = 0x7f09001d;
+		public static final int blue_normal = 0x7f08001a;
+		public static final int blue_pressed = 0x7f080019;
+		public static final int green_complete = 0x7f08001b;
+		public static final int holo_blue_bright = 0x7f08001e;
+		public static final int holo_green_light = 0x7f08001f;
+		public static final int holo_orange_light = 0x7f080020;
+		public static final int holo_red_light = 0x7f080021;
+		public static final int purple_progress = 0x7f08001c;
+		public static final int red_error = 0x7f08001d;
 	}
 	public static final class dimen {
-		public static final int corner_radius = 0x7f0a0023;
-		public static final int layer_padding = 0x7f0a0024;
+		public static final int corner_radius = 0x7f090023;
+		public static final int layer_padding = 0x7f090024;
 	}
 	public static final class drawable {
 		public static final int rect_complete = 0x7f0200a9;

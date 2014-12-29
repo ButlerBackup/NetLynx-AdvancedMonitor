@@ -18,6 +18,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,13 +58,14 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	DynamicBox box;
 	TextView tvDeviceId, tvDeviceDescription, tvDeviceTemperature, tvDeviceHumidity, tvDeviceVoltage, tvDeviceTimestamp, tvInputOneDescription, tvInputTwoDescription, tvOutputOneDescription,
 			tvOutputTwoDescription, tvPastHistoryTime, tvPastHistoryTemperature, tvPastHistoryHumidity;
-	ImageView ivInputOne, ivInputTwo, ivTemperature, ivHumidity, ivVoltage;
+	ImageView ivInputOne, ivInputTwo, ivTemperature, ivHumidity, ivVoltage, ivInputThree, ivInputFour, ivInputFive, ivInputSix, ivInputSeven, ivInputEight;
 	Switch sOutputOne, sOutputTwo;
-	boolean isProcessing = false, loadedBefore = false, isUserRefresh = false;
+	boolean isProcessing = false, loadedBefore = false, isUserRefresh = false, stopTask = false;;
 	deleteDevice mDeleteDevice;
 	private LineChart[] mCharts = new LineChart[4];
 	SharedPreferences prefs;
 	loadGraphData mGraphTask;
+	Thread refreshWholeThing;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,13 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 
 		ivInputOne = (ImageView) findViewById(R.id.ivInputOne);
 		ivInputTwo = (ImageView) findViewById(R.id.ivInputTwo);
+		ivInputThree = (ImageView) findViewById(R.id.ivInputThree);
+		ivInputFour = (ImageView) findViewById(R.id.ivInputFour);
+		ivInputFive = (ImageView) findViewById(R.id.ivInputFive);
+		ivInputSix = (ImageView) findViewById(R.id.ivInputSix);
+		ivInputSeven = (ImageView) findViewById(R.id.ivInputSeven);
+		ivInputEight = (ImageView) findViewById(R.id.ivInputEight);
+
 		ivTemperature = (ImageView) findViewById(R.id.imageView1);
 		ivHumidity = (ImageView) findViewById(R.id.imageView2);
 		ivVoltage = (ImageView) findViewById(R.id.imageView3);
@@ -494,7 +503,9 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		mGraphTask = null;
 		mGraphTask = new loadGraphData();
 		mGraphTask.execute();
-		processData();
+		if (new Utils(IndividualDeviceActivity.this).getIndividualDeviceAutoRefresh()) {
+			processData();
+		}
 	}
 
 	private void setData() {
@@ -529,6 +540,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#4CAF50'>" + device.getVoltage() + " V" + "</b></font>"));
 
 		if (device.getEnableInput1().equals("1")) {
+			ivInputOne.setVisibility(View.VISIBLE);
 			if (device.getInput1().equals("1")) {
 				ivInputOne.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
 			} else {
@@ -540,6 +552,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		}
 
 		if (device.getEnableInput2().equals("1")) {
+			ivInputTwo.setVisibility(View.VISIBLE);
 			if (device.getInput2().equals("1")) {
 				ivInputTwo.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
 			} else {
@@ -548,6 +561,66 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		} else {
 			tvInputTwoDescription.setVisibility(View.INVISIBLE);
 			ivInputTwo.setVisibility(View.INVISIBLE);
+		}
+		if (device.getEnableInput3().equals("1")) {
+			ivInputThree.setVisibility(View.VISIBLE);
+			if (device.getInput3().equals("1")) {
+				ivInputThree.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputThree.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			ivInputThree.setVisibility(View.INVISIBLE);
+		}
+		if (device.getEnableInput4().equals("1")) {
+			ivInputFour.setVisibility(View.VISIBLE);
+			if (device.getInput4().equals("1")) {
+				ivInputFour.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputFour.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			ivInputFour.setVisibility(View.INVISIBLE);
+		}
+		if (device.getEnableInput5().equals("1")) {
+			ivInputFive.setVisibility(View.VISIBLE);
+			if (device.getInput5().equals("1")) {
+				ivInputFive.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputFive.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			ivInputFive.setVisibility(View.INVISIBLE);
+		}
+		if (device.getEnableInput6().equals("1")) {
+			ivInputSix.setVisibility(View.VISIBLE);
+			if (device.getInput6().equals("1")) {
+				ivInputSix.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputSix.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			ivInputSix.setVisibility(View.INVISIBLE);
+		}
+		if (device.getEnableInput7().equals("1")) {
+			ivInputSeven.setVisibility(View.VISIBLE);
+			if (device.getInput7().equals("1")) {
+				ivInputSeven.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputSeven.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			ivInputSeven.setVisibility(View.INVISIBLE);
+		}
+		if (device.getEnableInput8().equals("1")) {
+			ivInputEight.setVisibility(View.VISIBLE);
+			if (device.getInput8().equals("1")) {
+				ivInputEight.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputEight.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			ivInputEight.setVisibility(View.INVISIBLE);
 		}
 
 		if (device.getEnableOutput1().equals("1")) {
@@ -683,18 +756,82 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			tvDeviceVoltage.setEnabled(false);
 			ivVoltage.setEnabled(false);
 		}
-		if (!device.getEnableOutput1().equals("1") && !device.getEnableInput1().equals("1")) {
+		if (!device.getEnableOutput1().equals("1") && !device.getEnableInput1().equals("1") && !device.getEnableInput2().equals("1") && !device.getEnableInput3().equals("1")
+				&& !device.getEnableInput4().equals("1")) {
 			tvInputOneDescription.setVisibility(View.GONE);
 			ivInputOne.setVisibility(View.GONE);
-			tvOutputOneDescription.setVisibility(View.GONE);
-			tvOutputOneDescription.setVisibility(View.GONE);
-		}
-		if (!device.getEnableOutput2().equals("1") && !device.getEnableInput2().equals("1")) {
-			tvInputTwoDescription.setVisibility(View.GONE);
 			ivInputTwo.setVisibility(View.GONE);
-			tvOutputTwoDescription.setVisibility(View.GONE);
-			tvOutputTwoDescription.setVisibility(View.GONE);
+			ivInputThree.setVisibility(View.GONE);
+			ivInputFour.setVisibility(View.GONE);
+			tvOutputOneDescription.setVisibility(View.GONE);
+			sOutputOne.setVisibility(View.GONE);
 		}
+		if (!device.getEnableOutput2().equals("1") && !device.getEnableInput5().equals("1") && !device.getEnableInput6().equals("1") && !device.getEnableInput7().equals("1")
+				&& !device.getEnableInput8().equals("1")) {
+			tvInputTwoDescription.setVisibility(View.GONE);
+			ivInputFive.setVisibility(View.GONE);
+			ivInputSix.setVisibility(View.GONE);
+			ivInputSeven.setVisibility(View.GONE);
+			ivInputEight.setVisibility(View.GONE);
+			tvOutputTwoDescription.setVisibility(View.GONE);
+			sOutputTwo.setVisibility(View.GONE);
+		}
+		ivInputOne.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showInputsDialog();
+			}
+		});
+		ivInputTwo.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showInputsDialog();
+			}
+		});
+		ivInputThree.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showInputsDialog();
+			}
+		});
+		ivInputFour.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showInputsDialog();
+			}
+		});
+		ivInputFive.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showInputsDialog();
+			}
+		});
+		ivInputSix.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showInputsDialog();
+			}
+		});
+		ivInputSeven.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showInputsDialog();
+			}
+		});
+		ivInputEight.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showInputsDialog();
+			}
+		});
 		isProcessing = false;
 		loadedBefore = true;
 		if (isUserRefresh) {
@@ -705,31 +842,31 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	}
 
 	private void processData() {
-		if (!isProcessing) {
-			Log.e("PROCESSDATA", "PROCESSDATA");
+		refreshWholeThing = new Thread(new Runnable() {
 
-			(new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					if (!Thread.interrupted())
-						try {
-							Thread.sleep(15000);
-							runOnUiThread(new Runnable() {
-								@Override
-								public void run() {
-									if (task != null) {
-										task = null;
-										task = new loadData();
-										task.execute();
-									}
+			@Override
+			public void run() {
+				if (!Thread.interrupted()) {
+					try {
+						Thread.sleep(15000);
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								if (task != null) {
+									task = null;
+									task = new loadData();
+									task.execute();
 								}
-							});
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+							}
+						});
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
-			})).start();
+			}
+		});
+		if (!isProcessing && !stopTask) {
+			refreshWholeThing.start();
 		}
 	}
 
@@ -841,7 +978,6 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		}
 		if (isUserRefresh) {
 			chart.invalidate();
-			isUserRefresh = false;
 		}
 	}
 
@@ -896,6 +1032,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 							tvPastHistoryTemperature.setText(Html.fromHtml(pastTemp));
 							tvPastHistoryHumidity.setText(Html.fromHtml(pastHumidity));
 							Log.e("Humidity", pastHumidity);
+							isUserRefresh = false;
 						} else {
 							Toast.makeText(IndividualDeviceActivity.this, "Unable to load graph", Toast.LENGTH_SHORT).show();
 						}
@@ -942,7 +1079,9 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 					if (device != null && device.getDescription() != null && device.getDescription().length() > 0) {
 						setData();
 					}
-					processData();
+					if (new Utils(IndividualDeviceActivity.this).getIndividualDeviceAutoRefresh()) {
+						processData();
+					}
 				}
 			});
 		}
@@ -994,24 +1133,46 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			finish();
 			break;
 		case R.id.menu_edit_device:
-			if (device.getRole().equals("9")) {
+			if (loadedBefore) {
+				if (device.getRole().equals("9")) {
 
-				Intent i = new Intent(IndividualDeviceActivity.this, IndividualDeviceEditDetailsActivity.class);
-				i.putExtra("deviceId", deviceId);
-				i.putExtra("deviceDescription", device.getDescription());
-				if (device.getEnableInput1().equals("1")) {
-					i.putExtra("input1", device.getDescriptionInput1());
+					Intent i = new Intent(IndividualDeviceActivity.this, IndividualDeviceEditDetailsActivity.class);
+					i.putExtra("deviceId", deviceId);
+					i.putExtra("deviceDescription", device.getDescription());
+					if (device.getEnableInput1().equals("1")) {
+						i.putExtra("input1", device.getDescriptionInput1());
+					}
+					if (device.getEnableInput2().equals("1")) {
+						i.putExtra("input2", device.getDescriptionInput2());
+					}
+					if (device.getEnableInput3().equals("1")) {
+						i.putExtra("input3", device.getDescriptionInput3());
+					}
+					if (device.getEnableInput4().equals("1")) {
+						i.putExtra("input4", device.getDescriptionInput4());
+					}
+					if (device.getEnableInput5().equals("1")) {
+						i.putExtra("input5", device.getDescriptionInput5());
+					}
+					if (device.getEnableInput6().equals("1")) {
+						i.putExtra("input6", device.getDescriptionInput6());
+					}
+					if (device.getEnableInput7().equals("1")) {
+						i.putExtra("input7", device.getDescriptionInput7());
+					}
+					if (device.getEnableInput8().equals("1")) {
+						i.putExtra("input8", device.getDescriptionInput8());
+					}
+					if (device.getEnableOutput1().equals("1")) {
+						i.putExtra("output1", device.getDescriptionOutput1());
+					}
+					if (device.getEnableOutput2().equals("1")) {
+						i.putExtra("output2", device.getDescriptionOutput2());
+					}
+					startActivity(i);
+				} else {
+					Toast.makeText(IndividualDeviceActivity.this, "Please hold.. data is still loading..", Toast.LENGTH_LONG).show();
 				}
-				if (device.getEnableInput2().equals("1")) {
-					i.putExtra("input2", device.getDescriptionInput2());
-				}
-				if (device.getEnableOutput1().equals("1")) {
-					i.putExtra("output1", device.getDescriptionOutput1());
-				}
-				if (device.getEnableOutput2().equals("1")) {
-					i.putExtra("output2", device.getDescriptionOutput2());
-				}
-				startActivity(i);
 			} else {
 				Toast.makeText(IndividualDeviceActivity.this, "You are not an Admin", Toast.LENGTH_SHORT).show();
 			}
@@ -1104,6 +1265,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		stopTask = false;
 	}
 
 	@Override
@@ -1118,6 +1280,125 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			mGraphTask.cancel(true);
 			mGraphTask = null;
 		}
+		stopTask = true;
+		refreshWholeThing.interrupt();
 	}
 
+	private void showInputsDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(IndividualDeviceActivity.this);
+		builder.setTitle("Inputs");
+		LayoutInflater inflater = getLayoutInflater();
+		View dialoglayout = inflater.inflate(R.layout.activity_individual_device_inputs_dialog, null);
+		TextView tvInputOneDescriptions, tvInputTwoDescriptions, tvInputThreeDescriptions, tvInputFourDescriptions, tvInputFiveDescriptions, tvInputSixDescriptions, tvInputSevenDescriptions, tvInputEightDescriptions;
+		ImageView ivInputOnes, ivInputTwos, ivInputThrees, ivInputFours, ivInputFives, ivInputSixs, ivInputSevens, ivInputEights;
+		tvInputOneDescriptions = (TextView) dialoglayout.findViewById(R.id.tvInputOneDescription);
+		tvInputTwoDescriptions = (TextView) dialoglayout.findViewById(R.id.tvInputTwoDescription);
+		tvInputThreeDescriptions = (TextView) dialoglayout.findViewById(R.id.tvInputThreeDescription);
+		tvInputFourDescriptions = (TextView) dialoglayout.findViewById(R.id.tvInputFourDescription);
+		tvInputFiveDescriptions = (TextView) dialoglayout.findViewById(R.id.tvInputFiveDescription);
+		tvInputSixDescriptions = (TextView) dialoglayout.findViewById(R.id.tvInputSixDescription);
+		tvInputSevenDescriptions = (TextView) dialoglayout.findViewById(R.id.tvInputSevenDescription);
+		tvInputEightDescriptions = (TextView) dialoglayout.findViewById(R.id.tvInputEightDescription);
+
+		ivInputOnes = (ImageView) dialoglayout.findViewById(R.id.ivInputOne);
+		ivInputTwos = (ImageView) dialoglayout.findViewById(R.id.ivInputTwo);
+		ivInputThrees = (ImageView) dialoglayout.findViewById(R.id.ivInputThree);
+		ivInputFours = (ImageView) dialoglayout.findViewById(R.id.ivInputFour);
+		ivInputFives = (ImageView) dialoglayout.findViewById(R.id.ivInputFive);
+		ivInputSixs = (ImageView) dialoglayout.findViewById(R.id.ivInputSix);
+		ivInputSevens = (ImageView) dialoglayout.findViewById(R.id.ivInputSeven);
+		ivInputEights = (ImageView) dialoglayout.findViewById(R.id.ivInputEight);
+
+		if (device.getEnableInput1().equals("1")) {
+			tvInputOneDescriptions.setText(device.getDescriptionInput1());
+			if (device.getInput1().equals("1")) {
+				ivInputOnes.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputOnes.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			tvInputOneDescriptions.setVisibility(View.GONE);
+			ivInputOnes.setVisibility(View.GONE);
+		}
+
+		if (device.getEnableInput2().equals("1")) {
+			tvInputTwoDescriptions.setText(device.getDescriptionInput2());
+			if (device.getInput2().equals("1")) {
+				ivInputTwos.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputTwos.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			tvInputTwoDescriptions.setVisibility(View.GONE);
+			ivInputTwos.setVisibility(View.GONE);
+		}
+		if (device.getEnableInput3().equals("1")) {
+			tvInputThreeDescriptions.setText(device.getDescriptionInput3());
+			if (device.getInput3().equals("1")) {
+				ivInputThrees.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputThrees.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			tvInputThreeDescriptions.setVisibility(View.GONE);
+			ivInputThrees.setVisibility(View.GONE);
+		}
+		if (device.getEnableInput4().equals("1")) {
+			tvInputFourDescriptions.setText(device.getDescriptionInput4());
+			if (device.getInput4().equals("1")) {
+				ivInputFours.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputFours.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			tvInputFourDescriptions.setVisibility(View.GONE);
+			ivInputFours.setVisibility(View.GONE);
+		}
+		if (device.getEnableInput5().equals("1")) {
+			tvInputFiveDescriptions.setText(device.getDescriptionInput5());
+			if (device.getInput5().equals("1")) {
+				ivInputFives.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputFives.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			tvInputFiveDescriptions.setVisibility(View.GONE);
+			ivInputFives.setVisibility(View.GONE);
+		}
+		if (device.getEnableInput6().equals("1")) {
+			tvInputSixDescriptions.setText(device.getDescriptionInput6());
+			if (device.getInput6().equals("1")) {
+				ivInputSixs.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputSixs.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			tvInputSixDescriptions.setVisibility(View.GONE);
+			ivInputSix.setVisibility(View.GONE);
+		}
+		if (device.getEnableInput7().equals("1")) {
+			tvInputSevenDescriptions.setText(device.getDescriptionInput7());
+			if (device.getInput7().equals("1")) {
+				ivInputSevens.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputSevens.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			tvInputSevenDescriptions.setVisibility(View.GONE);
+			ivInputSevens.setVisibility(View.GONE);
+		}
+		if (device.getEnableInput8().equals("1")) {
+			tvInputEightDescriptions.setText(device.getDescriptionInput8());
+			if (device.getInput8().equals("1")) {
+				ivInputEights.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				ivInputEights.setImageDrawable(IndividualDeviceActivity.this.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			tvInputEightDescriptions.setVisibility(View.GONE);
+			ivInputEights.setVisibility(View.GONE);
+		}
+		builder.setView(dialoglayout);
+		builder.show();
+	}
 }

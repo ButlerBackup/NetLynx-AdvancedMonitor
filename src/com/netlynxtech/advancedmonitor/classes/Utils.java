@@ -48,6 +48,16 @@ public class Utils {
 		this.context = con;
 	}
 
+	public boolean getIndividualDeviceAutoRefresh() {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getBoolean("pref_main_autorefresh_individual", true);
+	}
+
+	public boolean getMainListAutoRefresh() {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getBoolean("pref_main_autorefresh", true);
+	}
+
 	public String getGraphMaximumThreshold() {
 		SecurePreferences sp = new SecurePreferences(context);
 		return sp.getString("pref_cp_graph_threshold_max", "#FF0000");

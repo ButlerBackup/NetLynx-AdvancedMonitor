@@ -31,6 +31,12 @@
     <string name="edit_device_description">Device Description</string>
     <string name="edit_device_input1_description">Input1\'s Description</string>
     <string name="edit_device_input2_description">Input2\'s Description</string>
+    <string name="edit_device_input3_description">Input3\'s Description</string>
+    <string name="edit_device_input4_description">Input4\'s Description</string>
+    <string name="edit_device_input5_description">Input5\'s Description</string>
+    <string name="edit_device_input6_description">Input6\'s Description</string>
+    <string name="edit_device_input7_description">Input7\'s Description</string>
+    <string name="edit_device_input8_description">Input8\'s Description</string>
     <string name="edit_device_output1_description">Output1\'s Description</string>
     <string name="edit_device_output2_description">Output2\'s Description</string>
     <string name="check_pin_name">PIN Check</string>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/ivInputOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_greendot" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/tvInputOneDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivInputOne"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ivInputOne"
+        android:gravity="center_vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/tvInputTwoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivInputTwo"
+        android:layout_alignTop="@+id/ivInputTwo"
+        android:layout_toRightOf="@+id/ivInputTwo"
+        android:gravity="center_vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <ImageView
+        android:id="@+id/ivInputThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivInputTwo"
+        android:layout_toLeftOf="@+id/tvInputTwo"
+        android:src="@drawable/ic_greendot" />
+
+    <ImageView
+        android:id="@+id/ivInputFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivInputThree"
+        android:layout_toLeftOf="@+id/tvInputTwo"
+        android:src="@drawable/ic_greendot" />
+
+    <ImageView
+        android:id="@+id/ivInputFive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivInputFour"
+        android:layout_toLeftOf="@+id/tvInputTwo"
+        android:src="@drawable/ic_greendot" />
+
+    <ImageView
+        android:id="@+id/ivInputSix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivInputFive"
+        android:layout_toLeftOf="@+id/tvInputTwo"
+        android:src="@drawable/ic_greendot" />
+
+    <ImageView
+        android:id="@+id/ivInputSeven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivInputSix"
+        android:layout_toLeftOf="@+id/tvInputTwo"
+        android:src="@drawable/ic_greendot" />
+
+    <ImageView
+        android:id="@+id/ivInputEight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivInputSeven"
+        android:layout_toLeftOf="@+id/tvInputTwo"
+        android:src="@drawable/ic_greendot" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/tvInputFourDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ivInputFive"
+        android:layout_alignTop="@+id/ivInputFour"
+        android:layout_toRightOf="@+id/ivInputFour"
+        android:gravity="center_vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/tvInputFiveDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ivInputSix"
+        android:layout_alignTop="@+id/ivInputFive"
+        android:layout_toRightOf="@+id/ivInputFive"
+        android:gravity="center_vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/tvInputSixDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ivInputSeven"
+        android:layout_alignTop="@+id/ivInputSix"
+        android:layout_toRightOf="@+id/ivInputSix"
+        android:gravity="center_vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/tvInputSevenDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ivInputEight"
+        android:layout_alignTop="@+id/ivInputSeven"
+        android:layout_toRightOf="@+id/ivInputSeven"
+        android:gravity="center_vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/tvInputEightDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivInputEight"
+        android:layout_alignLeft="@+id/tvInputSevenDescription"
+        android:layout_alignTop="@+id/ivInputEight"
+        android:gravity="center_vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/tvInputThreeDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ivInputFour"
+        android:layout_alignTop="@+id/ivInputThree"
+        android:layout_toRightOf="@+id/ivInputThree"
+        android:gravity="center_vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <ImageView
+        android:id="@+id/ivInputTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvInputOneDescription"
+        android:src="@drawable/ic_greendot" />
+
+</RelativeLayout>

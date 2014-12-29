@@ -43,6 +43,14 @@
             android:key="pref_force_sound"
             android:summary="@string/pref_force_sound_summary"
             android:title="@string/pref_force_sound_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_main_autorefresh"
+            android:title="Auto refresh devices list" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_main_autorefresh_individual"
+            android:title="Auto refresh individual device" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Graph&apos;s Settings" >
         <ListPreference

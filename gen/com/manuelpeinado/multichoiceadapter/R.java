@@ -13,14 +13,14 @@ public final class R {
 		public static final int multiChoiceAdapterStyle = 0x7f010001;
 	}
 	public static final class color {
-		public static final int mca__holo_blue_light = 0x7f090000;
-		public static final int mca__holo_blue_light_transparent = 0x7f090001;
-		public static final int mca__list_item_bg_checked = 0x7f090003;
-		public static final int mca__list_item_bg_normal = 0x7f090002;
-		public static final int mca__list_item_bg_pressed = 0x7f090004;
+		public static final int mca__holo_blue_light = 0x7f080000;
+		public static final int mca__holo_blue_light_transparent = 0x7f080001;
+		public static final int mca__list_item_bg_checked = 0x7f080003;
+		public static final int mca__list_item_bg_normal = 0x7f080002;
+		public static final int mca__list_item_bg_pressed = 0x7f080004;
 	}
 	public static final class dimen {
-		public static final int mca__listPreferredItemPaddingLeft = 0x7f0a0000;
+		public static final int mca__listPreferredItemPaddingLeft = 0x7f090000;
 	}
 	public static final class drawable {
 		public static final int mca__gallery_selector = 0x7f02009e;
@@ -28,19 +28,19 @@ public final class R {
 		public static final int mca__list_item_selector = 0x7f0200a0;
 	}
 	public static final class id {
-		public static final int openItem = 0x7f080001;
-		public static final int selectItem = 0x7f080000;
+		public static final int openItem = 0x7f0d0006;
+		public static final int selectItem = 0x7f0d0007;
 	}
 	public static final class layout {
-		public static final int mca__simple_list_item_checkable_1 = 0x7f030031;
-		public static final int mca__simple_list_item_checkable_2 = 0x7f030032;
+		public static final int mca__simple_list_item_checkable_1 = 0x7f030032;
+		public static final int mca__simple_list_item_checkable_2 = 0x7f030033;
 	}
 	public static final class plurals {
-		public static final int selected_items = 0x7f0b0000;
+		public static final int selected_items = 0x7f0a0000;
 	}
 	public static final class style {
-		public static final int MultiChoiceAdapter_DefaultCheckableImageViewStyle = 0x7f0c0001;
-		public static final int MultiChoiceAdapter_DefaultSelectedItemStyle = 0x7f0c0000;
+		public static final int MultiChoiceAdapter_DefaultCheckableImageViewStyle = 0x7f0b0001;
+		public static final int MultiChoiceAdapter_DefaultSelectedItemStyle = 0x7f0b0000;
 	}
 	public static final class styleable {
 		public static final int[] CheckableImageView = { 0x01010109 };

@@ -6,6 +6,7 @@ import mehdi.sakout.dynamicbox.DynamicBox;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.manuelpeinado.refreshactionitem.RefreshActionItem;
 import com.manuelpeinado.refreshactionitem.RefreshActionItem.RefreshActionListener;
 import com.netlynxtech.advancedmonitor.adapters.DevicesAdapter;
 import com.netlynxtech.advancedmonitor.classes.Device;
+import com.netlynxtech.advancedmonitor.classes.Utils;
 import com.netlynxtech.advancedmonitor.classes.WebRequestAPI;
 import com.securepreferences.SecurePreferences;
 
@@ -192,9 +194,9 @@ public class DeviceListActivity extends ActionBarActivity {
 							adapter = new DevicesAdapter(DeviceListActivity.this, devices);
 							lvDevices.setAdapter(adapter);
 							// adapter = new DevicesAdapter(DeviceListActivity.this, devices);
-							index = lvDevices.getFirstVisiblePosition();
+							int index = lvDevices.getFirstVisiblePosition();
 							View v = lvDevices.getChildAt(0);
-							top = (v == null) ? 0 : v.getTop();
+							int top = (v == null) ? 0 : v.getTop();
 							Log.e("Cancelled", "Not cancelled");
 							box.hideAll();
 							lvDevices.setSelectionFromTop(index, top);
@@ -209,7 +211,9 @@ public class DeviceListActivity extends ActionBarActivity {
 					isProcessing = false;
 					SecurePreferences sp = new SecurePreferences(DeviceListActivity.this);
 					if (!sp.getString("initial", "").equals("")) {
-						processData();
+						if (new Utils(DeviceListActivity.this).getMainListAutoRefresh()) {
+							processData();
+						}
 					}
 				}
 			});

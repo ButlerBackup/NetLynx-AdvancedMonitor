@@ -6,7 +6,201 @@ public class Device implements Serializable {
 
 	String version, deviceID, description, temperature, humidity, voltage, input1, descriptionInput1, input2, descriptionInput2, output1, descriptionOutput1, output2, descriptionOutput2, timestamp,
 			enableTemperature, enableHumidity, enableInput1, enableInput2, enableOutput1, enableOutput2, temperatureHi, temperatureLo, humidityHi, humidityLo, reverseLogicInput1, reverseLogicInput2,
-			reverseLogicOutput1, reverseLogicOutput2, temperatureState, humidityState, latitude, longitude, role;
+			reverseLogicOutput1, reverseLogicOutput2, temperatureState, humidityState, latitude, longitude, role, input3, input4, input5, input6, input7, input8, enableInput3, enableInput4,
+			enableInput5, enableInput6, enableInput7, enableInput8, descriptionInput3, descriptionInput4, descriptionInput5, descriptionInput6, descriptionInput7, descriptionInput8,
+			reverseLogicInput3, reverseLogicInput4, reverseLogicInput5, reverseLogicInput6, reverseLogicInput7, reverseLogicInput8;
+
+	public String getInput3() {
+		return input3;
+	}
+
+	public void setInput3(String input3) {
+		this.input3 = input3;
+	}
+
+	public String getInput4() {
+		return input4;
+	}
+
+	public void setInput4(String input4) {
+		this.input4 = input4;
+	}
+
+	public String getInput5() {
+		return input5;
+	}
+
+	public void setInput5(String input5) {
+		this.input5 = input5;
+	}
+
+	public String getInput6() {
+		return input6;
+	}
+
+	public void setInput6(String input6) {
+		this.input6 = input6;
+	}
+
+	public String getInput7() {
+		return input7;
+	}
+
+	public void setInput7(String input7) {
+		this.input7 = input7;
+	}
+
+	public String getInput8() {
+		return input8;
+	}
+
+	public void setInput8(String input8) {
+		this.input8 = input8;
+	}
+
+	public String getEnableInput3() {
+		return enableInput3;
+	}
+
+	public void setEnableInput3(String enableInput3) {
+		this.enableInput3 = enableInput3;
+	}
+
+	public String getEnableInput4() {
+		return enableInput4;
+	}
+
+	public void setEnableInput4(String enableInput4) {
+		this.enableInput4 = enableInput4;
+	}
+
+	public String getEnableInput5() {
+		return enableInput5;
+	}
+
+	public void setEnableInput5(String enableInput5) {
+		this.enableInput5 = enableInput5;
+	}
+
+	public String getEnableInput6() {
+		return enableInput6;
+	}
+
+	public void setEnableInput6(String enableInput6) {
+		this.enableInput6 = enableInput6;
+	}
+
+	public String getEnableInput7() {
+		return enableInput7;
+	}
+
+	public void setEnableInput7(String enableInput7) {
+		this.enableInput7 = enableInput7;
+	}
+
+	public String getEnableInput8() {
+		return enableInput8;
+	}
+
+	public void setEnableInput8(String enableInput8) {
+		this.enableInput8 = enableInput8;
+	}
+
+	public String getDescriptionInput3() {
+		return descriptionInput3;
+	}
+
+	public void setDescriptionInput3(String descriptionInput3) {
+		this.descriptionInput3 = descriptionInput3;
+	}
+
+	public String getDescriptionInput4() {
+		return descriptionInput4;
+	}
+
+	public void setDescriptionInput4(String descriptionInput4) {
+		this.descriptionInput4 = descriptionInput4;
+	}
+
+	public String getDescriptionInput5() {
+		return descriptionInput5;
+	}
+
+	public void setDescriptionInput5(String descriptionInput5) {
+		this.descriptionInput5 = descriptionInput5;
+	}
+
+	public String getDescriptionInput6() {
+		return descriptionInput6;
+	}
+
+	public void setDescriptionInput6(String descriptionInput6) {
+		this.descriptionInput6 = descriptionInput6;
+	}
+
+	public String getDescriptionInput7() {
+		return descriptionInput7;
+	}
+
+	public void setDescriptionInput7(String descriptionInput7) {
+		this.descriptionInput7 = descriptionInput7;
+	}
+
+	public String getDescriptionInput8() {
+		return descriptionInput8;
+	}
+
+	public void setDescriptionInput8(String descriptionInput8) {
+		this.descriptionInput8 = descriptionInput8;
+	}
+
+	public String getreverseLogicInput3() {
+		return reverseLogicInput3;
+	}
+
+	public void setReverseLogicInput3(String reverseLogicInput3) {
+		this.reverseLogicInput3 = reverseLogicInput3;
+	}
+
+	public String getreverseLogicInput4() {
+		return reverseLogicInput4;
+	}
+
+	public void setReverseLogicInput4(String reverseLogicInput4) {
+		this.reverseLogicInput4 = reverseLogicInput4;
+	}
+
+	public String getreverseLogicInput5() {
+		return reverseLogicInput5;
+	}
+
+	public void setReverseLogicInput5(String reverseLogicInput5) {
+		this.reverseLogicInput5 = reverseLogicInput5;
+	}
+
+	public String getreverseLogicInput6() {
+		return reverseLogicInput6;
+	}
+
+	public void setReverseLogicInput6(String reverseLogicInput6) {
+		this.reverseLogicInput6 = reverseLogicInput6;
+	}
+
+	public String getreverseLogicInput7() {
+		return reverseLogicInput7;
+	}
+
+	public void setReverseLogicInput7(String reverseLogicInput7) {
+		this.reverseLogicInput7 = reverseLogicInput7;
+	}
+
+	public String getreverseLogicInput8() {
+		return reverseLogicInput8;
+	}
+
+	public void setReverseLogicInput8(String reverseLogicInput8) {
+		this.reverseLogicInput8 = reverseLogicInput8;
+	}
 
 	public String getRole() {
 		return role;

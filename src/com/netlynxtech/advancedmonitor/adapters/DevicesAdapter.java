@@ -62,6 +62,12 @@ public class DevicesAdapter extends BaseAdapter {
 		TextView tvOutputTwoDescription;
 		ImageView ivInputOne;
 		ImageView ivInputTwo;
+		ImageView ivInputThree;
+		ImageView ivInputFour;
+		ImageView ivInputFive;
+		ImageView ivInputSix;
+		ImageView ivInputSeven;
+		ImageView ivInputEight;
 		Switch sOutputOne;
 		Switch sOutputTwo;
 	}
@@ -85,6 +91,12 @@ public class DevicesAdapter extends BaseAdapter {
 
 			holder.ivInputOne = (ImageView) convertView.findViewById(R.id.ivInputOne);
 			holder.ivInputTwo = (ImageView) convertView.findViewById(R.id.ivInputTwo);
+			holder.ivInputThree = (ImageView) convertView.findViewById(R.id.ivInputThree);
+			holder.ivInputFour = (ImageView) convertView.findViewById(R.id.ivInputFour);
+			holder.ivInputFive = (ImageView) convertView.findViewById(R.id.ivInputFive);
+			holder.ivInputSix = (ImageView) convertView.findViewById(R.id.ivInputSix);
+			holder.ivInputSeven = (ImageView) convertView.findViewById(R.id.ivInputSeven);
+			holder.ivInputEight = (ImageView) convertView.findViewById(R.id.ivInputEight);
 			holder.sOutputOne = (Switch) convertView.findViewById(R.id.sOutputOne);
 			holder.sOutputTwo = (Switch) convertView.findViewById(R.id.sOutputTwo);
 			convertView.setTag(holder);
@@ -120,6 +132,7 @@ public class DevicesAdapter extends BaseAdapter {
 		}
 		holder.tvDeviceVoltage.setText(Html.fromHtml("Voltage<br>" + "<b><font color='#4CAF50'>" + item.getVoltage() + " V" + "</b></font>"));
 		if (item.getEnableInput1().equals("1")) {
+			holder.ivInputOne.setVisibility(View.VISIBLE);
 			if (item.getInput1().equals("1")) {
 				holder.ivInputOne.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
 			} else {
@@ -131,6 +144,7 @@ public class DevicesAdapter extends BaseAdapter {
 		}
 
 		if (item.getEnableInput2().equals("1")) {
+			holder.ivInputTwo.setVisibility(View.VISIBLE);
 			if (item.getInput2().equals("1")) {
 				holder.ivInputTwo.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
 			} else {
@@ -139,6 +153,66 @@ public class DevicesAdapter extends BaseAdapter {
 		} else {
 			holder.tvInputTwoDescription.setVisibility(View.INVISIBLE);
 			holder.ivInputTwo.setVisibility(View.INVISIBLE);
+		}
+		if (item.getEnableInput3().equals("1")) {
+			holder.ivInputThree.setVisibility(View.VISIBLE);
+			if (item.getInput3().equals("1")) {
+				holder.ivInputThree.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				holder.ivInputThree.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			holder.ivInputThree.setVisibility(View.INVISIBLE);
+		}
+		if (item.getEnableInput4().equals("1")) {
+			holder.ivInputFour.setVisibility(View.VISIBLE);
+			if (item.getInput4().equals("1")) {
+				holder.ivInputFour.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				holder.ivInputFour.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			holder.ivInputFour.setVisibility(View.INVISIBLE);
+		}
+		if (item.getEnableInput5().equals("1")) {
+			holder.ivInputFive.setVisibility(View.VISIBLE);
+			if (item.getInput5().equals("1")) {
+				holder.ivInputFive.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				holder.ivInputFive.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			holder.ivInputFive.setVisibility(View.INVISIBLE);
+		}
+		if (item.getEnableInput6().equals("1")) {
+			holder.ivInputSix.setVisibility(View.VISIBLE);
+			if (item.getInput6().equals("1")) {
+				holder.ivInputSix.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				holder.ivInputSix.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			holder.ivInputSix.setVisibility(View.INVISIBLE);
+		}
+		if (item.getEnableInput7().equals("1")) {
+			holder.ivInputSeven.setVisibility(View.VISIBLE);
+			if (item.getInput7().equals("1")) {
+				holder.ivInputSeven.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				holder.ivInputSeven.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			holder.ivInputSeven.setVisibility(View.INVISIBLE);
+		}
+		if (item.getEnableInput8().equals("1")) {
+			holder.ivInputEight.setVisibility(View.VISIBLE);
+			if (item.getInput8().equals("1")) {
+				holder.ivInputEight.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_greendot));
+			} else {
+				holder.ivInputEight.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_reddot));
+			}
+		} else {
+			holder.ivInputEight.setVisibility(View.INVISIBLE);
 		}
 
 		if (item.getEnableOutput1().equals("1")) {
@@ -156,7 +230,7 @@ public class DevicesAdapter extends BaseAdapter {
 			holder.sOutputOne.setVisibility(View.INVISIBLE);
 			holder.tvOutputOneDescription.setVisibility(View.INVISIBLE);
 		}
-		
+
 		holder.sOutputOne.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -273,18 +347,28 @@ public class DevicesAdapter extends BaseAdapter {
 			holder.sOutputOne.setEnabled(false);
 			holder.sOutputTwo.setEnabled(false);
 		}
-		if (!item.getEnableOutput1().equals("1") && !item.getEnableInput1().equals("1")) {
+		if (!item.getEnableOutput1().equals("1") && !item.getEnableInput1().equals("1") && !item.getEnableInput2().equals("1") && !item.getEnableInput3().equals("1")
+				&& !item.getEnableInput4().equals("1")) {
 			holder.tvInputOneDescription.setVisibility(View.GONE);
 			holder.ivInputOne.setVisibility(View.GONE);
-			holder.tvOutputOneDescription.setVisibility(View.GONE);
-			holder.tvOutputOneDescription.setVisibility(View.GONE);
-		}
-		if (!item.getEnableOutput2().equals("1") && !item.getEnableInput2().equals("1")) {
-			holder.tvInputTwoDescription.setVisibility(View.GONE);
 			holder.ivInputTwo.setVisibility(View.GONE);
-			holder.tvOutputTwoDescription.setVisibility(View.GONE);
-			holder.tvOutputTwoDescription.setVisibility(View.GONE);
+			holder.ivInputThree.setVisibility(View.GONE);
+			holder.ivInputFour.setVisibility(View.GONE);
+			holder.tvOutputOneDescription.setVisibility(View.GONE);
+			holder.sOutputOne.setVisibility(View.GONE);
 		}
+		if (!item.getEnableOutput2().equals("1") && !item.getEnableInput5().equals("1") && !item.getEnableInput6().equals("1") && !item.getEnableInput7().equals("1")
+				&& !item.getEnableInput8().equals("1")) {
+			holder.tvInputTwoDescription.setVisibility(View.GONE);
+			holder.ivInputFive.setVisibility(View.GONE);
+			holder.ivInputSix.setVisibility(View.GONE);
+			holder.ivInputSeven.setVisibility(View.GONE);
+			holder.ivInputEight.setVisibility(View.GONE);
+			holder.tvOutputTwoDescription.setVisibility(View.GONE);
+			holder.sOutputTwo.setVisibility(View.GONE);
+		}
+		holder.sOutputOne.setEnabled(false);
+		holder.sOutputTwo.setEnabled(false);
 		return convertView;
 	}
 }
