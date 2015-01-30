@@ -71,6 +71,7 @@
     <string name="pref_timing_title">24 hour / AM PM</string>
     <string name="pref_timing_summary">Show timing in AM/PM or in 24 hour</string>
     <string name="pref_about_title">About Us</string>
+    <string name="pref_tutorial_title">View Tutorial</string>
     <string name="pref_about_summary">NetLynx Technology Pte Ltd \u00A9 (Click for more info)</string>
     <string name="pref_reset_title">Reset Settings</string>
     <string name="pref_reset_summary">WARNING : This will reset all settings and you will need to register again. Continue?</string>

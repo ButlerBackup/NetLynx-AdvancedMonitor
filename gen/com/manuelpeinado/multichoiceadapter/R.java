@@ -32,8 +32,8 @@ public final class R {
 		public static final int selectItem = 0x7f0d0007;
 	}
 	public static final class layout {
-		public static final int mca__simple_list_item_checkable_1 = 0x7f030032;
-		public static final int mca__simple_list_item_checkable_2 = 0x7f030033;
+		public static final int mca__simple_list_item_checkable_1 = 0x7f030033;
+		public static final int mca__simple_list_item_checkable_2 = 0x7f030034;
 	}
 	public static final class plurals {
 		public static final int selected_items = 0x7f0a0000;

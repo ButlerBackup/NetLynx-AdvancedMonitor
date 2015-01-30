@@ -25,18 +25,18 @@ public final class R {
 		public static final int include_exception_button_icon = 0x7f02009a;
 	}
 	public static final class id {
-		public static final int RelativeLayout1 = 0x7f0d00d6;
-		public static final int RelativeLayout2 = 0x7f0d00d7;
-		public static final int exception_Wrapper = 0x7f0d00d8;
-		public static final int exception_button = 0x7f0d00db;
-		public static final int exception_message = 0x7f0d00da;
-		public static final int exception_progressbar = 0x7f0d00dc;
-		public static final int exception_title = 0x7f0d00d9;
+		public static final int RelativeLayout1 = 0x7f0d00d8;
+		public static final int RelativeLayout2 = 0x7f0d00d9;
+		public static final int exception_Wrapper = 0x7f0d00da;
+		public static final int exception_button = 0x7f0d00dd;
+		public static final int exception_message = 0x7f0d00dc;
+		public static final int exception_progressbar = 0x7f0d00de;
+		public static final int exception_title = 0x7f0d00db;
 	}
 	public static final class layout {
-		public static final int exception_failure = 0x7f03002f;
-		public static final int exception_loading_content = 0x7f030030;
-		public static final int exception_no_internet = 0x7f030031;
+		public static final int exception_failure = 0x7f030030;
+		public static final int exception_loading_content = 0x7f030031;
+		public static final int exception_no_internet = 0x7f030032;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f070001;

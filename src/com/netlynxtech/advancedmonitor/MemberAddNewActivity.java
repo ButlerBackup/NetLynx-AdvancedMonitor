@@ -39,7 +39,11 @@ public class MemberAddNewActivity extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		devices = (ArrayList<Device>) getIntent().getSerializableExtra("devices");
-		if (devices.size() < 1) {
+		if (devices == null) {
+			Toast.makeText(MemberAddNewActivity.this, "You have no devices", Toast.LENGTH_SHORT).show();
+			finish();
+		}
+		if (devices == null && devices.size() < 1) {
 			Toast.makeText(MemberAddNewActivity.this, "You have no devices", Toast.LENGTH_SHORT).show();
 			finish();
 		}

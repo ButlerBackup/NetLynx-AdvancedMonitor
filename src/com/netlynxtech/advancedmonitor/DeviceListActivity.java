@@ -139,7 +139,8 @@ public class DeviceListActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_add_device:
-			startActivity(new Intent(DeviceListActivity.this, TutorialActivity.class).putExtra("addNew", "1"));
+			// startActivity(new Intent(DeviceListActivity.this, TutorialActivity.class).putExtra("addNew", "1"));
+			startActivity(new Intent(DeviceListActivity.this, TutorialActivity.class));
 			break;
 		case R.id.menu_add_members:
 			Bundle information = new Bundle();

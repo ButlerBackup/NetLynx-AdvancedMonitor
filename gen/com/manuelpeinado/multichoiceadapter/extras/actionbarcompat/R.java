@@ -357,9 +357,9 @@ public final class R {
 		public static final int abc_search_dropdown_item_icons_2line = 0x7f030015;
 		public static final int abc_search_view = 0x7f030016;
 		public static final int abc_simple_decor = 0x7f030017;
-		public static final int mca__simple_list_item_checkable_1 = 0x7f030032;
-		public static final int mca__simple_list_item_checkable_2 = 0x7f030033;
-		public static final int support_simple_spinner_dropdown_item = 0x7f030037;
+		public static final int mca__simple_list_item_checkable_1 = 0x7f030033;
+		public static final int mca__simple_list_item_checkable_2 = 0x7f030034;
+		public static final int support_simple_spinner_dropdown_item = 0x7f030038;
 	}
 	public static final class plurals {
 		public static final int selected_items = 0x7f0a0000;

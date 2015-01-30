@@ -98,6 +98,9 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="Misc" >
         <Preference
+            android:key="pref_tutorial_restart"
+            android:title="@string/pref_tutorial_title" />
+        <Preference
             android:key="pref_about"
             android:title="@string/pref_about_title" />
         <Preference

@@ -27,7 +27,15 @@ public class SettingsActivity extends PreferenceActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings_activity);
-		((ColorPickerPreference) findPreference("pref_cp_graph_values_text")).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+		findPreference("pref_tutorial_restart").setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				startActivity(new Intent(SettingsActivity.this, TutorialChooseActivity.class).putExtra("addNew", true));
+				return true;
+			}
+		});
+		findPreference("pref_cp_graph_values_text").setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -36,7 +44,7 @@ public class SettingsActivity extends PreferenceActivity {
 			}
 
 		});
-		((ColorPickerPreference) findPreference("pref_cp_graph_text")).setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+		findPreference("pref_cp_graph_text").setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {

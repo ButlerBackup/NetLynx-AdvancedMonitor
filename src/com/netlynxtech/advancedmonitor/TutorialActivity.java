@@ -20,12 +20,7 @@ public class TutorialActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SecurePreferences sp = new SecurePreferences(TutorialActivity.this);
-
-		if (sp.getString("initial", "0").equals("1") && !getIntent().hasExtra("addNew")) {
-			startActivity(new Intent(TutorialActivity.this, DeviceListActivity.class));
-			finish();
-		}
+		
 		setContentView(R.layout.tutorial_activity);
 		mAdapter = new TutorialFragmentAdapter(getSupportFragmentManager());
 

@@ -27,22 +27,31 @@ public class RegisterPhoneActivity extends ActionBarActivity {
 	Bundle information;
 	ArrayList<Device> devices;
 	TextView tvError;
+	boolean isTutorial = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		sp = new SecurePreferences(RegisterPhoneActivity.this);
 		information = getIntent().getExtras();
+		if (getIntent().hasExtra("tutorialOnly")) {
+			isTutorial = true;
+		}
 		devices = (ArrayList<Device>) getIntent().getSerializableExtra("devices");
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		if (!sp.getString(Consts.PREFERENCES_PHONE_NO, "").equals("") && !sp.getString(Consts.PREFERENCES_GCMID, "").equals("")) {
-			Bundle information = new Bundle();
-			Intent i = new Intent(RegisterPhoneActivity.this, MemberAddNewActivity.class);
-			information.putSerializable("devices", devices);
-			i.putExtras(information);
-			startActivity(i);
-			finish();
+			if (!isTutorial) {
+				Bundle information = new Bundle();
+				Intent i = new Intent(RegisterPhoneActivity.this, MemberAddNewActivity.class);
+				information.putSerializable("devices", devices);
+				i.putExtras(information);
+				startActivity(i);
+				finish();
+			} else {
+				Toast.makeText(RegisterPhoneActivity.this, "You're already signed up!", Toast.LENGTH_SHORT).show();
+				finish();
+			}
 		} else {
 			setContentView(R.layout.activity_register_phone);
 			tvError = (TextView) findViewById(R.id.tvError);
@@ -66,6 +75,7 @@ public class RegisterPhoneActivity extends ActionBarActivity {
 						Bundle information = new Bundle();
 						Intent i = new Intent(RegisterPhoneActivity.this, CheckPinActivity.class);
 						information.putSerializable("devices", devices);
+						i.putExtra("tutorialOnly", isTutorial);
 						i.putExtras(information);
 						startActivity(i);
 						finish();

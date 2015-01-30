@@ -34,6 +34,7 @@ public class CheckPinActivity extends ActionBarActivity {
 	getGCMID mTask;
 	GoogleCloudMessaging gcm;
 	String GCM_register_ID = "";
+	boolean isTutorial = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class CheckPinActivity extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		getSupportActionBar().setTitle(CheckPinActivity.this.getResources().getString(R.string.check_pin_name));
+		if (getIntent().hasExtra("tutorialOnly")) {
+			isTutorial = true;
+		}
 		tvError = (TextView) findViewById(R.id.tvError);
 		tvGCMID = (TextView) findViewById(R.id.tvGCMID);
 		etPinNo = (EditText) findViewById(R.id.etPinNo);
@@ -83,12 +87,17 @@ public class CheckPinActivity extends ActionBarActivity {
 					tvError.setVisibility(View.VISIBLE);
 				} else {
 					new Utils(CheckPinActivity.this).setGCMID(GCM_register_ID);
-					Bundle information = new Bundle();
-					Intent i = new Intent(CheckPinActivity.this, MemberAddNewActivity.class);
-					information.putSerializable("devices", devices);
-					i.putExtras(information);
-					startActivity(i);
-					finish();
+					if (!isTutorial) {
+						Bundle information = new Bundle();
+						Intent i = new Intent(CheckPinActivity.this, MemberAddNewActivity.class);
+						information.putSerializable("devices", devices);
+						i.putExtras(information);
+						startActivity(i);
+						finish();
+					} else {
+						Toast.makeText(CheckPinActivity.this, "Successfully signed up!", Toast.LENGTH_LONG).show();
+						finish();
+					}
 				}
 			}
 		});

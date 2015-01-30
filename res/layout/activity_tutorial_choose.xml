@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/bAddOwnDevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="Add Own Device"
+        app:buttonColor="@color/fbutton_default_color"
+        app:cornerRadius="0dp"
+        app:shadowColor="@color/fbutton_default_shadow_color"
+        app:shadowEnabled="true"
+        app:shadowHeight="5dp" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/bAddOwnDevice"
+        android:gravity="center"
+        android:text="Or would you like to be part of the community and have access to trusted devices?"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/bJoinCommunity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:text="Join Community"
+        app:buttonColor="@color/fbutton_default_color"
+        app:cornerRadius="0dp"
+        app:shadowColor="@color/fbutton_default_shadow_color"
+        app:shadowEnabled="true"
+        app:shadowHeight="5dp" />
+
+    <com.mobsandgeeks.ui.TypefaceTextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bAddOwnDevice"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="Hi! Would you like to add your own device"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:customTypeface="roboto.ttf" />
+
+</RelativeLayout>
