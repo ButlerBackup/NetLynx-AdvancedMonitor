@@ -57,4 +57,18 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:customTypeface="roboto.ttf" />
 
+    <info.hoang8f.widget.FButton
+        android:id="@+id/bAlreadyMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/bJoinCommunity"
+        android:text="Already a member? Login now!"
+        app:buttonColor="@color/fbutton_default_color"
+        app:cornerRadius="0dp"
+        app:shadowColor="@color/fbutton_default_shadow_color"
+        app:shadowEnabled="true"
+        app:shadowHeight="5dp" />
+
 </RelativeLayout>

@@ -3,10 +3,12 @@ package com.netlynxtech.advancedmonitor;
 import java.util.ArrayList;
 
 import mehdi.sakout.dynamicbox.DynamicBox;
+import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
+import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
+import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -38,6 +40,7 @@ public class DeviceListActivity extends ActionBarActivity {
 	int index = 0, top = 0;
 	RefreshActionItem mRefreshActionItem;
 	Thread refreshWholeThing;
+	PullToRefreshLayout mPullToRefreshLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,20 @@ public class DeviceListActivity extends ActionBarActivity {
 		setContentView(R.layout.device_list);
 		devices = new ArrayList<Device>();
 		lvDevices = (ListView) findViewById(R.id.lvDevices);
+		mPullToRefreshLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
+		ActionBarPullToRefresh.from(DeviceListActivity.this).allChildrenArePullable()
+		// Set a OnRefreshListener
+				.listener(new OnRefreshListener() {
+
+					@Override
+					public void onRefreshStarted(View view) {
+						task = null;
+						task = new getDevice();
+						task.execute();
+					}
+				})
+				// Finally commit the setup to our PullToRefreshLayout
+				.setup(mPullToRefreshLayout);
 		box = new DynamicBox(DeviceListActivity.this, lvDevices);
 		lvDevices.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -187,6 +204,7 @@ public class DeviceListActivity extends ActionBarActivity {
 
 				@Override
 				public void run() {
+					mPullToRefreshLayout.setRefreshComplete();
 					mRefreshActionItem.showProgress(false);
 					box.hideAll();
 					if (!isCancelled()) {

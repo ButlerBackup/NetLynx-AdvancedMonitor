@@ -104,9 +104,14 @@ public class Utils {
 		return sp.getBoolean("pref_graph_animate", false);
 	}
 
-	public String getHousekeep() {
+	public int getHousekeep() {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-		return sp.getString("pref_graph_history_amount", "6");
+		String value = sp.getString("pref_graph_history_amount", "12");
+		try {
+			return Integer.parseInt(value);
+		} catch (Exception e) {
+			return 12;
+		}
 	}
 
 	public void showNotifications(String shortTitle, String title, String message, String messageType) {

@@ -8,30 +8,30 @@ package com.dd.processbutton;
 
 public final class R {
 	public static final class attr {
-		public static final int pb_colorComplete = 0x7f01009e;
-		public static final int pb_colorError = 0x7f01009f;
-		public static final int pb_colorNormal = 0x7f0100a1;
-		public static final int pb_colorPressed = 0x7f0100a0;
-		public static final int pb_colorProgress = 0x7f01009d;
-		public static final int pb_cornerRadius = 0x7f0100a2;
-		public static final int pb_textComplete = 0x7f01009b;
-		public static final int pb_textError = 0x7f01009c;
-		public static final int pb_textProgress = 0x7f01009a;
+		public static final int pb_colorComplete = 0x7f0100ba;
+		public static final int pb_colorError = 0x7f0100bb;
+		public static final int pb_colorNormal = 0x7f0100bd;
+		public static final int pb_colorPressed = 0x7f0100bc;
+		public static final int pb_colorProgress = 0x7f0100b9;
+		public static final int pb_cornerRadius = 0x7f0100be;
+		public static final int pb_textComplete = 0x7f0100b7;
+		public static final int pb_textError = 0x7f0100b8;
+		public static final int pb_textProgress = 0x7f0100b6;
 	}
 	public static final class color {
-		public static final int blue_normal = 0x7f08001a;
-		public static final int blue_pressed = 0x7f080019;
-		public static final int green_complete = 0x7f08001b;
-		public static final int holo_blue_bright = 0x7f08001e;
-		public static final int holo_green_light = 0x7f08001f;
-		public static final int holo_orange_light = 0x7f080020;
-		public static final int holo_red_light = 0x7f080021;
-		public static final int purple_progress = 0x7f08001c;
-		public static final int red_error = 0x7f08001d;
+		public static final int blue_normal = 0x7f07001c;
+		public static final int blue_pressed = 0x7f07001b;
+		public static final int green_complete = 0x7f07001d;
+		public static final int holo_blue_bright = 0x7f070020;
+		public static final int holo_green_light = 0x7f070021;
+		public static final int holo_orange_light = 0x7f070022;
+		public static final int holo_red_light = 0x7f070023;
+		public static final int purple_progress = 0x7f07001e;
+		public static final int red_error = 0x7f07001f;
 	}
 	public static final class dimen {
-		public static final int corner_radius = 0x7f090023;
-		public static final int layer_padding = 0x7f090024;
+		public static final int corner_radius = 0x7f080026;
+		public static final int layer_padding = 0x7f080027;
 	}
 	public static final class drawable {
 		public static final int rect_complete = 0x7f0200aa;
@@ -41,11 +41,11 @@ public final class R {
 		public static final int rect_progress = 0x7f0200ae;
 	}
 	public static final class styleable {
-		public static final int[] FlatButton = { 0x7f0100a0, 0x7f0100a1, 0x7f0100a2 };
+		public static final int[] FlatButton = { 0x7f0100bc, 0x7f0100bd, 0x7f0100be };
 		public static final int FlatButton_pb_colorNormal = 1;
 		public static final int FlatButton_pb_colorPressed = 0;
 		public static final int FlatButton_pb_cornerRadius = 2;
-		public static final int[] ProcessButton = { 0x7f01009a, 0x7f01009b, 0x7f01009c, 0x7f01009d, 0x7f01009e, 0x7f01009f };
+		public static final int[] ProcessButton = { 0x7f0100b6, 0x7f0100b7, 0x7f0100b8, 0x7f0100b9, 0x7f0100ba, 0x7f0100bb };
 		public static final int ProcessButton_pb_colorComplete = 4;
 		public static final int ProcessButton_pb_colorError = 5;
 		public static final int ProcessButton_pb_colorProgress = 3;

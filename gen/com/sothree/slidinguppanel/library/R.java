@@ -8,28 +8,28 @@ package com.sothree.slidinguppanel.library;
 
 public final class R {
 	public static final class attr {
-		public static final int anchorPoint = 0x7f010079;
-		public static final int dragView = 0x7f010077;
-		public static final int fadeColor = 0x7f010075;
-		public static final int flingVelocity = 0x7f010076;
-		public static final int initialState = 0x7f01007a;
-		public static final int overlay = 0x7f010078;
-		public static final int panelHeight = 0x7f010072;
-		public static final int panelShadowHeight = 0x7f010073;
-		public static final int paralaxOffset = 0x7f010074;
+		public static final int anchorPoint = 0x7f010095;
+		public static final int dragView = 0x7f010093;
+		public static final int fadeColor = 0x7f010091;
+		public static final int flingVelocity = 0x7f010092;
+		public static final int initialState = 0x7f010096;
+		public static final int overlay = 0x7f010094;
+		public static final int panelHeight = 0x7f01008e;
+		public static final int panelShadowHeight = 0x7f01008f;
+		public static final int paralaxOffset = 0x7f010090;
 	}
 	public static final class drawable {
 		public static final int above_shadow = 0x7f02005d;
 		public static final int below_shadow = 0x7f02005e;
 	}
 	public static final class id {
-		public static final int anchored = 0x7f0d001c;
-		public static final int collapsed = 0x7f0d001d;
-		public static final int expanded = 0x7f0d001e;
-		public static final int hidden = 0x7f0d001f;
+		public static final int anchored = 0x7f0a0025;
+		public static final int collapsed = 0x7f0a0026;
+		public static final int expanded = 0x7f0a0027;
+		public static final int hidden = 0x7f0a0028;
 	}
 	public static final class styleable {
-		public static final int[] SlidingUpPanelLayout = { 0x7f010072, 0x7f010073, 0x7f010074, 0x7f010075, 0x7f010076, 0x7f010077, 0x7f010078, 0x7f010079, 0x7f01007a };
+		public static final int[] SlidingUpPanelLayout = { 0x7f01008e, 0x7f01008f, 0x7f010090, 0x7f010091, 0x7f010092, 0x7f010093, 0x7f010094, 0x7f010095, 0x7f010096 };
 		public static final int SlidingUpPanelLayout_anchorPoint = 7;
 		public static final int SlidingUpPanelLayout_dragView = 5;
 		public static final int SlidingUpPanelLayout_fadeColor = 3;

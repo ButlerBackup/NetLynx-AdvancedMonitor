@@ -25,7 +25,6 @@ public class TutorialChooseActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				sp.edit().putString("initial", "1").commit();
 				startActivity(new Intent(TutorialChooseActivity.this, TutorialCommunityActivity.class));
 				finish();
 			}
@@ -34,8 +33,16 @@ public class TutorialChooseActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				sp.edit().putString("initial", "1").commit();
 				startActivity(new Intent(TutorialChooseActivity.this, TutorialActivity.class));
+				finish();
+			}
+		});
+		findViewById(R.id.bAlreadyMember).setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				sp.edit().putString("initial", "1").commit();
+				startActivity(new Intent(TutorialChooseActivity.this, DeviceListActivity.class));
 				finish();
 			}
 		});

@@ -54,7 +54,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="Graph&apos;s Settings" >
         <ListPreference
-            android:defaultValue="6"
+            android:defaultValue="12"
             android:dialogTitle="@string/pref_history_amount_dialog_title"
             android:entries="@array/pref_housekeep_shown"
             android:entryValues="@array/pref_housekeep_values"

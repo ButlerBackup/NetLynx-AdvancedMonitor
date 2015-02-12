@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import com.netlynxtech.advancedmonitor.ChooseDeviceActivity;
 import com.netlynxtech.advancedmonitor.R;
+import com.netlynxtech.advancedmonitor.TutorialCommunityActivity;
+import com.securepreferences.SecurePreferences;
 
 public class TutorialThreeFragment extends Fragment {
 	FButton bSetup;
@@ -23,6 +25,7 @@ public class TutorialThreeFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
+				new SecurePreferences(getActivity()).edit().putString("initial", "1").commit();
 				startActivity(new Intent(getActivity(), ChooseDeviceActivity.class));
 				getActivity().finish();
 			}

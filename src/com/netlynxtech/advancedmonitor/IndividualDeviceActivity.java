@@ -1,7 +1,11 @@
 package com.netlynxtech.advancedmonitor;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 import mehdi.sakout.dynamicbox.DynamicBox;
 import android.app.AlertDialog;
@@ -21,13 +25,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -66,6 +74,11 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 	SharedPreferences prefs;
 	loadGraphData mGraphTask;
 	Thread refreshWholeThing;
+	TextView slideupName;
+	private float x1, x2;
+	static final int MIN_DISTANCE = 150;
+	boolean showCustomHistoryDialogOne = false, showCustomHistoryDialogTwo = false;
+	String customHistoryTimeOne = "", customHistoryTimeTwo = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +101,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		tvDeviceId = (TextView) findViewById(R.id.tvDeviceId);
+		slideupName = (TextView) findViewById(R.id.slideupName);
 		tvDeviceDescription = (TextView) findViewById(R.id.tvDeviceDescription);
 		tvDeviceTemperature = (TextView) findViewById(R.id.tvDeviceTemperature);
 		tvDeviceHumidity = (TextView) findViewById(R.id.tvDeviceHumidity);
@@ -116,6 +130,29 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		sOutputOne = (Switch) findViewById(R.id.sOutputOne);
 		sOutputTwo = (Switch) findViewById(R.id.sOutputTwo);
 		setData();
+
+		tvPastHistoryTime.setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					x1 = event.getX();
+					break;
+				case MotionEvent.ACTION_UP:
+					x2 = event.getY();
+					float deltaX = x2 - x1;
+					if (Math.abs(deltaX) > MIN_DISTANCE) {
+						showCustomHistoryDialog();
+						// Toast.makeText(IndividualDeviceActivity.this, "left2right swipe", Toast.LENGTH_SHORT).show();
+					} else {
+						// consider as something else - a screen tap for example
+					}
+					break;
+				}
+				return true;
+			}
+		});
 		tvDeviceTemperature.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -502,7 +539,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		});
 		mGraphTask = null;
 		mGraphTask = new loadGraphData();
-		mGraphTask.execute();
+		mGraphTask.execute(false);
 		if (new Utils(IndividualDeviceActivity.this).getIndividualDeviceAutoRefresh()) {
 			processData();
 		}
@@ -842,7 +879,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		if (isUserRefresh) {
 			mGraphTask = null;
 			mGraphTask = new loadGraphData();
-			mGraphTask.execute();
+			mGraphTask.execute(false);
 		}
 	}
 
@@ -915,7 +952,7 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		return data;
 	}
 
-	private void setupChart(LineChart chart, LineData data, int color) {
+	private void setupChart(LineChart chart, LineData data, int color, boolean forceRefreshGraph) {
 		chart.setHighlightEnabled(true);
 		MyMarkerView mv = new MyMarkerView(IndividualDeviceActivity.this, R.layout.custom_marker_view);
 		mv.setOffsets(-mv.getMeasuredWidth() / 2, -mv.getMeasuredHeight());
@@ -984,20 +1021,42 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		if (isUserRefresh) {
 			chart.invalidate();
 		}
+		if (forceRefreshGraph) {
+			chart.invalidate();
+		}
 	}
 
-	private class loadGraphData extends AsyncTask<Void, Void, Void> {
+	private class loadGraphData extends AsyncTask<Boolean, Void, Void> {
 		ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
 		ArrayList<Double> temperature = new ArrayList<Double>();
 		ArrayList<Double> humidity = new ArrayList<Double>();
 		ArrayList<String> timing = new ArrayList<String>();
+		boolean isCustom = false;
 
 		LineData data1, data2;
+		boolean forceRefreshGraph = false;
 
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected void onPreExecute() {
+			super.onPreExecute();
+			try {
+				mRefreshActionItem.showProgress(true);
+			} catch (Exception e) {
+			}
+		}
 
-			data = new WebRequestAPI(IndividualDeviceActivity.this).GetChartData(deviceId, Utils.getCurrentDateTime(), Utils.getCustomDateTime(), 12);
+		@Override
+		protected Void doInBackground(Boolean... params) {
+			if (!params[0]) {
+				Log.e("Graph", "Loading 1 hour");
+				data = new WebRequestAPI(IndividualDeviceActivity.this).GetChartData(deviceId, Utils.getCurrentDateTime(), Utils.getCustomDateTime(),
+						new Utils(IndividualDeviceActivity.this).getHousekeep());
+			} else {
+				Log.e("Graph", "Loading custom hour");
+				isCustom = true;
+				forceRefreshGraph = true;
+				data = new WebRequestAPI(IndividualDeviceActivity.this).GetChartData(deviceId, customHistoryTimeTwo, customHistoryTimeOne, new Utils(IndividualDeviceActivity.this).getHousekeep());
+			}
 			if (data.size() > 0) {
 				for (HashMap<String, String> d : data) {
 					temperature.add(Double.parseDouble(d.get(Consts.GETDEVICES_TEMPERATURE)));
@@ -1017,21 +1076,45 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
+			try {
+				mRefreshActionItem.showProgress(false);
+			} catch (Exception e) {
+
+			}
 			IndividualDeviceActivity.this.runOnUiThread(new Runnable() {
 
 				@Override
 				public void run() {
 					if (!isCancelled()) {
 						if (data.size() > 0) {
-							setupChart(mCharts[0], data1, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphTemperatureColor()));
-							setupChart(mCharts[1], data2, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphHumidityColor()));
+							if (isCustom) {
+								String customDate = "";
+								long time1 = (long) (Double.valueOf(customHistoryTimeOne) * 1000);
+								Date date = new Date(time1);
+								SimpleDateFormat format = new SimpleDateFormat("d/M/y k:m");
+								customDate += format.format(date);
+
+								long time2 = (long) (Double.valueOf(customHistoryTimeTwo) * 1000);
+								Date date2 = new Date(time2);
+								SimpleDateFormat format2 = new SimpleDateFormat("d/M/y k:m");
+								customDate += " - " + format2.format(date2);
+								slideupName.setText(customDate);
+							} else {
+								slideupName.setText("Current Data");
+							}
+							setupChart(mCharts[0], data1, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphTemperatureColor()), forceRefreshGraph);
+							setupChart(mCharts[1], data2, Color.parseColor(new Utils(IndividualDeviceActivity.this).getGraphHumidityColor()), forceRefreshGraph);
 							String pastTime = "<b><u>Time</u></b><br>", pastTemp = "<b><u>Temperature</u></b><br>", pastHumidity = "<b><u>Humidity</u></b><br>";
-							int pastHistoryAmount = Integer.parseInt(new Utils(IndividualDeviceActivity.this).getHousekeep());
-							for (int i = pastHistoryAmount; --i >= 0;) {
-								HashMap<String, String> d = data.get(i);
-								pastTime += d.get(Consts.GETDEVICES_DATATIMESTAMP) + "<br>";
-								pastTemp += d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
-								pastHumidity += d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
+							int pastHistoryAmount = new Utils(IndividualDeviceActivity.this).getHousekeep();
+							int count = 1;
+							for (int i = data.size(); --i >= 0;) {
+								if (count <= pastHistoryAmount) {
+									HashMap<String, String> d = data.get(i);
+									pastTime += d.get(Consts.GETDEVICES_DATATIMESTAMP) + "<br>";
+									pastTemp += d.get(Consts.GETDEVICES_TEMPERATURE) + (char) 0x00B0 + "c<br>";
+									pastHumidity += d.get(Consts.GETDEVICES_HUMIDITY) + "%<br>";
+									count++;
+								}
 							}
 							tvPastHistoryTime.setText(Html.fromHtml(pastTime));
 							tvPastHistoryTemperature.setText(Html.fromHtml(pastTemp));
@@ -1186,6 +1269,9 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 			if (device.getRole().equals("9")) {
 				showDeleteDialog();
 			}
+			break;
+		case R.id.menu_custom_history:
+			showCustomHistoryDialog();
 			break;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -1405,5 +1491,71 @@ public class IndividualDeviceActivity extends ActionBarActivity {
 		}
 		builder.setView(dialoglayout);
 		builder.show();
+	}
+
+	public void showCustomHistoryDialog() {
+
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(IndividualDeviceActivity.this);
+		// ...Irrelevant code for customizing the buttons and title
+		LayoutInflater inflater = this.getLayoutInflater();
+		final View dialogView = inflater.inflate(R.layout.date_time_layout, null);
+		dialogBuilder.setView(dialogView);
+		if (!showCustomHistoryDialogOne && !showCustomHistoryDialogTwo) {
+			dialogBuilder.setTitle("Set Start Date and Time");
+		} else if (showCustomHistoryDialogOne && !showCustomHistoryDialogTwo) {
+			dialogBuilder.setTitle("Set End Date and Time");
+		}
+		dialogBuilder.setPositiveButton("Set", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				TimePicker timePicker = (TimePicker) dialogView.findViewById(R.id.timePicker1);
+				DatePicker datePicker = (DatePicker) dialogView.findViewById(R.id.datePicker1);
+				Log.e("Time", timePicker.getCurrentHour() + "|" + timePicker.getCurrentMinute());
+				Log.e("Date", datePicker.getDayOfMonth() + "");
+				Calendar cal = Calendar.getInstance();
+				cal.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+				cal.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
+				cal.set(Calendar.MINUTE, timePicker.getCurrentMinute());
+				Log.e("TimeMillis", cal.getTimeInMillis() + "");
+				if (!showCustomHistoryDialogOne && !showCustomHistoryDialogTwo) {
+					double tempFirstTime = System.currentTimeMillis();
+					if (cal.getTimeInMillis() > tempFirstTime) {
+						tempFirstTime = System.currentTimeMillis() / 1000;
+					} else {
+						tempFirstTime = cal.getTimeInMillis() / 1000;
+					}
+					customHistoryTimeOne = String.valueOf(tempFirstTime);
+					showCustomHistoryDialogOne = true;
+					showCustomHistoryDialog();
+				} else if (showCustomHistoryDialogOne && !showCustomHistoryDialogTwo) {
+					double tempSecondTime = System.currentTimeMillis();
+					if (cal.getTimeInMillis() > tempSecondTime) {
+						tempSecondTime = System.currentTimeMillis() / 1000;
+					} else {
+						tempSecondTime = cal.getTimeInMillis() / 1000;
+					}
+					customHistoryTimeTwo = String.valueOf(tempSecondTime);
+					showCustomHistoryDialogOne = false;
+					showCustomHistoryDialogTwo = false;
+					Log.e("Both timing", customHistoryTimeOne + "|" + customHistoryTimeTwo);
+					mGraphTask = null;
+					mGraphTask = new loadGraphData();
+					mGraphTask.execute(true);
+				}
+				// Toast.makeText(IndividualDeviceActivity.this, timePicker.getCurrentHour(), Toast.LENGTH_LONG).show();
+
+			}
+		});
+		dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				showCustomHistoryDialogOne = false;
+				showCustomHistoryDialogTwo = false;
+			}
+		});
+		AlertDialog alertDialog = dialogBuilder.create();
+		alertDialog.show();
 	}
 }

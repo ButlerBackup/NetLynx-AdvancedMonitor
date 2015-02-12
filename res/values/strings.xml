@@ -14,6 +14,7 @@
     <string name="activity_choose_device_button_connect">Update</string>
     <string name="activity_choose_device_button_rescan">Rescan Network</string>
     <string name="activity_update_io_description">Update Descriptions</string>
+    <string name="menu_custom_history">Load Custom History</string>
     <string name="menu_users">Users</string>
     <string name="menu_edit_device">Edit Device Details</string>
     <string name="menu_settings">Settings</string>

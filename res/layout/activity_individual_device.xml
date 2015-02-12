@@ -329,10 +329,11 @@
                 android:weightSum="6" >
 
                 <com.mobsandgeeks.ui.TypefaceTextView
-                    android:id="@+id/name"
+                    android:id="@+id/slideupName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
+                    android:layout_marginLeft="15dp"
                     android:gravity="center_vertical"
                     android:paddingTop="0dp"
                     android:text="Temperature/Humidity Graphs"

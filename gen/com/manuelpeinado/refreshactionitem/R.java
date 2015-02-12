@@ -8,49 +8,49 @@ package com.manuelpeinado.refreshactionitem;
 
 public final class R {
 	public static final class attr {
-		public static final int badgeBackgroundColor = 0x7f0100bb;
-		public static final int badgePosition = 0x7f0100bd;
-		public static final int badgeTextStyle = 0x7f0100bc;
-		public static final int progressIndicatorBackgroundColor = 0x7f0100b8;
-		public static final int progressIndicatorForegroundColor = 0x7f0100b9;
-		public static final int progressIndicatorType = 0x7f0100ba;
-		public static final int refreshActionItemBackground = 0x7f0100b6;
-		public static final int refreshActionItemIcon = 0x7f0100b7;
-		public static final int refreshActionItemStyle = 0x7f0100b5;
+		public static final int badgeBackgroundColor = 0x7f0100d7;
+		public static final int badgePosition = 0x7f0100d9;
+		public static final int badgeTextStyle = 0x7f0100d8;
+		public static final int progressIndicatorBackgroundColor = 0x7f0100d4;
+		public static final int progressIndicatorForegroundColor = 0x7f0100d5;
+		public static final int progressIndicatorType = 0x7f0100d6;
+		public static final int refreshActionItemBackground = 0x7f0100d2;
+		public static final int refreshActionItemIcon = 0x7f0100d3;
+		public static final int refreshActionItemStyle = 0x7f0100d1;
 	}
 	public static final class dimen {
-		public static final int rai__action_bar_default_height = 0x7f090027;
-		public static final int rai__action_bar_icon_vertical_padding = 0x7f090028;
+		public static final int rai__action_bar_default_height = 0x7f08002a;
+		public static final int rai__action_bar_icon_vertical_padding = 0x7f08002b;
 	}
 	public static final class drawable {
 		public static final int ic_navigation_refresh_dark = 0x7f02008e;
 		public static final int ic_navigation_refresh_light = 0x7f02008f;
 	}
 	public static final class id {
-		public static final int bottomLeft = 0x7f0d0027;
-		public static final int bottomRight = 0x7f0d0028;
-		public static final int center = 0x7f0d0029;
-		public static final int determinate_progress_indicator = 0x7f0d00e3;
-		public static final int indeterminate = 0x7f0d0024;
-		public static final int indeterminate_progress_indicator = 0x7f0d00e2;
-		public static final int pie = 0x7f0d0025;
-		public static final int refresh_button = 0x7f0d00e1;
-		public static final int topLeft = 0x7f0d002a;
-		public static final int topRight = 0x7f0d002b;
-		public static final int wheel = 0x7f0d0026;
+		public static final int bottomLeft = 0x7f0a0030;
+		public static final int bottomRight = 0x7f0a0031;
+		public static final int center = 0x7f0a0032;
+		public static final int determinate_progress_indicator = 0x7f0a00f0;
+		public static final int indeterminate = 0x7f0a002d;
+		public static final int indeterminate_progress_indicator = 0x7f0a00ef;
+		public static final int pie = 0x7f0a002e;
+		public static final int refresh_button = 0x7f0a00ee;
+		public static final int topLeft = 0x7f0a0033;
+		public static final int topRight = 0x7f0a0034;
+		public static final int wheel = 0x7f0a002f;
 	}
 	public static final class layout {
-		public static final int rai__action_item = 0x7f030036;
+		public static final int rai__action_item = 0x7f030038;
 	}
 	public static final class style {
-		public static final int Widget = 0x7f0b008e;
-		public static final int Widget_RefreshActionItem = 0x7f0b009b;
-		public static final int Widget_RefreshActionItem_Dark = 0x7f0b009e;
-		public static final int Widget_RefreshActionItem_Light = 0x7f0b009d;
-		public static final int Widget_RefreshActionItem_TextAppearance = 0x7f0b009c;
+		public static final int Widget = 0x7f0c0090;
+		public static final int Widget_RefreshActionItem = 0x7f0c009d;
+		public static final int Widget_RefreshActionItem_Dark = 0x7f0c00a0;
+		public static final int Widget_RefreshActionItem_Light = 0x7f0c009f;
+		public static final int Widget_RefreshActionItem_TextAppearance = 0x7f0c009e;
 	}
 	public static final class styleable {
-		public static final int[] RefreshActionItem = { 0x7f0100b6, 0x7f0100b7, 0x7f0100b8, 0x7f0100b9, 0x7f0100ba, 0x7f0100bb, 0x7f0100bc, 0x7f0100bd };
+		public static final int[] RefreshActionItem = { 0x7f0100d2, 0x7f0100d3, 0x7f0100d4, 0x7f0100d5, 0x7f0100d6, 0x7f0100d7, 0x7f0100d8, 0x7f0100d9 };
 		public static final int RefreshActionItem_badgeBackgroundColor = 5;
 		public static final int RefreshActionItem_badgePosition = 7;
 		public static final int RefreshActionItem_badgeTextStyle = 6;
